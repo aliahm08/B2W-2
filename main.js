@@ -1,0 +1,18 @@
+/* Main router: review shell. Source-page integration is tracked in research/page-by-page-selection.csv. */
+const pages={
+ "/":{title:"B2W",label:"B2W / Home",intro:"Applied intelligence for operations, engineering and decisions.",links:[["Past work","/work"],["How we work","/how-we-work"],["JasonAI","/jasonai"]]},
+ "/work":{title:"Past work",label:"B2W / Portfolio",intro:"Experience across enterprise systems, operational dashboards and software products.",links:[["How we work","/how-we-work"],["Get in touch","/contact"]]},
+ "/how-we-work":{title:"How we work",label:"B2W / Process",intro:"Understand workflows, design the system, implement and refine.",links:[["Past work","/work"],["JasonAI","/jasonai"]]},
+ "/perspectives":{title:"Perspectives",label:"B2W / Insights",intro:"Research and writing on operational intelligence and the built world.",links:[["Past work","/work"]]},
+ "/jasonai":{title:"JasonAI",label:"JasonAI / Executive secretary",intro:"An executive secretary for general contractor owners. It tracks communications, remembers project context and brings decisions to your attention.",links:[["For general contractors","/jasonai/general-contractors"],["Trust and oversight","/jasonai/trust"],["View interactive demo","/jasonai/demo"]]},
+ "/jasonai/general-contractors":{title:"Built for GC owners",label:"JasonAI / Use case",intro:"Follow projects, labor and deliveries where the conversations already happen.",links:[["JasonAI","/jasonai"],["Trust","/jasonai/trust"]]},
+ "/jasonai/trust":{title:"Trust & control",label:"JasonAI / Trust",intro:"Your information is shared intentionally. Proposed updates and replies remain under your control.",links:[["JasonAI","/jasonai"],["See demo","/jasonai/demo"]]},
+ "/jasonai/demo":{title:"Interactive demonstration",label:"JasonAI / Demo",intro:"Source demo is preserved in the historical October 8 HTML snapshot. This is a route placeholder until the full asset is merged.",links:[["JasonAI","/jasonai"]]},
+ "/businesses":{title:"For businesses",label:"B2W / SMB",intro:"Operational systems for project-based businesses.",links:[["Home","/"]]},
+ "/contact":{title:"Contact",label:"B2W / Connect",intro:"Start a conversation about improving an operational workflow.",links:[["Home","/"]]}
+};
+const app=document.getElementById("app"),nav=document.getElementById("site-menu"),toggle=document.querySelector(".toggle");
+function render(){const p=location.pathname.replace(/\/$/,"")||"/",page=pages[p]; if(!page){app.innerHTML='<section><h1>Page not found</h1><a href="/">Return home</a></section>';return;}document.title=page.title+" · B2W";app.innerHTML='<section class="hero"><p class="eyebrow">'+page.label+'</p><h1>'+page.title+'</h1><p>'+page.intro+'</p><div class="routes">'+page.links.map(([t,h])=>'<a data-route href="'+h+'">'+t+' <span aria-hidden="true">↗</span></a>').join("")+'</div></section>';document.querySelectorAll('nav a').forEach(a=>a.toggleAttribute("aria-current",a.getAttribute("href")===p));}
+document.addEventListener("click",e=>{const a=e.target.closest("a[data-route]");if(a && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button===0){e.preventDefault();history.pushState(null,"",a.getAttribute("href"));render();nav.classList.remove("open");toggle.setAttribute("aria-expanded","false");window.scrollTo(0,0);}});
+toggle.addEventListener("click",()=>{let v=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",String(v));});
+window.addEventListener("popstate",render);render();
