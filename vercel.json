@@ -1,1 +1,33 @@
-{"version":2,"rewrites":[{"source":"/((?!main\\\\.js|styles\\\\.css).*)","destination":"/index.html"}]}
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/jasonai",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/general-contractors",
+      "destination": "/jasonai/general-contractors/index.html"
+    },
+    {
+      "source": "/jasonai/trust",
+      "destination": "/jasonai/trust/index.html"
+    },
+    {
+      "source": "/jasonai/demo",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/how-we-work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/perspectives",
+      "destination": "/index.html"
+    }
+  ]
+}
