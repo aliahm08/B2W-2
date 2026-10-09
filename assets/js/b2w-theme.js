@@ -1,6 +1,6 @@
 (function () {
   const themes = {
-    home: "#f2f1ed",
+    home: "#d5c9bf",
     team: "#f2f1ed",
     offerings: "#173e2d",
     "how-we-work": "#ffffff",

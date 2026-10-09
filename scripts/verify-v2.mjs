@@ -1,0 +1,13 @@
+import fs from "node:fs";import path from "node:path";import vm from "node:vm";
+const root=path.resolve(import.meta.dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");
+const c={window:{}};vm.createContext(c);vm.runInContext(read("assets/js/field-notes-data-v2.js"),c);
+const notes=c.window.B2WFieldNotesV2;
+if(!Array.isArray(notes)||notes.length<30)throw Error("Missing notes");
+for(const note of notes)for(const k of ["id","title","who","what","when","where","why","how","source","kind"])if(!String(note[k]||"").trim())throw Error("Incomplete "+note.id+" "+k);
+if(new Set(notes.map(n=>n.id)).size!==notes.length)throw Error("Duplicate note IDs");
+const h=read("index.html");
+if((h.match(/class="offering-card v2-product-card"/g)||[]).length!==2)throw Error("Capabilities must have two cards");
+for(const url of ["/jasonai/","/clara/"])if(!h.includes('href="'+url+'" aria-label="Open'))throw Error("Missing card "+url);
+if(!read("assets/js/b2w-theme.js").includes('home: "#d5c9bf"'))throw Error("Taupe color missing");
+for(const f of ["jasonai/index.html","clara/index.html"])if(!read(f).includes("live-product-demos-v2.js"))throw Error("Missing product demo "+f);
+console.log("V2 regression PASS",notes.length,"notes, six fields, two linked products, taupe homepage");
