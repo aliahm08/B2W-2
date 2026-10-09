@@ -983,13 +983,21 @@ body.mode-home .site-header .contact-button{display:none!important}
  .site-header .mobile-tray .product-sub-link{display:flex!important;padding:14px 18px!important;
  background:transparent!important;border:0!important;font-weight:400!important}
 }
-</style></head>
+</style><style id="full-screen-b2w-menu-20261008">@media(max-width:780px){
+.site-header .mobile-tray{position:fixed!important;inset:64px 0 0 0!important;
+width:100vw!important;max-width:none!important;min-height:calc(100dvh - 64px)!important;
+height:calc(100dvh - 64px)!important;overflow-y:auto!important;
+background:var(--paper)!important;padding:24px!important;z-index:300!important;
+display:flex!important;flex-direction:column!important}
+.site-header .mobile-tray:not(.open){visibility:hidden!important;opacity:0!important;pointer-events:none!important;transform:translateY(-12px)!important}
+.site-header .mobile-tray.open{visibility:visible!important;opacity:1!important;pointer-events:auto!important;transform:none!important}
+}</style></head>
 <body>
 <div class="site-shell">
 <header class="site-header">
 <div class="header-inner">
 <a aria-label="B2W home" class="brand" data-view-link="home" href="#home">B2W</a><span class="current-page" id="currentPage" aria-live="polite"></span>
-<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Offerings</a><a href="https://jasonai-live-preview.vercel.app/">JasonAI ↗</a></nav>
+<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Offerings</a><a href="/jasonai/">JasonAI ↗</a></nav>
 <a class="contact-button" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact</a>
 <button aria-controls="mobileTray" aria-expanded="false" class="menu-toggle" type="button"><span>Menu</span><span aria-hidden="true">+</span></button>
 <nav aria-label="Mobile navigation" class="mobile-tray" id="mobileTray">
@@ -997,7 +1005,7 @@ body.mode-home .site-header .contact-button{display:none!important}
  <a data-view-link="insights" href="#insights"><span>Insights</span><span>→</span></a>
  <a data-view-link="offerings" href="#offerings"><span>Offerings</span><span>→</span></a>
  <a class="mobile-contact-cta" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"><span>Contact</span><span aria-hidden="true">→</span></a>
- <a class="product-sub-link" href="https://jasonai-live-preview.vercel.app/"><span>JasonAI</span><span>↗</span></a>
+ <a class="product-sub-link" href="/jasonai/"><span>JasonAI</span><span>↗</span></a>
  </nav>
 </div>
 <div class="mobile-menu-shade" aria-hidden="true"></div></header>
