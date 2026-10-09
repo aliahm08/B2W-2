@@ -1,71 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#11150f" />
-    <meta
-      name="description"
-      content="JasonAI is an executive secretary for general contractor owners."
-    />
-    <title>JasonAI · by B2W</title>
-    <script src="/assets/js/jasonai-entry.js"></script>
-    <link rel="stylesheet" href="/assets/css/jasonai.css" />
-  </head>
-  <body id="jasonai-site" class="theme-light">
-    <div class="site-shell">
-      <header class="site-header">
-        <div class="header-inner">
-          <div class="brand-area">
-            <a class="brand" href="/jasonai/" aria-label="JasonAI home"
-              ><span class="brand-product">JasonAI</span
-              ><span class="brand-by">by</span
-              ><span class="brand-parent">B2W</span></a
-            ><span class="current-page" id="current-page"></span>
-          </div>
-          <nav class="desktop-nav" aria-label="JasonAI pages">
-            <a href="/jasonai/">Home</a
-            ><a href="/jasonai/capabilities/">Capabilities</a
-            ><a href="/jasonai/how-it-works/">How It Works</a
-            ><a href="/jasonai/scenarios/">Scenarios</a>
-          </nav>
-          <a
-            class="header-contact"
-            href="mailto:hello@b2w-ai.com?subject=JasonAI%20demo"
-            >Contact</a
-          >
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Open navigation"
-          >
-            <span>Menu +</span>
-          </button>
-        </div>
-        <nav
-          class="mobile-menu"
-          id="mobile-menu"
-          aria-label="Mobile navigation"
-        >
-          <a href="/jasonai/">Home <span>↗</span></a>
-          <a href="/jasonai/capabilities/">Capabilities <span>↗</span></a>
-          <a href="/jasonai/how-it-works/">How It Works <span>↗</span></a>
-          <a href="/jasonai/scenarios/">Scenarios <span>↗</span></a>
-          <a href="/jasonai/demo/">Demo <span>↗</span></a>
-          <a
-            class="mobile-contact"
-            href="mailto:hello@b2w-ai.com?subject=JasonAI%20inquiry"
-            >Contact <span>→</span></a
-          >
-          <a class="parent-site-link" href="/">B2W <span>↗</span></a>
-        </nav>
-      </header>
-      <main id="main"></main>
-      <footer class="site-footer">© 2026 B2W LLC</footer>
-    </div>
-    <script src="/assets/js/jasonai-pages.js"></script>
-    <script src="/assets/js/jasonai-brand-transfer.js"></script>
-  </body>
-</html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f1ed">
+<meta name="description" content="JasonAI is an executive secretary for general contractor owners.">
+<title>JasonAI · by B2W</title>
+<link rel="stylesheet" href="/assets/css/b2w.css"><link rel="stylesheet" href="/assets/css/home.css"><link rel="stylesheet" href="/assets/css/header.css">
+<link rel="stylesheet" href="/assets/css/product-templates.css"><link rel="stylesheet" href="/assets/css/site-contact.css">
+</head>
+<body class="product-site" data-product="jasonai">
+<div class="site-shell">
+<header class="site-header ecosystem-header">
+<div class="header-inner">
+<a class="brand" href="/jasonai/" aria-label="JasonAI home">JasonAI</a>
+<span class="current-page" id="currentPage" aria-live="polite"></span>
+<nav class="header-nav" aria-label="jasonai pages">
+<a href="/jasonai/how-it-works/" data-template-link="show">How It Works</a>
+<a href="/jasonai/insights/" data-template-link="know">Insights</a>
+<a href="/jasonai/capabilities/" data-template-link="flow">Capabilities</a>
+</nav>
+<div class="header-actions">
+<a href="/contact/" data-contact-open class="contact-button">Contact</a>
+<a href="/" class="secondary-cta">B2W <span aria-hidden="true">↗</span></a>
+<a href="/clara/" class="secondary-cta">Clara <span aria-hidden="true">↗</span></a>
+</div>
+<button type="button" class="menu-toggle" aria-controls="mobileTray" aria-expanded="false"><span>Menu</span><span aria-hidden="true">+</span></button>
+<nav class="mobile-tray" id="mobileTray" aria-label="Mobile navigation" inert aria-hidden="true">
+<a href="/jasonai/" data-template-link="home"><span>Home</span><span>→</span></a>
+<a href="/jasonai/how-it-works/" data-template-link="show"><span>How It Works</span><span>→</span></a>
+<a href="/jasonai/insights/" data-template-link="know"><span>Insights</span><span>→</span></a>
+<a href="/jasonai/capabilities/" data-template-link="flow"><span>Capabilities</span><span>→</span></a>
+<a href="/contact/" data-contact-open class="mobile-contact-cta"><span>Contact</span><span>→</span></a>
+<a class="product-sub-link" href="/"><span>B2W</span><span>↗</span></a>
+<a class="product-sub-link" href="/clara/"><span>Clara</span><span>↗</span></a>
+</nav>
+</div><div class="mobile-menu-shade" aria-hidden="true"></div>
+</header>
+<div class="view-wrap"><main class="mock-view active" id="productView"></main></div>
+</div>
+<footer class="footer"><div class="footer-inner"><span>© 2026 B2W LLC</span></div></footer>
+<script src="/assets/js/product-templates.js"></script>
+<script src="/assets/js/site-contact.js"></script>
+<script src="/assets/js/ecosystem-transitions.js"></script>
+</body></html>

@@ -2,6 +2,50 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/clara/how-it-works",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/how-it-works/",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/insights",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/insights/",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/capabilities",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/capabilities/",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/workflow",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/workflow/",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/jasonai/insights",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/insights/",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
       "source": "/clara",
       "destination": "/clara/index.html"
     },
