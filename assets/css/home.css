@@ -273,3 +273,7 @@ body[data-burst-color="how-we-work"] {
     stroke-dashoffset: 0;
   }
 }
+
+/* Footer site links retain the existing B2W homepage type scale. */
+body.mode-home .ecosystem-home-footer{margin-left:auto}
+@media(max-width:780px){body.mode-home .ecosystem-home-footer{margin-left:0}}

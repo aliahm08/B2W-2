@@ -1,0 +1,12 @@
+/* Unique editable diagrams, built from vector paths with B2W's restrained line language. */
+.ecosystem-graphic{display:block;max-width:100%;height:auto;overflow:visible;color:currentColor}
+.ecosystem-graphic .graphic-wire,.ecosystem-graphic .graphic-frame,.ecosystem-graphic .graphic-accent,.ecosystem-graphic .graphic-light{stroke:currentColor;stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ecosystem-graphic .graphic-light{opacity:.35;stroke-dasharray:4 7}
+.ecosystem-graphic .graphic-accent{stroke-width:2}
+.ecosystem-graphic .graphic-node{stroke:currentColor;stroke-width:1.35;fill:var(--paper)}
+.ecosystem-graphic .graphic-hub{fill:var(--ink);stroke:var(--ink);stroke-width:1.3}
+.ecosystem-graphic .graphic-wire{stroke-dasharray:300;stroke-dashoffset:300;animation:ecosystem-draw 5s cubic-bezier(.16,1,.3,1) infinite}
+.ecosystem-graphic .graphic-hub{animation:ecosystem-pulse 3s ease-in-out infinite}
+@keyframes ecosystem-draw{0%{stroke-dashoffset:300;opacity:.2}40%,75%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-300;opacity:.2}}
+@keyframes ecosystem-pulse{50%{opacity:.48}}
+@media(prefers-reduced-motion:reduce){.ecosystem-graphic *{animation:none!important;stroke-dashoffset:0!important}}

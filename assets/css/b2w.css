@@ -2291,3 +2291,9 @@ html
   ) {
   font-size: var(--size) !important;
 }
+
+/* Shared footer navigation. Preserves the existing footer grid. */
+.footer-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:22px}
+.footer-links a{text-decoration:underline;text-underline-offset:4px;color:var(--muted)}
+.footer-links a:hover{color:var(--ink)}
+@media(max-width:660px){.footer-links{justify-content:flex-start;gap:12px}}

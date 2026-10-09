@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/assets/css/b2w.css" />
     <link rel="stylesheet" href="/assets/css/home.css" />
     <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/ecosystem-home-links.css" />
     <link rel="stylesheet" href="/assets/css/site-contact.css" />\n  </head>
   <body>
     <div class="site-shell">
@@ -38,7 +39,7 @@
           <div class="header-actions">
             <a
               class="contact-button"
-              href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"
+              href="/contact/" data-contact-open
               >Contact</a
             ><a class="secondary-cta" href="/jasonai/"
               >JasonAI <span aria-hidden="true">↗</span></a
@@ -70,7 +71,7 @@
             >
             <a
               class="mobile-contact-cta"
-              href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"
+              href="/contact/" data-contact-open
               ><span>Contact</span><span aria-hidden="true">→</span></a
             >
             <a
@@ -103,9 +104,8 @@
                   <circle class="hm-dot delay" r="4" cx="176" cy="22" /></svg
                 ><a
                   class="mission-link"
-                  data-view-link="offerings"
-                  href="/jasonai/"
-                  >JasonAI <span aria-hidden="true">↗</span></a
+                  data-view-link="offerings" href="#offerings"
+                  >Offerings <span aria-hidden="true">↗</span></a
                 >
               </div>
             </div>
@@ -121,9 +121,8 @@
                   <circle class="hm-node delay2" cx="132" cy="21" r="9" /></svg
                 ><a
                   class="mission-link"
-                  data-view-link="insights"
-                  href="/clara/"
-                  >Clara <span aria-hidden="true">↗</span></a
+                  data-view-link="insights" href="#insights"
+                  >Insights <span aria-hidden="true">↗</span></a
                 >
               </div>
             </div>
@@ -138,19 +137,13 @@
                   <path class="hm-tail" d="M161 4L176 10L161 16" /></svg
                 ><a
                   class="mission-link"
-                  data-view-link="how-we-work"
-                  href="/how-we-work"
-                  >Company <span aria-hidden="true">↗</span></a
+                  data-view-link="how-we-work" href="#how-we-work"
+                  >How We Work <span aria-hidden="true">↗</span></a
                 >
               </div>
             </div>
             <div class="home-bottom-actions">
-              <span class="home-llc">© 2026 B2W LLC</span
-              ><a
-                class="home-contact"
-                href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"
-                >Contact <span aria-hidden="true">↗</span></a
-              >
+              <span class="home-llc">© 2026 B2W LLC</span><div class="ecosystem-home-footer"><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a><a class="home-contact" href="/contact/" data-contact-open>Contact ↗</a></div>
             </div>
           </section>
         </main>
@@ -1132,7 +1125,7 @@
       </div>
     </div>
     <footer class="footer">
-      <div class="footer-inner"><span>© 2026 B2W LLC</span></div>
+      <div class="footer-inner"><span>© 2026 B2W LLC</span><nav class="footer-links" aria-label="Other B2W sites"><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a><a href="/contact/" data-contact-open>Contact ↗</a></nav></div>
     </footer>
     <script src="/assets/js/b2w-route-entry.js"></script>
     <script src="/assets/js/b2w-controller.js"></script>
@@ -1142,5 +1135,6 @@
     <script src="/assets/js/b2w-theme.js"></script>
     <script src="/assets/js/b2w-labels.js"></script>
     <script src="/assets/js/ecosystem-transitions.js"></script>
-      <script src="/assets/js/site-contact.js"></script>\n  </body>
+      <script src="/assets/js/site-contact.js"></script>
+  </body>
 </html>

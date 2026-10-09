@@ -3,10 +3,14 @@ html:has(body.product-jasonai.mode-home){background:#11150f}
 body.product-jasonai.mode-home{--paper:#11150f;--ink:#f2f1ed;--muted:#b4bcb2;--rule:rgba(242,241,237,.2)}
 body.product-clara.mode-home{--paper:#f7f1f4;--ink:#281b25;--muted:#685c65;--rule:#d9cbd4}
 html:has(body.product-clara.mode-home){background:#f7f1f4}
-body.product-jasonai.mode-offerings{--paper:#e7773d;--ink:#171411;--muted:#5f392a;--rule:rgba(23,20,17,.25)}
-html:has(body.product-jasonai.mode-offerings){background:#e7773d}
-body.product-clara.mode-offerings{--paper:#f7f1f4;--ink:#281b25;--muted:#685c65;--rule:#d9cbd4}
-html:has(body.product-clara.mode-offerings){background:#f7f1f4}
+body.product-jasonai.mode-offerings{--paper:#dedfdf;--ink:#171b1c;--muted:#565d5d;--rule:rgba(17,17,15,.18)}
+html:has(body.product-jasonai.mode-offerings){background:#dedfdf}
+body.product-jasonai.mode-scenarios{--paper:#e7773d;--ink:#171411;--muted:#5f392a;--rule:rgba(23,20,17,.25)}
+html:has(body.product-jasonai.mode-scenarios){background:#e7773d}
+body.product-jasonai.mode-demo{--paper:#fff;--ink:#171812;--muted:#66695e;--rule:rgba(25,28,23,.17)}
+html:has(body.product-jasonai.mode-demo){background:#fff}
+body.product-clara.mode-offerings{--paper:#d9cbd4;--ink:#281b25;--muted:#685c65;--rule:rgba(40,27,37,.25)}
+html:has(body.product-clara.mode-offerings){background:#d9cbd4}
 body.product-site{font-size:var(--size);line-height:var(--line)}
 body.product-site .site-shell{flex:1 0 auto}
 body.product-site .view-wrap{min-height:48vh}
@@ -75,3 +79,44 @@ body.product-site.site-arriving .view-wrap{animation:product-reveal .42s ease bo
 @media(prefers-reduced-motion:reduce){
  body.product-site.site-arriving .view-wrap,body.product-site .offering-card.is-open .offering-reveal{animation:none}
 }
+/* Editorial SVGs belong to their respective template, but use B2W shared geometry. */
+body.product-site .mission-interlude .ecosystem-graphic{max-width:148px;height:46px;opacity:.85}
+body.product-site .product-card-art{display:block;width:min(100%,230px);margin-top:auto;padding-top:26px}
+body.product-site .product-card-art .ecosystem-graphic{width:100%;height:auto;max-height:132px}
+body.product-site .offering-card .offering-trigger{height:100%;min-height:194px}
+body.product-site .offering-card.is-open .offering-trigger{height:auto}
+body.product-site .product-stage-art{width:180px;max-width:100%;margin:18px 0 8px 0;color:var(--muted)}
+body.product-site .product-stage-art .ecosystem-graphic{width:180px;height:42px;opacity:.75}
+body.product-site .field-hero .ecosystem-graphic{width:200px;max-width:100%;height:150px}
+body.product-site .field-hero .ecosystem-graphic path,body.product-site .field-hero .ecosystem-graphic circle{vector-effect:non-scaling-stroke}
+body.product-site .product-demo{width:100%;margin-top:18px}
+body.product-site .product-demo-controls{flex-wrap:wrap;gap:12px}
+body.product-site .product-demo p:first-child{font-weight:700}
+body.product-site .product-demo button:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+body.product-site .home-bottom-actions{flex-wrap:wrap}
+body.product-site .ecosystem-home-footer{justify-content:flex-end}
+body.product-site .site-header{transition:background .26s ease,color .26s ease}
+body.product-site .footer-inner{grid-template-columns:1fr auto;align-items:center}
+body.product-site .footer-links{display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:flex-end}
+body.product-site .footer-links a{color:var(--muted);text-decoration:underline;text-underline-offset:4px}
+body.product-site .footer-links a:hover{color:var(--ink)}
+@media(max-width:780px){
+body.product-site .mission-interlude .ecosystem-graphic{width:70px;height:24px}
+body.product-site .ecosystem-home-footer{justify-content:flex-start}
+body.product-site .footer-inner{grid-template-columns:1fr;gap:12px}
+body.product-site .footer-links{justify-content:flex-start;gap:15px}
+body.product-site .product-card-art{width:min(100%,205px)}
+body.product-site .offering-card .offering-trigger{min-height:0}
+}
+
+/* Know template: preview original art while the index is empty, as on B2W Insights. */
+body.product-site .field-workspace.is-empty .product-note-hover{
+position:absolute;top:18px;left:calc(50% + 300px);width:min(230px,22vw);
+opacity:0;transform:translateX(-8px);pointer-events:none;
+transition:opacity .28s var(--spring),transform .38s var(--spring)
+}
+body.product-site .product-note-hover.is-visible{opacity:.75;transform:translateX(0)}
+body.product-site .product-note-hover .ecosystem-graphic{width:100%;height:auto}
+body.product-site .field-workspace:not(.is-empty) .product-note-hover{display:none}
+@media(max-width:980px){body.product-site .product-note-hover{display:none!important}}
+@media(prefers-reduced-motion:reduce){body.product-site .product-note-hover{transition:none}}
