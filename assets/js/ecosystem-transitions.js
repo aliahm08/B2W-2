@@ -4,7 +4,7 @@
  let departing=false,animation=null;
  document.addEventListener("click",async event=>{
   const anchor=event.target.closest("a[href]");
-  if(!anchor||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||anchor.target==="_blank"||anchor.hasAttribute("data-contact-open")||anchor.hasAttribute("data-view-link"))return;
+  if(!anchor||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||anchor.target==="_blank"||anchor.hasAttribute("data-contact-open")||(anchor.hasAttribute("data-view-link") && (!anchor.getAttribute("href").startsWith("/") || anchor.pathname==="/how-we-work")))return;
   const dest=new URL(anchor.href,location.href);
   if(dest.origin!==location.origin||dest.pathname===location.pathname||dest.protocol!=="https:"&&dest.protocol!=="http:")return;
   const source=document.body.dataset.product;
