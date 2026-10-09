@@ -9,6 +9,8 @@ const code=read("assets/js/product-templates.js");
 const graphics=read("assets/js/product-graphics.js");
 const claraSrc=read("assets/js/clara-content-v3.js");
 const portalSrc=read("assets/js/clara-portal-v5.js");
+const jobsSrc=read("assets/js/clara-sample-jobs-v6.js");
+const gallerySrc=read("assets/js/clara-sample-gallery-v6.js");
 const c={window:{}};vm.createContext(c);vm.runInContext(claraSrc,c);
 const clara=c.window.B2WClaraContentV3;
 if(!clara||!Array.isArray(clara.stages)||!Array.isArray(clara.notes)||!Array.isArray(clara.offerings))
@@ -16,7 +18,7 @@ if(!clara||!Array.isArray(clara.stages)||!Array.isArray(clara.notes)||!Array.isA
 const pageType={
  home:{fragment:'class="mission-unit"',claraCount:clara.rows.length},
  show:{fragment:'class="clara-portal-step"',claraCount:6},
- know:{fragment:'class="field-item"',claraCount:clara.notes.length},
+ know:{fragment:'data-cjob=',claraCount:clara.notes.length},
  flow:{fragment:'class="clara-feature-item"',claraCount:clara.offerings.length},
 };
 const paths=[
@@ -42,8 +44,10 @@ for(const [site,url,kind,background] of paths){
  if(site==="clara"){
  new Function("window",claraSrc)(window);
  new Function("window",portalSrc)(window);
+ new Function("window",jobsSrc)(window);
+ new Function("window","document","location",gallerySrc)(window,{}, {search:""});
 }
- const view={innerHTML:"",addEventListener:()=>{}};
+ const view={innerHTML:"",addEventListener:()=>{},querySelectorAll:()=>[]};
  const menu={setAttribute:()=>{},addEventListener:()=>{},querySelectorAll:()=>[{textContent:""},{textContent:""}]};
  const tray={classList:{contains:()=>false,remove:()=>{}},setAttribute:()=>{},querySelector:()=>null};
  const elements={productView:view,mobileTray:tray,currentPage:{textContent:""},demoNumber:{textContent:""},demoText:{textContent:""},demoBack:{disabled:false},demoNext:{textContent:""}};
@@ -56,11 +60,11 @@ for(const [site,url,kind,background] of paths){
  };
  const location={pathname:url,hash:""};
  new Function("document","window","location","history","matchMedia","requestAnimationFrame","innerWidth",code)(document,window,location,{pushState:()=>{},replaceState:()=>{}},()=>({matches:false}),callback=>callback(),980);
- const found=site==="clara"&&(kind==="show"||kind==="flow")?([...view.innerHTML.matchAll(kind==="show"?/class="clara-portal-step"/g:/class="clara-feature-item"/g)].length):count(view.innerHTML,kind);
+ const found=site==="clara"&&(kind==="show"||kind==="flow"||kind==="know")?([...view.innerHTML.matchAll(kind==="show"?/class="clara-portal-step"/g:kind==="know"?/data-cjob=/g:/class="clara-feature-item"/g)].length):count(view.innerHTML,kind);
  if(found===0||document.documentElement.style.backgroundColor!==background)throw new Error(url+" render/theme invalid");
  if(site==="clara"&&found!==pageType[kind].claraCount)throw new Error(url+" expected "+pageType[kind].claraCount+", got "+found);
  if((kind==="flow"&&site==="jasonai"||kind==="show"&&site==="clara")&&!view.innerHTML.includes('data-product="'+site+'"'))throw new Error(url+" missing walkthrough");
- if(kind==="know"&&!view.innerHTML.includes("product-note-hover"))throw new Error(url+" missing info-library preview");
+ if(kind==="know"&&!view.innerHTML.includes(site==="clara"?"data-csamples":"product-note-hover"))throw new Error(url+" missing sample workspace / info-library");
 }
 const claraHtml=read("clara/index.html");
 for(const route of ["/clara/what-we-show/","/clara/scenarios/","/clara/capabilities/"]){
@@ -70,7 +74,7 @@ if(!claraHtml.includes("clara-theme-v3.css")||!claraHtml.includes("clara-content
 const b2w=read("index.html");
 const scope=b2w.slice(b2w.indexOf('class="mission-home"'),b2w.indexOf('class="home-bottom-actions"'));
 if([...scope.matchAll(/class="mission-link"/g)].length!==3)throw new Error("B2W's 3 home links must be preserved");
-console.log("PASS: 10 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"scenarios,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
+console.log("PASS: 10 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"sample jobs,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
 
 const claraTheme=read("assets/css/clara-theme-v3.css");
 for(const token of [

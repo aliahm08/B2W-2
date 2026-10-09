@@ -68,6 +68,7 @@ function show(path){
  return '<section class="subpage">'+walkthrough+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div><div class="product-stage-art" aria-hidden="true">'+window.B2WGraphics.stage(site,i)+'</div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Scenarios ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
 }
 function know(path){
+ if(!jason&&window.B2WClaraSamplesV6)return window.B2WClaraSamplesV6.render();
  const notes=path.includes("/trust")?[
  ["Secure, private technology",["We use secure, private technology.","The owner chooses what project information is available to JasonAI.","Access and consequential actions should be controlled."]],
  ["No sale of personal data",["We never sell personal data.","The original Trust statement is retained here as a product commitment.","Permission and source visibility are central to the proposed workflow."]],
@@ -135,6 +136,7 @@ function render(){
  demoStep=0;updateDemo();
  window.B2WLiveDemos?.mount(view);
  if(jason)window.B2WJasonHowV4?.mount(view);
+ if(!jason)window.B2WClaraSamplesV6?.mount(view);
  if(location.hash&&(location.hash==="#capabilities"||location.hash==="#how-it-works")){const dest=location.hash==="#capabilities"?routes.flow:routes.show;history.replaceState(null,"",dest);render();}
 }
 let navigating=false;

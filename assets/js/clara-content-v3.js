@@ -1,7 +1,5 @@
-/* Clara V5: show the estimator, document acquisition strategy, enumerate actual product features. */
-(()=>{
-"use strict";
-window.B2WClaraContentV3={
+/* Clara content: sample jobs in Scenarios, seven feature areas in Capabilities. */
+(()=>{"use strict";window.B2WClaraContentV3={
   "rows": [
     [
       "An open estimating tool for real jobs, from a site voice note to a reviewable estimate.",
@@ -9,7 +7,7 @@ window.B2WClaraContentV3={
       "/clara/what-we-show/"
     ],
     [
-      "Our strategy is to make estimating useful on the first visit, then easy to share across a property team.",
+      "Explore previous Clara estimate examples in a preloaded sample workspace, without exposing customer data.",
       "Scenarios",
       "/clara/scenarios/"
     ],
@@ -142,83 +140,27 @@ window.B2WClaraContentV3={
   ],
   "notes": [
     [
-      "Start with one estimate",
+      "Barbershop renovation",
       [
-        "Give a contractor or property manager a free reason to try Clara at the jobsite: they record the work they can see.",
-        "The first successful outcome is a draft estimate they can understand, correct and take away.",
-        "Measure first-visit completion, accuracy of reviewed line items and whether the user returns. This is a go-to-market hypothesis, not a validated conversion claim."
+        "An existing Clara barbershop estimate went through reviewer markup. Feedback focused on making the document a customer-facing offer, using the correct business and client information, and summarizing the source note instead of reproducing a raw transcript.",
+        "Customer-facing estimate, revised after review. Original quantities and prices have not been verified for this public example.",
+        "Archived Clara estimate with marked-up review"
       ]
     ],
     [
-      "Let the estimate carry the introduction",
+      "Shoe store fit-out",
       [
-        "A free estimate is naturally shared with owners, managers, vendors and contractors.",
-        "Sharing a specific draft gives the recipient context and an invitation to review or create another estimate.",
-        "Track deliberate shares and invited collaborators without exposing private estimates through public URLs."
+        "Several Clara estimates were exported for a shoe-store design example. The relevant task is to turn a design brief into a reviewable commercial fit-out estimate with clear assumptions, then manage the revision history.",
+        "Retail design estimate example based on existing Clara exports. Item descriptions below illustrate the workflow rather than reproduce verified PDF line items.",
+        "Multiple Clara shoe-store estimate exports"
       ]
     ],
     [
-      "Make the second property easier than the first",
+      "Property repairs",
       [
-        "Commercial real estate operators repeat visits across different addresses.",
-        "The tool should remember properties, work orders and previous versions so a second job starts with less re-entry.",
-        "Measure returning use across properties before asking users to change their entire workflow."
-      ]
-    ],
-    [
-      "Reach the people already on site",
-      [
-        "Contractors and field representatives have the observations that make an estimate useful.",
-        "Provide mobile-friendly voice capture and simple draft correction rather than requiring a desktop-first process.",
-        "Learn which field roles finish a usable estimate and what information they tend to miss."
-      ]
-    ],
-    [
-      "Turn reviewers into collaborators",
-      [
-        "Property managers, owners and contractors often review estimates in different steps.",
-        "Invite reviewers into a versioned estimate with their own access and explicit approval status.",
-        "Build retention around review and follow-up, not an artificial message or referral count."
-      ]
-    ],
-    [
-      "Use practical demonstrations in discovery",
-      [
-        "Offer a live voice-note-to-draft estimate during a conversation about an actual property job.",
-        "Ask the operator to correct quantities, rates and exclusions so their existing estimating criteria remain authoritative.",
-        "Use those corrections to prioritize improvements. Do not present automated quotes as verified prices."
-      ]
-    ],
-    [
-      "Offer a free entry point with responsible limits",
-      [
-        "People should be able to create an account, accept clear terms and try a realistic job without a sales call.",
-        "Publish any fair-use limits and processing costs before changing them; safeguard uploaded recordings and property data.",
-        "Track completed estimates, review corrections and repeat users rather than downloads alone."
-      ]
-    ],
-    [
-      "Partner where scope is already discussed",
-      [
-        "General contractors, property coordinators and consultants already discuss work scope with clients.",
-        "Make it easy for a professional to start a structured estimate and hand it to the person who must approve it.",
-        "Test selected partner and field workflows before building broad integrations."
-      ]
-    ],
-    [
-      "Use version history as the reason to stay",
-      [
-        "The first estimate may be free, but a job can pass through several revisions and people.",
-        "Keep the recording, draft, approvals and subsequent changes together by property and work order.",
-        "Measure whether users choose Clara for a second revision, not merely for generating a PDF once."
-      ]
-    ],
-    [
-      "Expand only after trust is demonstrated",
-      [
-        "An accurate, editable first draft matters more than adding every conceivable AI feature.",
-        "Use completion, correction, abandonment and trust feedback to sequence further development.",
-        "Add advanced portfolio analytics or integrations when they solve documented problems."
+        "Clara previously generated a property-specific estimate. For public viewing, the location is withheld. This example illustrates how an estimate remains tied to one work order, its supporting notes and its next reviewer.",
+        "Property repair estimate example, anonymized for the public preview. The work items are placeholders until source details are reviewed.",
+        "Archived Clara property-specific estimate PDF (address withheld)"
       ]
     ]
   ],
@@ -294,5 +236,4 @@ window.B2WClaraContentV3={
       "/clara/scenarios/"
     ]
   ]
-};
-})();
+};})();

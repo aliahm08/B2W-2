@@ -28,8 +28,11 @@ The B2W static marketing site has the new Clara **What We Show** page, 10-entry 
 
 ## What We Show / Scenarios / Capabilities semantics
 - **What We Show**: real product preview with an explicit illustrative-demo label, and the *planned* free portal journey. The live product should open in a first-party portal.
-- **Scenarios**: acquisition and adoption hypotheses (first estimate, sharing loop, review collaboration, repeat properties). Not testimonials.
+- **Scenarios**: three anonymized sample jobs based on archived Clara estimate artifacts, with illustrative voice-note and draft-scope placeholders. The interactive website sample workspace is public but not an authenticated portal workspace.
 - **Capabilities**: functional product feature definitions. Not evidence that all features are shipped.
 - **Visual**: shared B2W one-size 15px design rule; Clara mauve / purple / electric blue surfaces; B2W's Capabilities view moved to brighter electric green `#B4FF56`, with dark ink for contrast.
 
 **Deployment owner input needed**: a link to the actual Clara MVP repository or build artifact, and authorization to configure the portal domain/auth/storage/terms. No such credentials were supplied, and none were fabricated.
+
+## Public sample job fixture
+The `assets/data/clara-sample-jobs.json` seed contains three anonymized estimate examples (barbershop, shoe-store fit-out, property repair), each mapped to an archived Clara PDF. Quantities, rates and original audio were not available as verified text and are intentionally blank or expressly illustrative. The same sample job records power the website demonstration. When the authenticated portal MVP is identified, import these seed records under a dedicated read-only demo account or template namespace and enforce per-user duplication/ownership; **no portal import has been performed yet**.

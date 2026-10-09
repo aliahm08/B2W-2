@@ -1,0 +1,129 @@
+{
+  "schema": "clara.sample-jobs.v1",
+  "description": "Anonymized public demonstrations mapped to existing Clara estimate artifacts; illustrative scope only, no verified prices or original recordings.",
+  "currency": "USD",
+  "jobs": [
+    {
+      "id": "barbershop-refresh",
+      "title": "Barbershop renovation",
+      "kind": "Commercial interior",
+      "provenance": "Archived Clara estimate with marked-up review",
+      "sourceStatus": "Prior estimate document confirmed; line-item details require source verification",
+      "intro": "An existing Clara barbershop estimate went through reviewer markup. Feedback focused on making the document a customer-facing offer, using the correct business and client information, and summarizing the source note instead of reproducing a raw transcript.",
+      "summary": "Customer-facing estimate, revised after review. Original quantities and prices have not been verified for this public example.",
+      "exampleNote": "We're reviewing a barbershop refresh. We need to check the finish work, customer-facing fixtures, and lighting. Please list the work and flag measurements or selections we still need.",
+      "noteDisclaimer": "Illustrative voice note, not the original recording.",
+      "lines": [
+        {
+          "item": "Interior preparation and finishes",
+          "unit": "area",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Fixtures and millwork",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Lighting and electrical allowance",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        }
+      ],
+      "revisions": [
+        "Archived estimate",
+        "Reviewer markup: business and customer labels",
+        "Reviewer markup: summary and offer wording"
+      ],
+      "review": "Scope and prices require review against the original exported estimate.",
+      "tag": "Archived estimate"
+    },
+    {
+      "id": "shoe-store-design",
+      "title": "Shoe store fit-out",
+      "kind": "Retail interior",
+      "provenance": "Multiple Clara shoe-store estimate exports",
+      "sourceStatus": "Prior estimate documents confirmed; quantities and pricing not extracted",
+      "intro": "Several Clara estimates were exported for a shoe-store design example. The relevant task is to turn a design brief into a reviewable commercial fit-out estimate with clear assumptions, then manage the revision history.",
+      "summary": "Retail design estimate example based on existing Clara exports. Item descriptions below illustrate the workflow rather than reproduce verified PDF line items.",
+      "exampleNote": "We're preparing a shoe-store fit-out. Include display fixtures, finishes and lighting in a preliminary scope. Flag dimensions, material selections and the final layout as open.",
+      "noteDisclaimer": "Illustrative voice note, not the original recording.",
+      "lines": [
+        {
+          "item": "Display fixture allowance",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Floor and wall finishes",
+          "unit": "area",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Lighting and signage coordination",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        }
+      ],
+      "revisions": [
+        "Archived Clara estimate",
+        "Additional shoe-store estimate export",
+        "Review-ready draft (illustrative)"
+      ],
+      "review": "Confirm layouts, finishes, quantities, and every cost input before generating a client offer.",
+      "tag": "Archived estimate"
+    },
+    {
+      "id": "property-repair",
+      "title": "Property repairs",
+      "kind": "Property maintenance",
+      "provenance": "Archived Clara property-specific estimate PDF (address withheld)",
+      "sourceStatus": "Prior estimate document confirmed; private address withheld and scope unverified",
+      "intro": "Clara previously generated a property-specific estimate. For public viewing, the location is withheld. This example illustrates how an estimate remains tied to one work order, its supporting notes and its next reviewer.",
+      "summary": "Property repair estimate example, anonymized for the public preview. The work items are placeholders until source details are reviewed.",
+      "exampleNote": "We're at a property with several repairs to scope. Document the affected surfaces and fixtures, then note any measurements we need before final pricing.",
+      "noteDisclaimer": "Illustrative voice note, not the original recording.",
+      "lines": [
+        {
+          "item": "Inspect and document affected areas",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Surface preparation and repairs",
+          "unit": "area",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        },
+        {
+          "item": "Fixture repair allowance",
+          "unit": "item",
+          "qty": "",
+          "rate": "",
+          "verified": false
+        }
+      ],
+      "revisions": [
+        "Archived property estimate",
+        "Demo review copy (anonymized)"
+      ],
+      "review": "No original address, customer details, item quantities, or estimated totals are exposed.",
+      "tag": "Archived estimate"
+    }
+  ]
+}

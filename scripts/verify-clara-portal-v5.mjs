@@ -11,7 +11,7 @@ vm.runInContext(read("assets/js/clara-portal-v5.js"),ctx);
 const c=ctx.window.B2WClaraContentV3,p=ctx.window.B2WClaraPortalV5;
 if(c.rows.map(r=>r[1]).join("|")!=="What We Show|Scenarios|Capabilities")throw Error("Clara navigation labels invalid");
 if(!c.rows[0][2].endsWith("/what-we-show/"))throw Error("What We Show path wrong");
-if(c.notes.length!==10||c.offerings.length!==7)throw Error("Strategy/feature counts mismatch");
+if(c.notes.length!==3||c.offerings.length!==7)throw Error("Sample job/feature counts mismatch");
 if(p.portal!=="https://portal.b2w-ai.com/")throw Error("Portal destination invalid");
 const what=p.show(),features=p.features(c.offerings);
 if(!what.includes("v2-live-stage")||!what.includes("Open Clara portal"))throw Error("Estimation walkthrough missing");
