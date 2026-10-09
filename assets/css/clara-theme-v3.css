@@ -24,13 +24,14 @@ body.product-clara.mode-insights{
  --muted:#D5C6DE;--rule:rgba(232,220,240,.25);--clara-highlight:var(--clara-electric-dark);--clara-label:var(--clara-electric-dark);
 }
 body.product-clara.mode-offerings{
- --paper:var(--clara-mauve-soft);--ink:var(--clara-purple-ink);
- --muted:#5B4D5D;--rule:rgba(52,38,63,.23);--clara-highlight:var(--clara-electric);--clara-label:#163998;
+ --paper:var(--clara-electric);--ink:#FFFFFF;
+ --muted:#FFFFFF;--rule:rgba(255,255,255,.38);
+ --clara-highlight:var(--clara-purple);--clara-label:#FFFFFF;
 }
 html:has(body.product-clara.mode-home){background:var(--clara-mauve)}
 html:has(body.product-clara.mode-how){background:var(--clara-mauve-light)}
 html:has(body.product-clara.mode-insights){background:var(--clara-purple)}
-html:has(body.product-clara.mode-offerings){background:var(--clara-mauve-soft)}
+html:has(body.product-clara.mode-offerings){background:var(--clara-electric)}
 body.product-clara{accent-color:var(--clara-label)}
 body.product-clara .site-header,body.product-clara .footer{background:var(--paper)}
 body.product-clara.mode-home .site-header{background:transparent}
@@ -48,7 +49,7 @@ body.product-clara .mission-link[data-template-link="know"]{
  --link-paper:var(--clara-purple);--link-ink:#F8F3FA
 }
 body.product-clara .mission-link[data-template-link="flow"]{
- --link-paper:var(--clara-mauve-soft);--link-ink:var(--clara-purple-ink)
+ --link-paper:var(--clara-electric);--link-ink:#FFFFFF
 }
 body.product-clara .mission-link:hover,body.product-clara .mission-link:focus-visible{
  text-decoration-color:var(--clara-label);
@@ -96,3 +97,49 @@ body.product-clara .mobile-contact-cta:hover{background:var(--clara-highlight);b
 /* Electric-blue borders remain bright; text uses an accessible tonal companion. */
 body.product-clara .field-item:focus-visible,body.product-clara .offering-card:focus-within{outline-color:var(--clara-highlight)}
 body.product-clara .product-links a:focus-visible{outline:2px solid var(--clara-highlight);outline-offset:4px}
+
+/* Clara Capabilities: vivid electric-blue surface; readable inverse controls.
+   The established Flow layout, card behavior and text sizing remain unchanged. */
+body.product-clara.mode-offerings .offering-card{
+ background:rgba(36,27,70,.27);
+ border-color:rgba(255,255,255,.45);
+ color:#FFFFFF;
+}
+body.product-clara.mode-offerings .offering-card.is-open{
+ background:rgba(36,27,70,.55);
+ border-color:#FFFFFF;
+}
+body.product-clara.mode-offerings .offering-trigger,
+body.product-clara.mode-offerings .offering-desc,
+body.product-clara.mode-offerings .product-flow-list,
+body.product-clara.mode-offerings .offering-reveal a{
+ color:#FFFFFF;
+}
+body.product-clara.mode-offerings .offering-trigger:hover .offering-title,
+body.product-clara.mode-offerings .offering-reveal a:hover,
+body.product-clara.mode-offerings .product-links a:hover,
+body.product-clara.mode-offerings .product-links a:focus-visible,
+body.product-clara.mode-offerings .footer-links a:hover,
+body.product-clara.mode-offerings .secondary-cta:hover{
+ color:#FFFFFF;
+ text-decoration:underline;
+ text-underline-offset:5px;
+}
+body.product-clara.mode-offerings .offering-card.is-open .offering-reveal{
+ color:#FFFFFF;
+}
+body.product-clara.mode-offerings .header-nav a:hover,
+body.product-clara.mode-offerings .header-nav a:focus-visible,
+body.product-clara.mode-offerings .contact-button:hover,
+body.product-clara.mode-offerings .contact-button:focus-visible{
+ background:var(--clara-purple);
+ box-shadow:0 0 0 5px var(--clara-purple);
+ color:#FFFFFF;
+}
+body.product-clara.mode-offerings .offering-card:focus-within{
+ outline:2px solid #FFFFFF;
+ outline-offset:3px;
+}
+body.product-clara.mode-offerings .v2-embedded-title{
+ color:#FFFFFF;
+}

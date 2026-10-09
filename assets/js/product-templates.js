@@ -114,7 +114,7 @@ function render(){
  const scenarios=path.endsWith("/scenarios"),demoRoute=path.endsWith("/demo");
  if(scenarios)document.body.classList.add("mode-scenarios");
  if(demoRoute)document.body.classList.add("mode-demo");
- const claraColors={home:"#C7AABD",show:"#F6F0F4",know:"#34263F",flow:"#E6D6E2"};
+ const claraColors={home:"#C7AABD",show:"#F6F0F4",know:"#34263F",flow:"#2563FF"};
  const color=!jason?claraColors[template]:
    template==="home"?"#11150f":
    template==="show"?"#ffffff":

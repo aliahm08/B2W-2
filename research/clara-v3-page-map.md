@@ -8,9 +8,9 @@ Source: `review/v2-demo-notes-oct` at `0a70f093594094a6a43eb875dc239d562925009b`
 | `/clara/` | Home | Main mauve `#C7AABD` | Three links to templates |
 | `/clara/how-it-works/` | Show | Pale mauve `#F6F0F4` | Data-defined stages |
 | `/clara/scenarios/` | Know | Deep metallic purple `#34263F` | Data-defined selectable scenarios |
-| `/clara/capabilities/` | Flow | Soft mauve `#E6D6E2` | Data-defined expandable capabilities, with the existing animated Clara walkthrough |
+| `/clara/capabilities/` | Flow | Electric blue `#2563FF` | Data-defined expandable capabilities, with the existing animated Clara walkthrough |
 
-Electric blue: `#2563FF` for borders, buttons, interactions, focus; accessible light-blue companion `#78A3FF` on the deep-purple surface. Readable highlighted text on mauve uses a deeper blue `#163998`.
+Electric blue: `#2563FF` is the full Capabilities page background (with white content and deep metallic-purple interactive contrast), and remains an interaction accent on the other pages; accessible light-blue companion `#78A3FF` on the deep-purple surface. Readable highlighted text on mauve uses a deeper blue `#163998`.
 
 Clara currently has 7 How It Works stages, 12 Scenarios, and 6 Capabilities. These are **content counts, not template limits**; the renderer uses `Array.map` and the test derives expected counts directly from `clara-content-v3.js`.
 
@@ -22,3 +22,6 @@ Capabilities: property workspace, voice-to-scope, editable estimates, sharing/re
 
 ## Preservation
 B2W and JasonAI template geometry, nav components, contact dialog, typography, mobile tray and cross-site transitions are retained. Clara's page-specific style file is loaded **after** the shared styles. The original V2 remains available for rollback. Ali's approval is required before production changes.
+
+## Capabilities color revision
+Capabilities uses the exact electric blue `#2563FF` for both body and HTML background, aligned to the route's meta theme color and Clara's homepage link hover. Interactive cards retain their original geometry with dark-purple translucent fills and white text for contrast. Home, How It Works, Scenarios, JasonAI and B2W styles remain unchanged.

@@ -26,9 +26,9 @@ const paths=[
  ["clara","/clara/","home","#C7AABD"],
  ["clara","/clara/how-it-works/","show","#F6F0F4"],
  ["clara","/clara/scenarios/","know","#34263F"],
- ["clara","/clara/capabilities/","flow","#E6D6E2"],
+ ["clara","/clara/capabilities/","flow","#2563FF"],
  ["clara","/clara/insights/","know","#34263F"],
- ["clara","/clara/workflow/","flow","#E6D6E2"]
+ ["clara","/clara/workflow/","flow","#2563FF"]
 ];
 function count(html,kind){
  const re=kind==="home"?/class="mission-unit"/g:kind==="show"?/class="stage(?: open)?"/g:kind==="know"?/class="field-item"/g:/class="offering-card"/g;
@@ -66,3 +66,10 @@ const b2w=read("index.html");
 const scope=b2w.slice(b2w.indexOf('class="mission-home"'),b2w.indexOf('class="home-bottom-actions"'));
 if([...scope.matchAll(/class="mission-link"/g)].length!==3)throw new Error("B2W's 3 home links must be preserved");
 console.log("PASS: 10 shared routes, Clara data-driven",clara.stages.length,"stages,",clara.notes.length,"scenarios,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
+
+const claraTheme=read("assets/css/clara-theme-v3.css");
+for(const token of [
+ '--paper:var(--clara-electric);--ink:#FFFFFF',
+ 'html:has(body.product-clara.mode-offerings){background:var(--clara-electric)}',
+ '--link-paper:var(--clara-electric);--link-ink:#FFFFFF'
+]) if(!claraTheme.includes(token))throw Error("Clara electric blue Capabilities not consistently applied: "+token);
