@@ -888,6 +888,9 @@ body.mode-home .site-header .contact-button{display:none!important}
  body:not(.mode-home) .site-header .menu-toggle:before{content:'';display:block;width:15px;height:11px;background:linear-gradient(to bottom,var(--ink) 0 1.5px,transparent 1.5px 4.5px,var(--ink) 4.5px 6px,transparent 6px 9px,var(--ink) 9px 10.5px);border-radius:1px}
  body:not(.mode-home) .site-header .contact-button{display:inline-flex!important;position:relative!important;top:auto!important;right:auto!important;left:auto!important;transform:none!important;order:2!important;margin:0 0 0 auto!important;align-items:center;justify-content:center;padding:8px 14px!important;border:1px solid var(--ink)!important;background:var(--ink)!important;color:var(--paper)!important;border-radius:999px!important;white-space:nowrap}
 }
+/* Shared header rules: desktop uses original centered link rail; mobile uses menu */
+@media(min-width:781px){.header-inner{grid-template-columns:1fr auto 1fr!important}.header-nav{display:flex!important;justify-self:center!important}.contact-button{display:inline-flex!important;justify-self:end!important}.menu-toggle,.mobile-tray{display:none!important}}
+@media(max-width:780px){.header-nav,.site-header .contact-button{display:none!important}.menu-toggle{display:inline-flex!important}.mobile-tray .product-sub-link{font-weight:400!important;padding:10px 18px!important;margin-top:0!important;border-bottom:0!important;opacity:.7}.mobile-tray .mobile-contact-cta{margin-top:18px!important}}
 </style></head>
 <body>
 <div class="site-shell">
@@ -897,8 +900,13 @@ body.mode-home .site-header .contact-button{display:none!important}
 <nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Offerings</a><a href="/jasonai">JasonAI ↗</a></nav>
 <a class="contact-button" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact</a>
 <button aria-controls="mobileTray" aria-expanded="false" class="menu-toggle" type="button"><span>Menu</span><span aria-hidden="true">+</span></button>
-<nav aria-label="Mobile navigation" class="mobile-tray" id="mobileTray"><a data-view-link="how-we-work" href="#how-we-work"><span>How We Work</span><span>→</span></a><a data-view-link="insights" href="#insights"><span>Insights</span><span>→</span></a><a data-view-link="offerings" href="#offerings"><span>Offerings</span><span>→</span></a><a href="/jasonai"><span>JasonAI</span><span>→</span></a><button class="tray-contact mobile-contact-cta" type="button" onclick="window.location.href='mailto:hello@b2w-ai.com?subject=B2W%20inquiry'"><span>Contact</span><span aria-hidden="true">→</span></button>
-</nav>
+<nav aria-label="Mobile navigation" class="mobile-tray" id="mobileTray">
+ <a data-view-link="how-we-work" href="#how-we-work"><span>How We Work</span><span>→</span></a>
+ <a data-view-link="insights" href="#insights"><span>Insights</span><span>→</span></a>
+ <a data-view-link="offerings" href="#offerings"><span>Offerings</span><span>→</span></a>
+ <a class="mobile-contact-cta" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"><span>Contact</span><span aria-hidden="true">→</span></a>
+ <a class="product-sub-link" href="/jasonai"><span>JasonAI</span><span>↗</span></a>
+ </nav>
 </div>
 <div class="mobile-menu-shade" aria-hidden="true"></div></header>
 <div class="view-wrap">
