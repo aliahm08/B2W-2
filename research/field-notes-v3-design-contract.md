@@ -4,8 +4,8 @@ Source: e0da8d4c7a1f8cb22eddb187df7d8c0636a753f1 (Clara V3). Review-only changes
 
 ## Layout
 - Left: existing searchable, numbered 36-note index.
-- Middle: titled long-form field-note article. Uses explicit sections for context, implication, and response, with a source-linked animated workflow graphic. Includes representative, license-permitted photographic imagery.
-- Right: separate sticky, independently scrollable **Who / What / When / Where / Why / How** facts panel. This restores the intended three-column reading hierarchy.
+- Middle: three short unheaded paragraphs, illustrative photo, and animated graphic. All text is the same 15px size.
+- Right: six bold labels (Who, What, When, Where, Why, How) at the same text size; hierarchy by weight and spacing only.
 - Narrow widths: preserve the B2W mobile reader/back navigation; stack article then facts, with no horizontal scrolling.
 - Hover preview: the motion graphic remains in the center column; rightmost region stays visually empty when no note is open.
 - Existing `#article-field-note-006` deep link, next-note links, search, field-note IDs and reduced-motion behavior retained.
@@ -21,3 +21,6 @@ Photographs use the Unsplash image CDN with modest image dimensions, lazy loadin
 
 ## Validation
 Run `node scripts/verify-v2.mjs` and `node scripts/verify-field-notes-v3.mjs`. Human desktop/mobile visual acceptance remains required before production.
+
+## Typography correction
+Every visible text element in the Field Notes page is kept at the shared 15px B2W token. No article title, header, kicker or subsection heading is rendered. Navigation and source attribution stay legible at the same size.

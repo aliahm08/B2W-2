@@ -73,26 +73,21 @@ function figure(note){
  '<figcaption>Illustrative photograph · <a href="'+escape(p.href)+'" target="_blank" rel="noopener noreferrer">'+escape(p.by)+' / Unsplash ↗</a></figcaption></figure>';
 }
 function story(note,i){
- // Each article is built from the original research fields; no added quotes, dates or customer claims.
- const kicker=escape(note.area)+' <span aria-hidden="true">/</span> '+escape(note.kind);
  return '<article class="field-story" aria-label="'+escape(note.title)+'">'+
- '<header class="v3-story-header"><p class="v3-story-index">FIELD NOTE '+nn(i)+' <span aria-hidden="true">—</span> '+kicker+'</p>'+
- '<h1 class="v3-story-title">'+escape(note.title)+'</h1><p class="v3-story-deck">'+escape(note.what)+'</p></header>'+
- figure(note)+
  '<div class="v3-story-prose">'+
-  '<section class="v3-story-section"><h2>The context</h2><p>'+escape(note.who)+'</p><p>'+escape(note.where)+'</p><p class="v3-record-time">'+escape(note.when)+'</p></section>'+
-  '<section class="v3-story-section"><h2>Why this matters</h2><p>'+escape(note.why)+'</p>'+
-    '<div class="field-art">'+visual(note,i)+'</div></section>'+
-  '<section class="v3-story-section"><h2>What we would change</h2><p>'+escape(note.how)+'</p></section>'+
+ '<p class="v3-story-lead">'+escape(note.what)+'</p>'+
+ figure(note)+
+ '<p>'+escape(note.why)+'</p>'+
+ '<div class="field-art">'+visual(note,i)+'</div>'+
+ '<p>'+escape(note.how)+'</p>'+
  '</div>'+
- '<footer class="v3-story-foot"><div><span class="v3-story-foot-label">Research record</span><p>'+escape(note.source)+' · '+escape(note.kind)+'</p></div>'+
- (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note · '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
+ '<footer class="v3-story-foot"><p class="v3-source">Source: '+escape(note.source)+' · '+escape(note.kind)+'</p>'+
+ (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
  '</footer></article>';
 }
 function facts(note){
  return '<aside class="field-facts field-text" aria-label="Who, what, when, where, why and how">'+
-  '<div class="v3-facts-head"><span>THE SIX QUESTIONS</span><span aria-hidden="true">06</span></div>'+
-  keys.map((k,j)=>'<p class="v3-fact" style="--line-number:'+j+'"><strong>'+titleCase(k)+'</strong><span>'+escape(note[k])+'</span></p>').join("")+
+ keys.map((k,j)=>'<p class="v3-fact" style="--line-number:'+j+'"><strong>'+titleCase(k)+'</strong><span>'+escape(note[k])+'</span></p>').join("")+
  '</aside>';
 }
 const nav='<div class="v2-note-tools"><label class="v2-search-label" for="v2FieldSearch">Field notes <span class="v2-note-count" id="v2FieldCount">'+data.length+'</span></label>'+

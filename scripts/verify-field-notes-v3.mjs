@@ -17,7 +17,7 @@ const count=pattern=>[...html.matchAll(new RegExp(pattern,"g"))].length;
 const expected=data.length;
 const observed={
  panels:count('class="field-panel v3-editorial-panel"'),
- sections:count('class="v3-story-section"'),
+ shortNotes:count('class="v3-story-prose"'),
  stories:count('class="field-story"'),
  facts:count('class="field-facts field-text"'),
  labels:count('class="v3-fact"'),
@@ -26,7 +26,7 @@ const observed={
  credits:count('target="_blank" rel="noopener noreferrer"')
 };
 for(const [key,value] of Object.entries(observed)){
- const required=key==="labels"?expected*6:key==="sections"?expected*3:expected;
+ const required=key==="labels"?expected*6:expected;
  if(value!==required)throw Error(key+" expected "+required+", observed "+value);
 }
 for(const record of data){
@@ -36,6 +36,8 @@ for(const record of data){
 }
 const css=file("assets/css/field-notes-editorial-v3.css");
 const page=file("index.html");
+if(/<h[1-6][ >]|<header[ >]|v3-story-index|v3-facts-head/.test(html))throw Error("Field notes must have no article titles, headings or subtitles");
+if(!css.replaceAll(/\/\*[\s\S]*?\*\//g,"").includes("font-size:var(--size,15px)!important"))throw Error("One-size typography enforcement missing");
 if(html.includes("onerror="))throw Error("Unexpected inline error handler");
 if(!observedEvents.some(e=>e.name==="error"&&e.capture===true))throw Error("Image fallback handler not registered");
 if(!html.includes('data-v3-editorial-photo="1"'))throw Error("Editorial images missing fallback marker");

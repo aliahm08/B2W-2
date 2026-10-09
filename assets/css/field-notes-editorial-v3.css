@@ -230,3 +230,41 @@ body.mode-insights #insights .v3-story-section .field-art{
 @media(max-width:780px){
  body.mode-insights #insights .v3-story-section p{line-height:1.7}
 }
+
+/* Field Notes: one shared text size; hierarchy only by weight, color and spacing. */
+body.mode-insights #insights :where(p,span,a,button,label,input,figcaption,strong,b,small,svg text) {
+ font-size:var(--size,15px)!important;
+}
+body.mode-insights #insights .v3-process-name {
+ font-size:var(--size,15px)!important;
+}
+body.mode-insights #insights .v3-story-prose {
+ display:grid;gap:20px;
+}
+body.mode-insights #insights .v3-story-prose>p {
+ margin:0;opacity:1;transform:none;font-size:var(--size,15px)!important;
+ line-height:var(--line);font-weight:400;
+}
+body.mode-insights #insights .v3-story-prose .v3-story-lead {
+ font-weight:600;
+}
+body.mode-insights #insights .v3-story-prose .field-art {
+ margin:0;
+}
+body.mode-insights #insights .v3-story-foot .v3-source {
+ margin:0;color:var(--muted);opacity:1;transform:none;
+}
+body.mode-insights #insights .field-facts{
+ padding-top:0;
+}
+body.mode-insights #insights .v3-fact {
+ margin:0;border-bottom:1px solid var(--rule);
+ opacity:1!important;transform:none!important;animation:none!important;
+}
+body.mode-insights #insights .v3-fact strong,
+body.mode-insights #insights .v3-fact span {
+ font-size:var(--size,15px)!important;
+}
+body.mode-insights #insights .v3-note-photo.image-unavailable::before {
+ font-size:var(--size,15px)!important;
+}
