@@ -1044,13 +1044,36 @@ touch-action:manipulation!important;opacity:1!important;color:var(--ink)!importa
 background:transparent!important;text-decoration:none!important}
 .site-header #mobileTray>a.product-sub-link span{pointer-events:none!important}
 }
+</style><style id="home-ecosystem-navigation">
+/* Keep the home brand centered while the menu remains independently tappable. */
+body.mode-home .site-header .header-inner{position:relative!important}
+body.mode-home .site-header .brand{
+  position:absolute!important;left:50%!important;top:50%!important;
+  transform:translate(-50%,-50%)!important;margin:0!important;
+  justify-self:auto!important;white-space:nowrap!important;z-index:2!important
+}
+body.mode-home .home-bottom-actions{align-items:center!important}
+body.mode-home .home-bottom-actions .home-contact{
+  display:inline-flex!important;align-items:center!important;gap:8px!important;
+  min-width:0!important;min-height:38px!important;margin:0!important;padding:4px 0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  color:var(--muted)!important;font-weight:400!important;box-shadow:none!important
+}
+body.mode-home .home-bottom-actions .home-contact:hover,
+body.mode-home .home-bottom-actions .home-contact:focus-visible{color:var(--ink)!important;text-decoration:underline;text-underline-offset:5px}
+body.mode-home .home-bottom-actions .home-contact span{margin-left:0!important}
+@media(max-width:780px){
+ body.mode-home .site-header .menu-toggle{position:relative!important;z-index:3!important}
+ body.mode-home .home-bottom-actions .home-contact{display:inline-flex!important}
+ .site-header #mobileTray>a.product-sub-link{margin-top:4px!important;min-height:55px!important}
+}
 </style></head>
 <body>
 <div class="site-shell">
 <header class="site-header">
 <div class="header-inner">
 <a aria-label="B2W home" class="brand" data-view-link="home" href="#home">B2W</a><span class="current-page" id="currentPage" aria-live="polite"></span>
-<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Offerings</a><a href="/jasonai/">JasonAI ↗</a></nav>
+<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Offerings</a><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a></nav>
 <a class="contact-button" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact</a>
 <button aria-controls="mobileTray" aria-expanded="false" class="menu-toggle" type="button"><span>Menu</span><span aria-hidden="true">+</span></button>
 <nav aria-label="Mobile navigation" class="mobile-tray" id="mobileTray">
@@ -1058,12 +1081,12 @@ background:transparent!important;text-decoration:none!important}
  <a data-view-link="insights" href="#insights"><span>Insights</span><span>→</span></a>
  <a data-view-link="offerings" href="#offerings"><span>Offerings</span><span>→</span></a>
  <a class="mobile-contact-cta" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry"><span>Contact</span><span aria-hidden="true">→</span></a>
- <a class="product-sub-link" href="/jasonai/" aria-label="Visit JasonAI product website"><span>JasonAI</span><span aria-hidden="true">↗</span></a>
+ <a class="product-sub-link" href="/jasonai/" aria-label="Visit JasonAI product website"><span>JasonAI</span><span aria-hidden="true">↗</span></a><a class="product-sub-link" href="/clara/" aria-label="Visit Clara product website"><span>Clara</span><span aria-hidden="true">↗</span></a>
  </nav>
 </div>
 <div class="mobile-menu-shade" aria-hidden="true"></div></header>
 <div class="view-wrap">
-<main class="mock-view active" data-view="home" id="home"><section class="mission-home"><div class="mission-unit"><p>Our mission is to improve communication through optimizing actionable insights for SMBs.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M4 22H55L75 7L101 35L126 22H176"/><circle class="hm-dot" r="4" cx="4" cy="22"/><circle class="hm-dot delay" r="4" cx="176" cy="22"/></svg><a class="mission-link" data-view-link="offerings" href="#offerings">Offerings <span aria-hidden="true">↗</span></a></div></div><div class="mission-unit"><p>We are 3 engineers who enjoy solving problems that people have.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M8 21H172"/><circle class="hm-node" cx="48" cy="21" r="9"/><circle class="hm-node delay" cx="90" cy="21" r="9"/><circle class="hm-node delay2" cx="132" cy="21" r="9"/></svg><a class="mission-link" data-view-link="insights" href="#insights">Insights <span aria-hidden="true">↗</span></a></div></div><div class="mission-unit"><p>Our team is currently looking for early clients who are willing to test our demos for free.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M4 32H40V10H82V32H122V10H176"/><path class="hm-tail" d="M161 4L176 10L161 16"/></svg><a class="mission-link" data-view-link="how-we-work" href="#how-we-work">How We Work <span aria-hidden="true">↗</span></a></div></div>  <div class="home-bottom-actions"><span class="home-llc">© 2026 B2W LLC</span><a class="home-contact" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact <span aria-hidden="true">↗</span></a></div></section></main><main class="mock-view" data-view="offerings" id="offerings"><div class="offerings-layout"><article class="offering-card" data-offering="1">
+<main class="mock-view active" data-view="home" id="home"><section class="mission-home"><div class="mission-unit"><p>Our mission is to improve communication through optimizing actionable insights for SMBs.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M4 22H55L75 7L101 35L126 22H176"/><circle class="hm-dot" r="4" cx="4" cy="22"/><circle class="hm-dot delay" r="4" cx="176" cy="22"/></svg><a class="mission-link" data-view-link="offerings" href="/jasonai/">JasonAI <span aria-hidden="true">↗</span></a></div></div><div class="mission-unit"><p>We are 3 engineers who enjoy solving problems that people have.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M8 21H172"/><circle class="hm-node" cx="48" cy="21" r="9"/><circle class="hm-node delay" cx="90" cy="21" r="9"/><circle class="hm-node delay2" cx="132" cy="21" r="9"/></svg><a class="mission-link" data-view-link="insights" href="/clara/">Clara <span aria-hidden="true">↗</span></a></div></div><div class="mission-unit"><p>Our team is currently looking for early adopters who are willing to test our demos for free.</p><div class="mission-interlude"><svg viewBox="0 0 180 42" fill="none" aria-hidden="true"><path class="hm-path" d="M4 32H40V10H82V32H122V10H176"/><path class="hm-tail" d="M161 4L176 10L161 16"/></svg><a class="mission-link" data-view-link="how-we-work" href="/how-we-work">Company <span aria-hidden="true">↗</span></a></div></div>  <div class="home-bottom-actions"><span class="home-llc">© 2026 B2W LLC</span><a class="home-contact" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact <span aria-hidden="true">↗</span></a></div></section></main><main class="mock-view" data-view="offerings" id="offerings"><div class="offerings-layout"><article class="offering-card" data-offering="1">
       <button class="offering-trigger" type="button" aria-expanded="false" aria-controls="feature-1">
         <span class="offering-title">Executive support for contractor owners</span>
         <span class="offering-desc">A reliable extension of the owner: keeps track of project conversations, commitments, and decisions so important work does not disappear between messages and tools.</span>
@@ -1233,7 +1256,7 @@ burstLinks.forEach(link=>{
   link.addEventListener('focus',()=>burstShow(link));
   link.addEventListener('blur',()=>burstHide(link));
 });
-links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(a.dataset.viewLink==='home')returnToHome(true);else openFromHome(a.dataset.viewLink,true)}));document.querySelectorAll('[data-note]').forEach(a=>a.addEventListener('click',()=>{choose(a.dataset.note,true,true);if(innerWidth<=780)window.scrollTo({top:0,behavior:'instant'})}));document.querySelectorAll('[data-stage]').forEach(s=>{const b=s.querySelector('.stage-head');if(b)b.addEventListener('click',()=>{const open=s.classList.toggle('open');b.setAttribute('aria-expanded',String(open));if(open&&matchMedia('(max-width:780px)').matches)document.querySelectorAll('[data-stage]').forEach(other=>{if(other!==s){other.classList.remove('open');other.querySelector('.stage-head')?.setAttribute('aria-expanded','false')}})})});window.addEventListener('hashchange',()=>{const route=location.hash.slice(1)||'home';if(route==='home'&&!document.body.classList.contains('mode-home'))returnToHome(false);else page(route,false)});page(location.hash.slice(1)||'home',false)})();</script>
+links.forEach(a=>a.addEventListener('click',e=>{if(a.getAttribute('href')?.startsWith('/'))return;e.preventDefault();if(a.dataset.viewLink==='home')returnToHome(true);else openFromHome(a.dataset.viewLink,true)}));document.querySelectorAll('[data-note]').forEach(a=>a.addEventListener('click',()=>{choose(a.dataset.note,true,true);if(innerWidth<=780)window.scrollTo({top:0,behavior:'instant'})}));document.querySelectorAll('[data-stage]').forEach(s=>{const b=s.querySelector('.stage-head');if(b)b.addEventListener('click',()=>{const open=s.classList.toggle('open');b.setAttribute('aria-expanded',String(open));if(open&&matchMedia('(max-width:780px)').matches)document.querySelectorAll('[data-stage]').forEach(other=>{if(other!==s){other.classList.remove('open');other.querySelector('.stage-head')?.setAttribute('aria-expanded','false')}})})});window.addEventListener('hashchange',()=>{const route=location.hash.slice(1)||'home';if(route==='home'&&!document.body.classList.contains('mode-home'))returnToHome(false);else page(route,false)});page(location.hash.slice(1)||'home',false)})();</script>
 <script id="b2w-product-motion-js">(function(){
   const cards=[...document.querySelectorAll('.offering-card')];
   for(const card of cards){const button=card.querySelector('.offering-trigger');

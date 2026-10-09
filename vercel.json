@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/clara",
+      "destination": "/clara/index.html"
+    },
+    {
       "source": "/jasonai/capabilities",
       "destination": "/jasonai/index.html"
     },

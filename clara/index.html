@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f1f4">
+  <meta name="description" content="Clara is a private workspace concept for project documents and estimates, by B2W.">
+  <title>Clara · by B2W</title>
+  <style>
+    :root{--paper:#f7f1f4;--ink:#281b25;--muted:#685c65;--rule:#d9cbd4;--accent:#88516f;font:15px/1.62 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:inherit;-webkit-font-smoothing:antialiased}
+    body *,body *::before,body *::after{font-size:15px!important}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{line-height:1.62;letter-spacing:0}
+    .shell{min-height:100dvh;display:flex;flex-direction:column}
+    .header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+    .header-inner{width:min(92vw,1120px);min-height:68px;margin:auto;display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+    .brand{justify-self:start;font-weight:750}
+    .desktop-nav{display:flex;gap:24px;justify-self:center}
+    .desktop-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px}
+    .header-contact{justify-self:end;padding:7px 15px;border:1px solid var(--rule);border-radius:999px}
+    .menu-toggle,.mobile-menu{display:none}
+    main{flex:1}
+    .section{width:min(88vw,760px);margin:auto;padding:72px 0}
+    .section+.section{border-top:1px solid var(--rule)}
+    .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--accent);margin-bottom:42px}
+    .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center}
+    .hero h1{font-weight:750;max-width:650px}
+    .hero .lead{margin-top:24px;max-width:620px;color:var(--muted)}
+    .hero-links{margin-top:58px;border-top:1px solid var(--rule)}
+    .hero-links a{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--rule)}
+    .hero-links a:hover,.hero-links a:focus-visible{color:var(--accent)}
+    .section h2{margin-bottom:25px}
+    .section-intro{max-width:640px;color:var(--muted)}
+    .feature-list{margin-top:45px;border-top:1px solid var(--rule)}
+    .feature{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--rule)}
+    .feature h3{font-weight:700}
+    .feature p{color:var(--muted)}
+    .workflow{margin-top:42px;border-top:1px solid var(--rule)}
+    .step{display:grid;grid-template-columns:42px 1fr;gap:18px;width:100%;padding:18px 0;border:0;border-bottom:1px solid var(--rule);background:transparent;text-align:left;cursor:pointer}
+    .step[aria-pressed="true"]{font-weight:700;color:var(--accent)}
+    .step span:first-child{color:var(--muted)}
+    .step-detail{min-height:145px;padding:26px 0 12px;max-width:650px}
+    .step-detail p+p{margin-top:17px;color:var(--muted)}
+    .note{margin-top:24px;color:var(--muted)}
+    .footer{width:min(92vw,1120px);margin:40px auto 0;padding:24px 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:24px;color:var(--muted)}
+    .footer a{text-decoration:underline;text-underline-offset:5px}
+    @media(max-width:780px){
+      .header-inner{width:calc(100% - 32px);min-height:64px;grid-template-columns:1fr auto}
+      .desktop-nav,.header-contact{display:none}
+      .menu-toggle{display:inline-flex;justify-self:end;align-items:center;justify-content:center;min-height:42px;padding:8px 12px;border:1px solid var(--rule);border-radius:999px;background:transparent;cursor:pointer}
+      .mobile-menu.is-open{display:block;position:fixed;inset:64px 0 0;height:calc(100dvh - 64px);overflow:auto;background:var(--paper);padding:24px;z-index:21}
+      .mobile-menu-inner{display:flex;flex-direction:column}
+      .mobile-menu a{display:flex;justify-content:space-between;align-items:center;min-height:55px;padding:16px 0;border-bottom:1px solid var(--rule)}
+      .mobile-menu .contact-link{margin-top:24px;padding:14px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font-weight:700}
+      .mobile-menu .cross-link{margin-top:10px;padding:16px 18px;border:0}
+      body.menu-open{overflow:hidden}
+      .section{width:calc(100% - 32px);padding:60px 0}
+      .hero{min-height:55vh}
+      .feature{grid-template-columns:1fr;gap:5px}
+      .footer{width:calc(100% - 32px)}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="/clara/" aria-label="Clara home">Clara</a>
+      <nav class="desktop-nav" aria-label="Clara navigation">
+        <a href="/clara/" aria-current="page">Home</a><a href="#capabilities">Capabilities</a><a href="#how-it-works">How It Works</a><a href="/jasonai/">JasonAI ↗</a><a href="/">B2W ↗</a>
+      </nav>
+      <a class="header-contact" href="mailto:hello@b2w-ai.com?subject=Clara%20inquiry">Contact</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="clara-menu" aria-label="Open navigation">Menu +</button>
+    </div>
+    <nav class="mobile-menu" id="clara-menu" aria-label="Mobile navigation" aria-hidden="true" inert>
+      <div class="mobile-menu-inner">
+        <a href="/clara/">Home <span>↗</span></a><a href="#capabilities">Capabilities <span>↗</span></a><a href="#how-it-works">How It Works <span>↗</span></a>
+        <a class="contact-link" href="mailto:hello@b2w-ai.com?subject=Clara%20inquiry">Contact <span>→</span></a>
+        <a class="cross-link" href="/jasonai/">JasonAI <span>↗</span></a><a class="cross-link" href="/">B2W <span>↗</span></a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="section hero">
+      <p class="eyebrow">Clara / Concept phase</p>
+      <h1>Complete tasks on job sites.</h1>
+      <p class="lead">Clara is a customized, private workspace concept where project teams could capture information, develop documents, complete tasks, and review work directly from the job site.</p>
+      <div class="hero-links"><a href="#capabilities">Explore capabilities <span>↗</span></a><a href="#how-it-works">See how it works <span>↗</span></a></div>
+    </section>
+    <section class="section" id="capabilities">
+      <p class="eyebrow">What Clara could do</p>
+      <h2>Give document work a dedicated home.</h2>
+      <p class="section-intro">Bring field notes and company standards into a focused workspace for scopes, estimates, and proposals. Every output stays editable and subject to review.</p>
+      <div class="feature-list">
+        <article class="feature"><h3>Capture</h3><p>Describe the job in plain language or start with notes from the site.</p></article>
+        <article class="feature"><h3>Apply standards</h3><p>Use approved pricing, preferred vendors, formats, and review rules to structure the work.</p></article>
+        <article class="feature"><h3>Review</h3><p>Check scope, costs, assumptions, and revisions before a document is ready to use.</p></article>
+      </div>
+    </section>
+    <section class="section" id="how-it-works">
+      <p class="eyebrow">How it works</p>
+      <h2>From job details to a reviewable estimate.</h2>
+      <div class="workflow" role="group" aria-label="Clara workflow steps">
+        <button class="step" type="button" data-step="0" aria-pressed="true"><span>01</span><span>Start with the job</span></button>
+        <button class="step" type="button" data-step="1" aria-pressed="false"><span>02</span><span>Apply company knowledge</span></button>
+        <button class="step" type="button" data-step="2" aria-pressed="false"><span>03</span><span>Review the estimate</span></button>
+      </div>
+      <div class="step-detail" aria-live="polite"><h3 id="step-title">Start with the job</h3><p id="step-copy">Describe the work in plain language and give Clara the project details you already have.</p></div>
+      <p class="note">Clara is a concept. Its availability depends on the workspace, connected information, and permissions chosen for a project.</p>
+    </section>
+  </main>
+  <footer class="footer"><span>Clara · by B2W</span><a href="/">B2W ↗</a></footer>
+</div>
+<script>
+(() => {
+  const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('.mobile-menu');
+  const mobile=matchMedia('(max-width:780px)');
+  function setMenu(open,focus=false){
+    const wasOpen=menu.classList.contains('is-open');
+    menu.classList.toggle('is-open',open);menu.inert=!open;menu.setAttribute('aria-hidden',String(!open));
+    document.body.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.textContent=open?'Close ×':'Menu +';
+    if(open)requestAnimationFrame(()=>menu.querySelector('a')?.focus());
+    else if(focus&&wasOpen)toggle.focus();
+  }
+  toggle.addEventListener('click',()=>setMenu(!menu.classList.contains('is-open'),true));
+  menu.addEventListener('click',event=>{if(event.target.closest('a'))setMenu(false)});
+  document.addEventListener('keydown',event=>{
+    if(!menu.classList.contains('is-open'))return;
+    if(event.key==='Escape'){event.preventDefault();setMenu(false,true)}
+    if(event.key==='Tab'){
+      const last=menu.querySelector('a:last-child');
+      if(event.shiftKey&&document.activeElement===toggle){event.preventDefault();last.focus()}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();toggle.focus()}
+    }
+  });
+  mobile.addEventListener('change',()=>setMenu(false));
+  const steps=[
+    ['Start with the job','Describe the work in plain language and give Clara the project details you already have.'],
+    ['Apply company knowledge','Bring together approved standards, pricing, and preferred vendors to structure the estimate.'],
+    ['Review the estimate','Confirm scope, costs, assumptions, and vendor choices before approving the estimate for use.']
+  ];
+  document.querySelector('.workflow').addEventListener('click',event=>{
+    const button=event.target.closest('[data-step]');if(!button)return;
+    const step=Number(button.dataset.step);
+    document.querySelectorAll('[data-step]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    document.getElementById('step-title').textContent=steps[step][0];
+    document.getElementById('step-copy').textContent=steps[step][1];
+  });
+})();
+</script>
+</body>
+</html>
