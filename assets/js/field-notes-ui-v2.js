@@ -73,22 +73,23 @@ function figure(note){
  '<figcaption>Illustrative photograph · <a href="'+escape(p.href)+'" target="_blank" rel="noopener noreferrer">'+escape(p.by)+' / Unsplash ↗</a></figcaption></figure>';
 }
 function story(note,i){
+ const summary=[note.what,note.why,note.how,note.who,note.when,note.where];
  return '<article class="field-story" aria-label="'+escape(note.title)+'">'+
- '<div class="v3-story-prose">'+
- '<p class="v3-story-lead">'+escape(note.what)+'</p>'+
- figure(note)+
- '<p>'+escape(note.why)+'</p>'+
- '<div class="field-art">'+visual(note,i)+'</div>'+
- '<p>'+escape(note.how)+'</p>'+
- '</div>'+
- '<footer class="v3-story-foot"><p class="v3-source">Source: '+escape(note.source)+' · '+escape(note.kind)+'</p>'+
- (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
- '</footer></article>';
-}
-function facts(note){
- return '<aside class="field-facts field-text" aria-label="Who, what, when, where, why and how">'+
- keys.map((k,j)=>'<p class="v3-fact" style="--line-number:'+j+'"><strong>'+titleCase(k)+'</strong><span>'+escape(note[k])+'</span></p>').join("")+
- '</aside>';
+  '<div class="v4-intro-summary" aria-label="Summary">'+
+   summary.map((line,j)=>'<p class="v4-summary-point" style="--summary-order:'+j+'">'+escape(line)+'</p>').join("")+
+  '</div>'+
+  figure(note)+
+  '<div class="v3-story-prose">'+
+   '<p>'+escape(note.what)+'</p>'+
+   '<div class="field-art">'+visual(note,i)+'</div>'+
+   '<p>'+escape(note.why)+'</p>'+
+   '<p>'+escape(note.how)+'</p>'+
+  '</div>'+
+  '<footer class="v3-story-foot">'+
+   '<p class="v3-source">Source: '+escape(note.source)+' · '+escape(note.kind)+'</p>'+
+   (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
+  '</footer>'+
+ '</article>';
 }
 const nav='<div class="v2-note-tools"><label class="v2-search-label" for="v2FieldSearch">Field notes <span class="v2-note-count" id="v2FieldCount">'+data.length+'</span></label>'+
  '<input id="v2FieldSearch" type="search" autocomplete="off" placeholder="Search field notes…" aria-label="Search field notes" /><div class="v2-note-search-status" id="v2SearchStatus" role="status" aria-live="polite"></div></div>'+
@@ -96,7 +97,7 @@ const nav='<div class="v2-note-tools"><label class="v2-search-label" for="v2Fiel
   '<button type="button" class="field-item" data-note="'+id(note)+'" aria-pressed="false" data-search="'+escape([note.title,note.area,...keys.map(k=>note[k]),note.source].join(" ").toLowerCase())+'">'+
   '<span class="field-number">'+nn(i)+'</span><span>'+escape(note.title)+'</span></button>').join("")+'</nav>';
 const panels=data.map((note,i)=>
- '<div class="field-panel v3-editorial-panel" data-field="'+id(note)+'" hidden>'+story(note,i)+facts(note)+'</div>').join("");
+ '<div class="field-panel v3-editorial-panel" data-field="'+id(note)+'" hidden>'+story(note,i)+'</div>').join("");
 host.innerHTML='<div class="field-workspace is-empty" id="field-workspace">'+
  '<aside class="field-library">'+nav+'</aside>'+
  '<div class="field-reader" id="field-reader"><div class="mobile-reader-toolbar"><button type="button" class="mobile-reader-back" aria-label="Return to all field notes"><span aria-hidden="true">←</span> All field notes</button></div>'+panels+'</div></div>';
@@ -107,6 +108,14 @@ host.addEventListener?.("error",event=>{
  if(target?.matches?.("img[data-v3-editorial-photo]"))
    target.closest(".v3-note-photo")?.classList.add("image-unavailable");
 },true);
+
+// Next-note buttons use existing hash navigation, including browser back.
+host.addEventListener("click",event=>{
+ const next=event.target.closest?.("[data-next-note]");
+ if(!next)return;
+ const id=next.dataset.nextNote;
+ if(id)window.location.hash="#"+id;
+});
 
 const input=document.getElementById("v2FieldSearch");
 const buttons=[...host.querySelectorAll(".field-item")];

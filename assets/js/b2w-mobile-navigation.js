@@ -39,7 +39,7 @@
   }
   function updateActive() {
     const hash = location.hash.slice(1);
-    const route = hash.startsWith("article-") ? "insights" : hash;
+    const route = hash.startsWith("article-") || hash === "insights-list" ? "insights" : hash;
     tray.querySelectorAll("[data-view-link]").forEach((link) => {
       if (link.dataset.viewLink === route)
         link.setAttribute("aria-current", "page");
@@ -91,7 +91,7 @@
   });
   document.querySelectorAll(".mobile-reader-back").forEach((button) =>
     button.addEventListener("click", () => {
-      location.hash = "#insights";
+      location.hash = "#insights-list";
       window.scrollTo({ top: 0, behavior: "instant" });
     }),
   );

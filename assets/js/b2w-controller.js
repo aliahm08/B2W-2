@@ -83,6 +83,7 @@
     delete document.body.dataset.burstColor;
     const id = route.indexOf("article-") === 0 ? route : null;
     let p = id ? "insights" : route;
+    if (p === "insights-list") p = "insights";
     if (p === "projects") p = "offerings";
     if (p === "about") p = "team";
     if (!views.some((v) => v.dataset.view === p)) p = "home";
@@ -102,7 +103,7 @@
     if (p === "insights") document.body.classList.add("mode-insights");
     desk.forEach((a) => a.classList.toggle("active", a.dataset.viewLink === p));
     if (id) choose(id, false, false);
-    else if (p === "insights") choose("", false, false);
+    else if (p === "insights") choose(route === "insights-list" ? "" : "article-field-note-001", false, false);
     if (push && location.hash !== "#" + route)
       history.pushState(null, "", "#" + route);
     if (tray) tray.classList.remove("open");
