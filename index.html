@@ -1394,20 +1394,7 @@ links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(a.dataset.
     });
   });
 })();
-</script><script id="review-mobile-nav-controller">(function(){
-function setup(){const t=document.querySelector('.site-header .menu-toggle');
-const nav=document.querySelector('#mobileTray');if(!t||!nav)return;
-const shade=document.querySelector('.mobile-menu-shade');
-const set=open=>{nav.classList.toggle('open',open);t.setAttribute('aria-expanded',String(open));
-document.body.classList.toggle('mobile-nav-open',open);document.querySelector('.site-header')?.classList.toggle('menu-expanded',open);
-if(shade)shade.classList.toggle('open',open)};
-t.addEventListener('click',e=>{if(matchMedia('(max-width:780px)').matches){e.preventDefault();e.stopImmediatePropagation();set(!nav.classList.contains('open'))}},true);
-nav.addEventListener('click',e=>{if(e.target.closest('a'))set(false)},true);
-shade?.addEventListener('click',()=>set(false));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
-window.addEventListener('resize',()=>{if(innerWidth>780)set(false)});
-}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
-})();</script><script id="mobile-nav-repair-controller">(function(){
+</script><script id="mobile-nav-repair-controller">(function(){
 const init=()=>{const btn=document.querySelector('.site-header .menu-toggle');const tray=document.getElementById('mobileTray');
 if(!btn||!tray)return;const shade=document.querySelector('.mobile-menu-shade');
 function show(on){tray.classList.toggle('open',on);btn.setAttribute('aria-expanded',String(on));
