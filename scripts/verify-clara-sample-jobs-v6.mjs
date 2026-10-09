@@ -16,11 +16,15 @@ for(const job of jobs){
 }
 const page=gallery.render();
 if((page.match(/data-cjob=/g)||[]).length!==3)throw Error("Sample picker missing entries");
-if(!page.includes("data-cqty")||!page.includes("data-crate"))throw Error("Estimation inputs missing");
-if(!page.includes("not reproductions of original transcripts"))throw Error("Disclosure missing");
+if(page.includes("data-cqty")||page.includes("data-crate"))throw Error("Sample details must start collapsed");
+const opened=gallery.viewer(jobs[0]);
+if(!opened.includes("data-ctyped")||!opened.includes('data-cphase="note" hidden')||!opened.includes('data-cphase="estimate" hidden'))throw Error("Animation phases missing");
+if(!opened.includes("data-cqty")||!opened.includes("data-crate"))throw Error("Editable estimate inputs missing");
+if(!opened.includes("data-cskip")||!opened.includes("data-creplay"))throw Error("Skip/replay controls missing");
+if(!page.includes("The transcripts and line items are illustrative"))throw Error("Disclosure missing");
 const shell=read("clara/index.html"),engine=read("assets/js/product-templates.js");
 for(const filename of ["clara-sample-jobs-v6.js","clara-sample-gallery-v6.js","clara-sample-gallery-v6.css"])if(!shell.includes(filename))throw Error("Missing asset "+filename);
 if(!engine.includes("window.B2WClaraSamplesV6.render()")||!engine.includes("window.B2WClaraSamplesV6?.mount(view)"))throw Error("Gallery not wired");
 const css=read("assets/css/clara-sample-gallery-v6.css");
 if(!css.includes("font-size:var(--size,15px)")||!css.includes("@media(max-width:780px)"))throw Error("Typography or mobile style missing");
-console.log("PASS: three anonymized Clara examples, synchronized sample data, interactive workspace, responsive styles.");
+console.log("PASS: three anonymized Clara examples, closed job list, transcript-note-estimate phases, editable workspace.");

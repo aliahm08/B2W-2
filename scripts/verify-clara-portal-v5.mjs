@@ -9,7 +9,7 @@ const ctx={window:{}};vm.createContext(ctx);
 vm.runInContext(read("assets/js/clara-content-v3.js"),ctx);
 vm.runInContext(read("assets/js/clara-portal-v5.js"),ctx);
 const c=ctx.window.B2WClaraContentV3,p=ctx.window.B2WClaraPortalV5;
-if(c.rows.map(r=>r[1]).join("|")!=="What We Show|Scenarios|Capabilities")throw Error("Clara navigation labels invalid");
+if(c.rows.map(r=>r[1]).join("|")!=="What We Show|Scenarios|Features")throw Error("Clara navigation labels invalid");
 if(!c.rows[0][2].endsWith("/what-we-show/"))throw Error("What We Show path wrong");
 if(c.notes.length!==3||c.offerings.length!==7)throw Error("Sample job/feature counts mismatch");
 if(p.portal!=="https://portal.b2w-ai.com/")throw Error("Portal destination invalid");
@@ -18,10 +18,10 @@ if(!what.includes("v2-live-stage")||!what.includes("Open Clara portal"))throw Er
 for(const text of ["Sign up or sign in","Accept the terms","Record the job","Review the estimate"])
  if(!what.includes(text))throw Error("Portal step missing "+text);
 if(!what.includes("not a live estimate")||!what.includes("Free access is planned"))throw Error("Must identify prototype vs live portal");
-if((features.match(/class="clara-feature-item"/g)||[]).length!==7)throw Error("Feature list count incorrect");
+if((features.match(/class="clara-feature-item/g)||[]).length!==7)throw Error("Feature list count incorrect");
 const site=read("index.html"),clara=read("clara/index.html");
 if(!site.includes('href="https://portal.b2w-ai.com/" aria-label="Open Clara estimation portal"'))throw Error("B2W Clara launch link missing");
-for(const label of ["What We Show","Scenarios","Capabilities"])if(!clara.includes(">"+label+"<"))throw Error("Clara navigation missing "+label);
+for(const label of ["What We Show","Scenarios","Features"])if(!clara.includes(">"+label+"<"))throw Error("Clara navigation missing "+label);
 for(const file of ["clara-content-v3.js","clara-portal-v5.js","product-templates.js"])if(!clara.includes(file))throw Error("Script load missing "+file);
 const template=read("assets/js/product-templates.js");
 if(!template.includes("window.B2WClaraPortalV5.show()")||!template.includes("window.B2WClaraPortalV5.features(data.offerings)"))throw Error("Renderer not hooked");

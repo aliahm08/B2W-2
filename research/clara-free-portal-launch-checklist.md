@@ -2,7 +2,7 @@
 Date: 2026-10-09. This file describes future implementation work and must not be presented as deployed functionality.
 
 ## What exists now
-The B2W static marketing site has the new Clara **What We Show** page, 10-entry **Scenarios** adoption strategy, and 7-item **Capabilities** list, all within the existing shared templates. The What We Show page includes a scripted voice-to-estimate product visualization and a link to `https://portal.b2w-ai.com/`. The B2W Capabilities Clara card links to the portal directly. Neither the portal app's DNS availability nor a working microphone/auth/estimate backend has been established. **Do not advertise free public estimating until the next steps pass.**
+The B2W static marketing site has the new Clara **What We Show** page, 10-entry **Scenarios** adoption strategy, and 7-card **Features** gallery, all within the existing shared templates. The What We Show page includes a scripted voice-to-estimate product visualization and a link to `https://portal.b2w-ai.com/`. The B2W Capabilities Clara card links to the portal directly. Neither the portal app's DNS availability nor a working microphone/auth/estimate backend has been established. **Do not advertise free public estimating until the next steps pass.**
 
 ## Deploy and verify coded MVP
 1. Identify the **actual coded Clara estimator MVP repository/path**, its server, runtime, storage, model providers and rate sources. Do not assume the separate B2W proposals portal or the Open WebUI fork contains it.
@@ -29,7 +29,7 @@ The B2W static marketing site has the new Clara **What We Show** page, 10-entry 
 ## What We Show / Scenarios / Capabilities semantics
 - **What We Show**: real product preview with an explicit illustrative-demo label, and the *planned* free portal journey. The live product should open in a first-party portal.
 - **Scenarios**: three anonymized sample jobs based on archived Clara estimate artifacts, with illustrative voice-note and draft-scope placeholders. The interactive website sample workspace is public but not an authenticated portal workspace.
-- **Capabilities**: functional product feature definitions. Not evidence that all features are shipped.
+- **Features**: functional product feature definitions. Not evidence that all features are shipped.
 - **Visual**: shared B2W one-size 15px design rule; Clara mauve / purple / electric blue surfaces; B2W's Capabilities view moved to brighter electric green `#B4FF56`, with dark ink for contrast.
 
 **Deployment owner input needed**: a link to the actual Clara MVP repository or build artifact, and authorization to configure the portal domain/auth/storage/terms. No such credentials were supplied, and none were fabricated.

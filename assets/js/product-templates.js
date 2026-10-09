@@ -38,9 +38,9 @@ if(jason&&window.B2WJasonHowV4){
 const data=copy[site];let activeNotes=data.notes;const view=document.getElementById("productView"),brand=document.querySelector(".site-header .brand"),tray=document.getElementById("mobileTray"),menu=document.querySelector(".menu-toggle"),footer=document.querySelector(".footer"),currentPage=document.getElementById("currentPage");
 const canonical=path=>(path.replace(/\/+$/,"")||"/");
 const escaped=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const routes={home:base+"/",show:base+(jason?"/how-it-works/":"/what-we-show/"),know:base+"/scenarios/",flow:base+"/capabilities/"};
+const routes={home:base+"/",show:base+(jason?"/how-it-works/":"/what-we-show/"),know:base+"/scenarios/",flow:base+(jason?"/capabilities/":"/features/")};
 const modeName={home:"mode-home",show:"mode-how",know:"mode-insights",flow:"mode-offerings"};
-const labels={home:"",show:jason?"How It Works":"What We Show",know:"Scenarios",flow:"Capabilities"};
+const labels={home:"",show:jason?"How It Works":"What We Show",know:"Scenarios",flow:jason?"Capabilities":"Features"};
 function templateFor(path){
  const p=canonical(path);
  if(p===base) return "home";

@@ -26,12 +26,13 @@ function show(){
   '</section>';
 }
 function features(entries){
- return '<section class="clara-feature-page"><div class="clara-feature-intro"><p>Everything needed to turn a field voice note into an estimate that can be checked, revised and shared.</p><a href="/clara/what-we-show/">See the estimator ↗</a></div>'+
- '<div class="clara-feature-list">'+entries.map((entry,i)=>
- '<details class="clara-feature-item" '+(i===0?'open':'')+'><summary><span class="clara-feature-index">'+String(i+1).padStart(2,"0")+'</span>'+
+ return '<section class="clara-feature-page"><div class="clara-feature-intro"><p>Record the job, organize the scope, build an estimate and keep each revision available to review.</p><a href="/clara/what-we-show/">See the estimator ↗</a></div>'+
+ '<div class="clara-feature-list clara-feature-cards">'+entries.map((entry,i)=>
+ '<details class="clara-feature-item clara-feature-card"><summary><span class="clara-feature-index">'+String(i+1).padStart(2,"0")+'</span>'+
  '<span class="clara-feature-heading"><strong>'+entry[0]+'</strong><span>'+entry[1]+'</span></span><span class="clara-feature-marker" aria-hidden="true">+</span></summary>'+
- '<div class="clara-feature-more">'+entry[2].map(text=>'<p>'+text+'</p>').join("")+'</div></details>').join("")+'</div>'+
- '<div class="clara-feature-bottom"><span>Available features depend on the deployed MVP. This page describes the intended workflow and feature scope.</span><a href="'+portal+'" rel="noopener">Open Clara portal ↗</a></div></section>';
+ '<div class="clara-feature-more">'+entry[2].map(line=>'<p>'+line+'</p>').join("")+'</div></details>').join("")+'</div>'+
+ '<div class="clara-feature-bottom"><span>Features reflect the intended Clara workflow; availability in the MVP may differ.</span><a href="'+portal+'" rel="noopener">Open Clara portal ↗</a></div></section>';
 }
+
 window.B2WClaraPortalV5={portal,show,features};
 })();

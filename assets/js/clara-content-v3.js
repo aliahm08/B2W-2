@@ -13,8 +13,8 @@
     ],
     [
       "Record, build, edit, share and revisit estimates across your properties.",
-      "Capabilities",
-      "/clara/capabilities/"
+      "Features",
+      "/clara/features/"
     ]
   ],
   "stages": [

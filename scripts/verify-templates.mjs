@@ -30,6 +30,7 @@ const paths=[
  ["clara","/clara/what-we-show/","show","#F6F0F4"],
  ["clara","/clara/how-it-works/","show","#F6F0F4"],
  ["clara","/clara/scenarios/","know","#34263F"],
+ ["clara","/clara/features/","flow","#2563FF"],
  ["clara","/clara/capabilities/","flow","#2563FF"],
  ["clara","/clara/insights/","know","#34263F"],
  ["clara","/clara/workflow/","flow","#2563FF"]
@@ -60,21 +61,21 @@ for(const [site,url,kind,background] of paths){
  };
  const location={pathname:url,hash:""};
  new Function("document","window","location","history","matchMedia","requestAnimationFrame","innerWidth",code)(document,window,location,{pushState:()=>{},replaceState:()=>{}},()=>({matches:false}),callback=>callback(),980);
- const found=site==="clara"&&(kind==="show"||kind==="flow"||kind==="know")?([...view.innerHTML.matchAll(kind==="show"?/class="clara-portal-step"/g:kind==="know"?/data-cjob=/g:/class="clara-feature-item"/g)].length):count(view.innerHTML,kind);
+ const found=site==="clara"&&(kind==="show"||kind==="flow"||kind==="know")?([...view.innerHTML.matchAll(kind==="show"?/class="clara-portal-step"/g:kind==="know"?/data-cjob=/g:/class="clara-feature-item/g)].length):count(view.innerHTML,kind);
  if(found===0||document.documentElement.style.backgroundColor!==background)throw new Error(url+" render/theme invalid");
  if(site==="clara"&&found!==pageType[kind].claraCount)throw new Error(url+" expected "+pageType[kind].claraCount+", got "+found);
  if((kind==="flow"&&site==="jasonai"||kind==="show"&&site==="clara")&&!view.innerHTML.includes('data-product="'+site+'"'))throw new Error(url+" missing walkthrough");
  if(kind==="know"&&!view.innerHTML.includes(site==="clara"?"data-csamples":"product-note-hover"))throw new Error(url+" missing sample workspace / info-library");
 }
 const claraHtml=read("clara/index.html");
-for(const route of ["/clara/what-we-show/","/clara/scenarios/","/clara/capabilities/"]){
+for(const route of ["/clara/what-we-show/","/clara/scenarios/","/clara/features/"]){
  if(!claraHtml.includes('href="'+route+'"'))throw new Error("Clara navigation missing "+route);
 }
 if(!claraHtml.includes("clara-theme-v3.css")||!claraHtml.includes("clara-content-v3.js"))throw new Error("Clara V3 assets missing");
 const b2w=read("index.html");
 const scope=b2w.slice(b2w.indexOf('class="mission-home"'),b2w.indexOf('class="home-bottom-actions"'));
 if([...scope.matchAll(/class="mission-link"/g)].length!==3)throw new Error("B2W's 3 home links must be preserved");
-console.log("PASS: 10 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"sample jobs,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
+console.log("PASS: 12 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"sample jobs,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
 
 const claraTheme=read("assets/css/clara-theme-v3.css");
 for(const token of [
