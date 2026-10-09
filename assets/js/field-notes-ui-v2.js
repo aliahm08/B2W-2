@@ -67,26 +67,27 @@ function visual(note,i){
   '</svg></div>';
 }
 const photo=n=>photos[artType(n)];
-function figure(note,i){
+function figure(note){
  const p=photo(note);
- return '<figure class="v3-note-photo"><img loading="lazy" decoding="async" src="'+escape(p.src)+'" alt="'+escape(p.alt)+'" onerror="this.closest(\'.v3-note-photo\').classList.add(\'image-unavailable\')" />'+
+ return '<figure class="v3-note-photo"><img loading="lazy" decoding="async" width="1120" height="720" data-v3-editorial-photo="1" src="'+escape(p.src)+'" alt="'+escape(p.alt)+'" />'+
  '<figcaption>Illustrative photograph · <a href="'+escape(p.href)+'" target="_blank" rel="noopener noreferrer">'+escape(p.by)+' / Unsplash ↗</a></figcaption></figure>';
 }
 function story(note,i){
- // Narrative is derived from verified fields; never add invented quotes or dates.
+ // Each article is built from the original research fields; no added quotes, dates or customer claims.
  const kicker=escape(note.area)+' <span aria-hidden="true">/</span> '+escape(note.kind);
  return '<article class="field-story" aria-label="'+escape(note.title)+'">'+
-  '<header class="v3-story-header"><p class="v3-story-index">FIELD NOTE '+nn(i)+' <span aria-hidden="true">—</span> '+kicker+'</p>'+
-  '<h1 class="v3-story-title">'+escape(note.title)+'</h1><p class="v3-story-deck">'+escape(note.what)+'</p></header>'+
-  figure(note,i)+
-  '<div class="v3-story-prose"><p>'+escape(note.why)+'</p>'+
-   '<div class="field-art">'+visual(note,i)+'</div>'+
-   '<p>'+escape(note.how)+'</p>'+
-   '<p class="v3-story-clarifier">Context: '+escape(note.where)+' '+escape(note.when)+'</p>'+
-  '</div>'+
-  '<footer class="v3-story-foot"><div><span class="v3-story-foot-label">Research record</span><p>'+escape(note.source)+' · '+escape(note.kind)+'</p></div>'+
-  (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note · '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
-  '</footer></article>';
+ '<header class="v3-story-header"><p class="v3-story-index">FIELD NOTE '+nn(i)+' <span aria-hidden="true">—</span> '+kicker+'</p>'+
+ '<h1 class="v3-story-title">'+escape(note.title)+'</h1><p class="v3-story-deck">'+escape(note.what)+'</p></header>'+
+ figure(note)+
+ '<div class="v3-story-prose">'+
+  '<section class="v3-story-section"><h2>The context</h2><p>'+escape(note.who)+'</p><p>'+escape(note.where)+'</p><p class="v3-record-time">'+escape(note.when)+'</p></section>'+
+  '<section class="v3-story-section"><h2>Why this matters</h2><p>'+escape(note.why)+'</p>'+
+    '<div class="field-art">'+visual(note,i)+'</div></section>'+
+  '<section class="v3-story-section"><h2>What we would change</h2><p>'+escape(note.how)+'</p></section>'+
+ '</div>'+
+ '<footer class="v3-story-foot"><div><span class="v3-story-foot-label">Research record</span><p>'+escape(note.source)+' · '+escape(note.kind)+'</p></div>'+
+ (i<data.length-1?'<button type="button" class="next-field-note" data-next-note="'+id(data[i+1])+'" aria-label="Next field note '+nn(i+1)+'"><span>Next note · '+nn(i+1)+'</span><span aria-hidden="true">→</span></button>':'')+
+ '</footer></article>';
 }
 function facts(note){
  return '<aside class="field-facts field-text" aria-label="Who, what, when, where, why and how">'+
@@ -104,6 +105,13 @@ const panels=data.map((note,i)=>
 host.innerHTML='<div class="field-workspace is-empty" id="field-workspace">'+
  '<aside class="field-library">'+nav+'</aside>'+
  '<div class="field-reader" id="field-reader"><div class="mobile-reader-toolbar"><button type="button" class="mobile-reader-back" aria-label="Return to all field notes"><span aria-hidden="true">←</span> All field notes</button></div>'+panels+'</div></div>';
+
+// Native event capture supports image fallbacks without inline JavaScript handlers.
+host.addEventListener?.("error",event=>{
+ const target=event.target;
+ if(target?.matches?.("img[data-v3-editorial-photo]"))
+   target.closest(".v3-note-photo")?.classList.add("image-unavailable");
+},true);
 
 const input=document.getElementById("v2FieldSearch");
 const buttons=[...host.querySelectorAll(".field-item")];

@@ -5,7 +5,8 @@ import vm from "node:vm";
 const root=path.resolve(import.meta.dirname,"..");
 const file=p=>fs.readFileSync(path.join(root,p),"utf8");
 const input={value:"",addEventListener:()=>{}};
-const host={innerHTML:"",querySelectorAll:()=>[]};
+const observedEvents=[];
+const host={innerHTML:"",querySelectorAll:()=>[],addEventListener:(name,fn,capture)=>observedEvents.push({name,capture})};
 const document={getElementById:id=>id==="insights"?host:id==="v2FieldSearch"?input:id==="v2FieldCount"||id==="v2SearchStatus"?{textContent:""}:null};
 const context={window:{},document};
 vm.createContext(context);
@@ -16,6 +17,7 @@ const count=pattern=>[...html.matchAll(new RegExp(pattern,"g"))].length;
 const expected=data.length;
 const observed={
  panels:count('class="field-panel v3-editorial-panel"'),
+ sections:count('class="v3-story-section"'),
  stories:count('class="field-story"'),
  facts:count('class="field-facts field-text"'),
  labels:count('class="v3-fact"'),
@@ -24,7 +26,7 @@ const observed={
  credits:count('target="_blank" rel="noopener noreferrer"')
 };
 for(const [key,value] of Object.entries(observed)){
- const required=key==="labels"?expected*6:expected;
+ const required=key==="labels"?expected*6:key==="sections"?expected*3:expected;
  if(value!==required)throw Error(key+" expected "+required+", observed "+value);
 }
 for(const record of data){
@@ -34,6 +36,9 @@ for(const record of data){
 }
 const css=file("assets/css/field-notes-editorial-v3.css");
 const page=file("index.html");
+if(html.includes("onerror="))throw Error("Unexpected inline error handler");
+if(!observedEvents.some(e=>e.name==="error"&&e.capture===true))throw Error("Image fallback handler not registered");
+if(!html.includes('data-v3-editorial-photo="1"'))throw Error("Editorial images missing fallback marker");
 if(!css.includes("grid-template-columns:minmax(0,1.56fr) minmax(220px,1fr)"))throw Error("Missing article + facts columns");
 if(!css.includes("position:sticky;top:88px"))throw Error("Missing sticky facts");
 if(!css.includes("grid-template-columns:1fr!important"))throw Error("Mobile column must stack");
