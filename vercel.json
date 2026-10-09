@@ -2,6 +2,38 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/jasonai/capabilities",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/capabilities/",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/how-it-works",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/how-it-works/",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/scenarios",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/scenarios/",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/demo",
+      "destination": "/jasonai/index.html"
+    },
+    {
+      "source": "/jasonai/demo/",
+      "destination": "/jasonai/index.html"
+    },
+    {
       "source": "/jasonai",
       "destination": "/jasonai/index.html"
     },
@@ -12,10 +44,6 @@
     {
       "source": "/jasonai/trust",
       "destination": "/jasonai/trust/index.html"
-    },
-    {
-      "source": "/jasonai/demo",
-      "destination": "/jasonai/index.html"
     },
     {
       "source": "/work",
