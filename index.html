@@ -965,18 +965,14 @@ body.mode-home .site-header .contact-button{display:none!important}
 <style id="b2w-capabilities-grid-style">#offerings .capabilities-intro{max-width:700px;margin:0 0 32px}#offerings .capabilities-label,#offerings .capability-number{display:block;color:var(--muted);font-size:var(--size);font-weight:500;margin-bottom:14px}#offerings .capabilities-intro p{font-size:var(--size);line-height:1.7}#offerings .capabilities-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}#offerings .capability-card{min-height:260px;padding:26px;display:block}#offerings .capability-card .offering-trigger{display:flex;flex-direction:column;align-items:flex-start;text-align:left;width:100%;gap:0}#offerings .capability-card .offering-title,#offerings .capability-card .offering-desc,#offerings .capability-card .capability-action{font-size:var(--size);line-height:1.6}#offerings .capability-card .offering-title{font-weight:700;margin-bottom:12px}#offerings .capability-card .offering-desc{margin-bottom:20px;opacity:.78}#offerings .capability-action{margin-top:auto;display:flex;justify-content:space-between;gap:20px;width:100%;border-top:1px solid var(--rule);padding-top:14px}#offerings .capability-detail{overflow:hidden;padding:20px 0 0;color:var(--muted);border-top:1px solid var(--rule)}#offerings .capability-detail p{margin:12px 0 0;line-height:1.9}#offerings .capability-card.is-open .capability-action span{transform:rotate(45deg)}@media(max-width:980px){#offerings .capabilities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:630px){#offerings .capabilities-grid{grid-template-columns:1fr}#offerings .capability-card{min-height:0}}</style><style id="b2w-capabilities-header-fix-20261009">
 /* Approved desktop header: logo | centered navigation | right actions. */
 @media(min-width:781px){
- body:not(.mode-home) .site-header .header-inner,body.mode-home .site-header .header-inner,.site-header .header-inner{
- display:grid!important;grid-template-columns:1fr auto 1fr!important;align-items:center!important;gap:22px!important;
- width:calc(100% - 88px)!important;max-width:1220px!important;margin-inline:auto!important;
- height:66px!important;min-height:66px!important;padding:0!important;
- }
- .site-header .brand,body:not(.mode-home) .site-header .brand{grid-column:1!important;grid-row:1!important;position:static!important;justify-self:start!important;margin:0!important}
+ .site-header .header-inner,body.mode-home .site-header .header-inner,body:not(.mode-home) .site-header .header-inner{display:grid!important;grid-template-columns:minmax(100px,1fr) auto minmax(260px,1fr)!important;gap:24px!important;width:calc(100% - 88px)!important;max-width:1220px!important;height:66px!important;min-height:66px!important;padding:0!important;margin:0 auto!important;align-items:center!important}
+ .site-header .brand{grid-column:1!important;grid-row:1!important;justify-self:start!important;position:static!important;margin:0!important}
  .site-header .current-page{display:none!important}
- .site-header .header-nav{display:flex!important;position:static!important;grid-column:2!important;grid-row:1!important;align-items:center!important;justify-content:center!important;gap:22px!important;margin:0!important}
- .site-header .header-nav a{white-space:nowrap!important}
- .site-header .contact-button{display:inline-flex!important;grid-column:3!important;grid-row:1!important;justify-self:start!important;margin:0!important;position:relative!important;left:auto!important;top:auto!important;transform:none!important;background:transparent!important;color:var(--ink)!important;border:1px solid var(--rule)!important}
+ .site-header .header-nav{display:flex!important;grid-column:2!important;grid-row:1!important;position:static!important;align-items:center!important;justify-content:center!important;gap:22px!important;margin:0!important}
+ .site-header .header-actions{display:flex!important;grid-column:3!important;grid-row:1!important;justify-self:end!important;align-items:center!important;gap:18px!important;white-space:nowrap!important}
+ .site-header .header-actions>a{color:var(--ink)!important;text-decoration:none!important;white-space:nowrap!important}
+ .site-header .header-actions .contact-button{display:inline-flex!important;position:static!important;transform:none!important;margin:0!important;padding:8px 14px!important;border:1px solid var(--rule)!important;border-radius:999px!important;background:transparent!important;color:var(--ink)!important;align-items:center!important;justify-content:center!important}
  .site-header .menu-toggle{display:none!important}
- .site-header .header-nav a[href^="/jasonai/"],.site-header .header-nav a[href^="/clara/"]{text-decoration:none!important}
 }
 @media(max-width:780px){.site-header .current-page{display:none!important}}
 #offerings .capabilities-intro,#offerings .capability-number{display:none!important}
@@ -993,14 +989,14 @@ body.mode-home .site-header .contact-button{display:none!important}
 #offerings .capability-card .capability-action{margin-top:auto!important}
 @media(max-width:780px){#offerings .capability-card .offering-trigger{min-height:175px!important}}
 @media(prefers-reduced-motion:reduce){#offerings .capability-card .offering-reveal{transition:none!important}}
-</style></head>
+</style><style id="b2w-header-actions-mobile">@media(max-width:780px){.site-header .header-actions{display:none!important}}</style></head>
 <body>
 <div class="site-shell">
 <header class="site-header">
 <div class="header-inner">
 <a aria-label="B2W home" class="brand" data-view-link="home" href="#home">B2W</a><span class="current-page" id="currentPage" aria-live="polite" hidden></span>
-<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Capabilities</a><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a></nav>
-<a class="contact-button" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact</a>
+<nav aria-label="Demo navigation" class="header-nav"><a data-view-link="how-we-work" href="#how-we-work">How We Work</a><a data-view-link="insights" href="#insights">Insights</a><a data-view-link="offerings" href="#offerings">Capabilities</a></nav>
+<div class="header-actions"><a class="contact-button" href="mailto:hello@b2w-ai.com?subject=B2W%20inquiry">Contact</a><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a></div>
 <button aria-controls="mobileTray" aria-expanded="false" class="menu-toggle" type="button"><span>Menu</span><span aria-hidden="true">+</span></button>
 <nav aria-label="Mobile navigation" class="mobile-tray" id="mobileTray">
  <a data-view-link="how-we-work" href="#how-we-work"><span>How We Work</span><span>→</span></a>
