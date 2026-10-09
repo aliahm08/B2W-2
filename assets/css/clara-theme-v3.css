@@ -1,0 +1,98 @@
+/* Clara V3: palette-only adaptation of the shared B2W page and navigation templates.
+   Main mauve, secondary deep metallic purple, electric-blue interaction highlights. */
+:root {
+  --clara-mauve:#C7AABD;
+  --clara-mauve-light:#F6F0F4;
+  --clara-mauve-soft:#E6D6E2;
+  --clara-purple:#34263F;
+  --clara-purple-ink:#241B2E;
+  --clara-muted:#605263;
+  --clara-electric:#2563FF;
+  --clara-electric-dark:#78A3FF;
+}
+/* Each page keeps the underlying Show / Know / Flow geometry of B2W. */
+body.product-clara.mode-home{
+ --paper:var(--clara-mauve);--ink:var(--clara-purple-ink);
+ --muted:#554657;--rule:rgba(52,38,63,.23);--clara-highlight:var(--clara-electric);--clara-label:#163998;
+}
+body.product-clara.mode-how{
+ --paper:var(--clara-mauve-light);--ink:var(--clara-purple-ink);
+ --muted:var(--clara-muted);--rule:rgba(52,38,63,.2);--clara-highlight:var(--clara-electric);--clara-label:#163998;
+}
+body.product-clara.mode-insights{
+ --paper:var(--clara-purple);--ink:#F8F3FA;
+ --muted:#D5C6DE;--rule:rgba(232,220,240,.25);--clara-highlight:var(--clara-electric-dark);--clara-label:var(--clara-electric-dark);
+}
+body.product-clara.mode-offerings{
+ --paper:var(--clara-mauve-soft);--ink:var(--clara-purple-ink);
+ --muted:#5B4D5D;--rule:rgba(52,38,63,.23);--clara-highlight:var(--clara-electric);--clara-label:#163998;
+}
+html:has(body.product-clara.mode-home){background:var(--clara-mauve)}
+html:has(body.product-clara.mode-how){background:var(--clara-mauve-light)}
+html:has(body.product-clara.mode-insights){background:var(--clara-purple)}
+html:has(body.product-clara.mode-offerings){background:var(--clara-mauve-soft)}
+body.product-clara{accent-color:var(--clara-label)}
+body.product-clara .site-header,body.product-clara .footer{background:var(--paper)}
+body.product-clara.mode-home .site-header{background:transparent}
+body.product-clara .header-nav a.active{color:var(--ink);text-decoration:underline;text-decoration-color:var(--clara-label);text-decoration-thickness:2px;text-underline-offset:7px}
+body.product-clara .header-nav a:hover,body.product-clara .header-nav a:focus-visible,
+body.product-clara .contact-button:hover,body.product-clara .contact-button:focus-visible{
+ background:var(--clara-electric);color:#fff;box-shadow:0 0 0 5px var(--clara-electric);
+}
+body.product-clara .secondary-cta:hover,body.product-clara .secondary-cta:focus-visible,
+body.product-clara .footer-links a:hover{color:var(--clara-label)}
+body.product-clara .mission-link[data-template-link="show"]{
+ --link-paper:var(--clara-mauve-light);--link-ink:var(--clara-purple-ink)
+}
+body.product-clara .mission-link[data-template-link="know"]{
+ --link-paper:var(--clara-purple);--link-ink:#F8F3FA
+}
+body.product-clara .mission-link[data-template-link="flow"]{
+ --link-paper:var(--clara-mauve-soft);--link-ink:var(--clara-purple-ink)
+}
+body.product-clara .mission-link:hover,body.product-clara .mission-link:focus-visible{
+ text-decoration-color:var(--clara-label);
+}
+body.product-clara .mission-link:focus-visible,
+body.product-clara .stage-head:focus-visible,
+body.product-clara .field-item:focus-visible,
+body.product-clara .offering-trigger:focus-visible,
+body.product-clara .menu-toggle:focus-visible{
+ outline:2px solid var(--clara-highlight);outline-offset:5px
+}
+body.product-clara .stage.open .stage-number,
+body.product-clara .stage-head:hover .stage-number{color:var(--clara-label)}
+body.product-clara .stage-head:hover .stage-title{color:var(--clara-label)}
+body.product-clara .stage-body .stage-detail:first-child span:first-child{color:var(--muted)}
+body.product-clara .field-item[aria-pressed="true"]{color:var(--clara-label)}
+body.product-clara .field-item:hover{color:var(--clara-label);opacity:1}
+body.product-clara .offering-card{background:rgba(255,255,255,.16);border-color:var(--rule)}
+body.product-clara .offering-card.is-open{background:rgba(255,255,255,.28);border-color:var(--clara-label)}
+body.product-clara .offering-trigger:hover .offering-title{color:var(--clara-label)}
+body.product-clara .product-flow-list li::marker{color:var(--clara-label)}
+body.product-clara .product-links a:hover,body.product-clara .product-links a:focus-visible,
+body.product-clara .offering-reveal a:hover{color:var(--clara-label)}
+body.product-clara .field-hero .ecosystem-graphic .graphic-accent{stroke:var(--clara-highlight)}
+body.product-clara .field-hero .ecosystem-graphic .graphic-hub{fill:var(--clara-highlight);stroke:var(--clara-highlight)}
+body.product-clara .product-note-hover .graphic-hub{fill:var(--clara-highlight);stroke:var(--clara-highlight)}
+body.product-clara .v2-product-embedded-demo .v2-live-stage{
+ border-color:rgba(52,38,63,.28);box-shadow:0 12px 28px rgba(52,38,63,.10)
+}
+body.product-clara .v2-live-stage[data-product="clara"]{background:#F6F0F4;color:var(--clara-purple-ink)}
+body.product-clara .v2-demo-step.is-active i,
+.v2-live-stage[data-product="clara"] .v2-demo-step.is-active i{background:var(--clara-electric)}
+.v2-live-stage[data-product="clara"] .v2-record-dot{background:var(--clara-electric);box-shadow:0 0 0 6px rgba(37,99,255,.12)}
+.v2-live-stage[data-product="clara"] .v2-wave i{background:#755687}
+.v2-live-stage[data-product="clara"] .v2-chat-line.right{background:#DBCEE1}
+.v2-live-stage[data-product="clara"] .v2-est-total{border-top-color:var(--clara-purple)}
+body.product-clara .mobile-tray{background:var(--paper)}
+body.product-clara .mobile-tray a[aria-current="page"]{color:var(--clara-label)}
+body.product-clara .mobile-contact-cta{background:var(--clara-purple);color:#fff;border-color:var(--clara-purple)}
+body.product-clara .mobile-contact-cta:hover{background:var(--clara-highlight);border-color:var(--clara-label)}
+/* Reuse existing 15px reading typography and mobile/desktop breakpoints. */
+@media(prefers-reduced-motion:reduce){
+ body.product-clara .site-header{transition:none}
+}
+/* Electric-blue borders remain bright; text uses an accessible tonal companion. */
+body.product-clara .field-item:focus-visible,body.product-clara .offering-card:focus-within{outline-color:var(--clara-highlight)}
+body.product-clara .product-links a:focus-visible{outline:2px solid var(--clara-highlight);outline-offset:4px}

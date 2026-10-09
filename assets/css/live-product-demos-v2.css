@@ -65,3 +65,16 @@ body.mode-offerings #offerings .view-wrap{width:100%}
 @media(max-width:820px){#offerings .offerings-layout{grid-template-columns:1fr}#offerings .offering-card.v2-product-card,#offerings .v2-product-card>a{min-height:0}.v2-live-stage{height:290px}}
 @media(max-width:390px){.v2-demo-step{font-size:8px}.v2-live-stage{height:310px}.v2-wa-line{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.v2-live-pane{transition:none}.v2-wave i,.v2-caret{animation:none}.v2-type-text{clip-path:none!important;animation:none!important}}
+
+/* Clara walkthrough carries its mauve / metallic-purple / electric-blue identity
+   even when embedded inside B2W's otherwise green Capabilities page. */
+.v2-live-stage[data-product="clara"]{
+ --clara-demo-mauve:#C7AABD;--clara-demo-purple:#34263F;--clara-demo-blue:#2563FF;
+ background:#F6F0F4;color:var(--clara-demo-purple);border-color:rgba(52,38,63,.25)
+}
+.v2-live-stage[data-product="clara"] .v2-demo-topline{background:#E6D6E2}
+.v2-live-stage[data-product="clara"] .v2-demo-step.is-active i{background:var(--clara-demo-blue)}
+.v2-live-stage[data-product="clara"] .v2-record-dot{background:var(--clara-demo-blue);box-shadow:0 0 0 6px rgba(37,99,255,.13)}
+.v2-live-stage[data-product="clara"] .v2-wave i{background:#745A86}
+.v2-live-stage[data-product="clara"] .v2-chat-line.right{background:#E6D6E2}
+.v2-live-stage[data-product="clara"] .v2-est-total{border-color:var(--clara-demo-purple)}
