@@ -1,0 +1,154 @@
+/* JasonAI's How It Works uses the shared white Show template and one type size. */
+body.product-jasonai.mode-how .jhow,
+body.product-jasonai.mode-how .jhow :where(p,span,strong,button,legend,label,textarea,input,small){
+ font-size:var(--size,15px);
+ line-height:var(--line);
+}
+body.product-jasonai.mode-how .jhow{
+ border-top:1px solid var(--rule);
+ margin:6px 0 34px;padding:24px 0 0;
+ color:var(--ink);
+}
+body.product-jasonai.mode-how .jhow-intro{
+ max-width:690px;margin:0 0 22px;font-weight:600;
+}
+body.product-jasonai.mode-how .jhow-path{
+ display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+ padding:10px 0 19px;border-bottom:1px solid var(--rule);
+ color:var(--muted);
+}
+body.product-jasonai.mode-how .jhow-path span:nth-child(even){color:#708273}
+body.product-jasonai.mode-how .jhow-layout{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ gap:clamp(20px,3vw,45px);margin:22px 0 0;
+}
+body.product-jasonai.mode-how .jhow-inputs,body.product-jasonai.mode-how .jhow-preview{min-width:0}
+body.product-jasonai.mode-how .jhow-emphasis{margin:0 0 12px;font-weight:600}
+body.product-jasonai.mode-how .jhow-fieldset{margin:0 0 18px;padding:0;border:0;min-width:0}
+body.product-jasonai.mode-how .jhow-fieldset legend{
+ padding:0 0 10px;margin:0;color:var(--muted);font-weight:400;
+}
+body.product-jasonai.mode-how .jhow-options{
+ display:flex;flex-wrap:wrap;gap:7px;
+}
+body.product-jasonai.mode-how .jhow-source{
+ display:inline-flex;gap:10px;align-items:center;
+ border:1px solid var(--rule);padding:9px 12px;
+ background:#f6f7f5;color:var(--ink);
+ cursor:pointer;min-height:42px;
+ transition:background .18s ease,border-color .18s ease;
+}
+body.product-jasonai.mode-how .jhow-source input{
+ appearance:none;position:absolute;width:1px;height:1px;
+ opacity:0;overflow:hidden;
+}
+body.product-jasonai.mode-how .jhow-source.is-selected{
+ background:#e4eae5;border-color:#5a7c60;
+}
+body.product-jasonai.mode-how .jhow-source:has(input:focus-visible){
+ outline:2px solid #46674c;outline-offset:3px;
+}
+body.product-jasonai.mode-how .jhow-source:hover{
+ border-color:#5a7c60;background:#eef2ee;
+}
+body.product-jasonai.mode-how .jhow-source-mark{
+ color:#607567;margin-left:auto;
+}
+body.product-jasonai.mode-how .jhow-source.is-selected .jhow-source-mark{
+ font-weight:700;transform:rotate(45deg);
+}
+body.product-jasonai.mode-how .jhow-notice{
+ color:var(--muted);margin:12px 0 17px;
+}
+body.product-jasonai.mode-how .jhow-rule-label{
+ display:block;font-weight:600;margin:17px 0 10px;
+}
+body.product-jasonai.mode-how .jhow-rule{
+ box-sizing:border-box;display:block;width:100%;min-height:138px;
+ font:inherit;color:var(--ink);background:#f6f7f5;
+ border:1px solid var(--rule);border-radius:0;
+ padding:13px 14px;resize:vertical;outline-offset:4px;
+}
+body.product-jasonai.mode-how .jhow-rule:focus{
+ border-color:#5a7c60;outline:1px solid #5a7c60;
+}
+body.product-jasonai.mode-how .jhow-preview{
+ border:1px solid var(--rule);padding:16px;
+ background:#f7f8f6;align-self:start;
+}
+body.product-jasonai.mode-how .jhow-preview-line{
+ display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+ padding-bottom:12px;border-bottom:1px solid var(--rule);
+ font-weight:600;
+}
+body.product-jasonai.mode-how .jhow-status{
+ font-weight:400;color:var(--muted);
+}
+body.product-jasonai.mode-how .jhow-recap{
+ margin:15px 0;line-height:var(--line);
+}
+body.product-jasonai.mode-how .jhow-records{
+ display:grid;gap:0;
+}
+body.product-jasonai.mode-how .jhow-record{
+ padding:13px 0;border-top:1px solid var(--rule);
+ animation:jhow-appear .32s ease both;
+}
+body.product-jasonai.mode-how .jhow-record-top,
+body.product-jasonai.mode-how .jhow-record-bottom,
+body.product-jasonai.mode-how .jhow-payline{
+ display:flex;justify-content:space-between;gap:13px;align-items:start;
+}
+body.product-jasonai.mode-how .jhow-record-top strong{font-weight:700}
+body.product-jasonai.mode-how .jhow-record p{
+ margin:5px 0;overflow-wrap:anywhere;
+}
+body.product-jasonai.mode-how .jhow-record-bottom{
+ color:var(--muted);margin-top:10px;
+}
+body.product-jasonai.mode-how .jhow-pending{color:#466b4d}
+body.product-jasonai.mode-how .jhow-unresolved{color:#96623d}
+body.product-jasonai.mode-how .jhow-payline{
+ border-top:1px solid var(--rule);padding:11px 0;
+}
+body.product-jasonai.mode-how .jhow-payline strong{font-weight:700}
+body.product-jasonai.mode-how .jhow-rule-preview{
+ margin:14px 0 0;
+ padding:12px 0;border-top:1px solid var(--rule);
+ overflow-wrap:anywhere;color:#415748;
+}
+body.product-jasonai.mode-how .jhow-empty{
+ padding:16px 0;color:var(--muted);
+}
+body.product-jasonai.mode-how .jhow-later{
+ border-top:1px solid var(--rule);padding-top:18px;
+ margin:36px 0 24px;
+}
+body.product-jasonai.mode-how .jhow-later>p{max-width:740px;margin:0 0 22px}
+body.product-jasonai.mode-how .jhow-later-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;
+}
+body.product-jasonai.mode-how .jhow-later-grid p{
+ display:flex;flex-direction:column;gap:8px;
+ border-top:1px solid var(--rule);padding:15px 0;margin:0;
+}
+body.product-jasonai.mode-how .jhow-later-grid strong{
+ font-weight:700;color:#5c6d60;
+}
+@keyframes jhow-appear{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:780px){
+ body.product-jasonai.mode-how .jhow-layout,
+ body.product-jasonai.mode-how .jhow-later-grid{
+  grid-template-columns:1fr;gap:20px;
+ }
+ body.product-jasonai.mode-how .jhow-preview{padding:13px}
+ body.product-jasonai.mode-how .jhow{padding-top:16px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.product-jasonai.mode-how .jhow-record{animation:none}
+ body.product-jasonai.mode-how .jhow-source{transition:none}
+}
+/* This Show page retains B2W's single-size text principle, including legacy stages. */
+body.product-jasonai.mode-how .view-wrap :where(p,span,strong,small,a,button,label,legend,textarea,li,div){
+ font-size:var(--size,15px)!important;
+}

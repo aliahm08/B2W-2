@@ -30,6 +30,11 @@ clara:{
 }};
 // Clara content is independently extensible; shared template code has no fixed row counts.
 if(!jason && window.B2WClaraContentV3) copy.clara=window.B2WClaraContentV3;
+if(jason&&window.B2WJasonHowV4){
+ copy.jasonai.stages=window.B2WJasonHowV4.stages;
+ copy.jasonai.rows[0][0]="Choose your messages, documents and Friday payroll rules. JasonAI prepares a source-backed list showing who to pay, why, and what is missing.";
+ copy.jasonai.rows[2][0]="Start with reliable Friday payroll. As accurate records accumulate, explore labor trends and future staffing recommendations.";
+}
 const data=copy[site];let activeNotes=data.notes;const view=document.getElementById("productView"),brand=document.querySelector(".site-header .brand"),tray=document.getElementById("mobileTray"),menu=document.querySelector(".menu-toggle"),footer=document.querySelector(".footer"),currentPage=document.getElementById("currentPage");
 const canonical=path=>(path.replace(/\/+$/,"")||"/");
 const escaped=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -58,7 +63,8 @@ function show(path){
  ["Materials & orders",[["Illustrative question","How much do I need to pay for materials?"],["Example response","Current material obligations: $8,460. Due this week: $5,180. Later: $3,280."],["Example sources","Supplier invoices and purchase order log."]]],
  ["Daily owner brief",[["Illustrative question","What needs my attention this morning?"],["Example response","Upcoming payments, delivery updates and unresolved project questions are assembled."],["Owner reviews","The relevant source is available for every proposed action."]]]
  ]:data.stages;
- return '<section class="subpage">'+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div><div class="product-stage-art" aria-hidden="true">'+window.B2WGraphics.stage(site,i)+'</div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Insights ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
+ const walkthrough=jason&&!isGC?(window.B2WJasonHowV4?.render()||""):"";
+ return '<section class="subpage">'+walkthrough+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div><div class="product-stage-art" aria-hidden="true">'+window.B2WGraphics.stage(site,i)+'</div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Insights ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
 }
 function know(path){
  const notes=path.includes("/trust")?[
@@ -126,6 +132,7 @@ function render(){
  closeMenu();
  demoStep=0;updateDemo();
  window.B2WLiveDemos?.mount(view);
+ if(jason)window.B2WJasonHowV4?.mount(view);
  if(location.hash&&(location.hash==="#capabilities"||location.hash==="#how-it-works")){const dest=location.hash==="#capabilities"?routes.flow:routes.show;history.replaceState(null,"",dest);render();}
 }
 let navigating=false;
