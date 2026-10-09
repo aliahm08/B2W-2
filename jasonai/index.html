@@ -106,12 +106,12 @@ body.menu-open .mobile-menu{position:fixed;inset:70px 0 0;z-index:32;display:fle
 'use strict';
 const main=document.getElementById('main');
 const routes=['/jasonai','/jasonai/capabilities','/jasonai/how-it-works','/jasonai/scenarios','/jasonai/demo'];
-const route=window.location.pathname.replace(/\\/$/,'') || '/jasonai';
+const route=window.location.pathname.replace(/\/$/,'') || '/jasonai';
 const current=routes.includes(route)?route:'/jasonai';
 const tone={'/jasonai':'dark','/jasonai/capabilities':'gray','/jasonai/how-it-works':'light','/jasonai/scenarios':'dark','/jasonai/demo':'light'}[current];
 document.body.className='theme-'+tone;
 document.querySelector('meta[name="theme-color"]').setAttribute('content',tone==='dark'?'#11150f':tone==='gray'?'#dedfdf':'#f2f1ed');
-document.querySelectorAll('.desktop-nav a').forEach(a=>{if(a.pathname.replace(/\\/$/,'')===current)a.setAttribute('aria-current','page')});
+document.querySelectorAll('.desktop-nav a').forEach(a=>{if(a.pathname.replace(/\/$/,'')===current)a.setAttribute('aria-current','page')});
 function page(label,title,content){document.title=title+' · JasonAI · B2W';main.innerHTML='<div class="page"><p class="page-label">'+label+'</p>'+content+'</div>'}
 const links='<div class="link-stack"><a class="section-link" href="/jasonai/capabilities/">Capabilities <span>↗</span></a><a class="section-link" href="/jasonai/how-it-works/">How It Works <span>↗</span></a><a class="section-link" href="/jasonai/scenarios/">Scenarios <span>↗</span></a><a class="section-link" href="/jasonai/demo/">Request a demo <span>↗</span></a></div>';
 const accordion=(key,icon,title,lead,detail,open)=>'<section class="accordion" data-open="'+String(open)+'"><button class="accordion-trigger" aria-expanded="'+String(open)+'" type="button"><span class="glyph">'+icon+'</span><span>'+title+'</span><span class="sign">'+(open?'×':'+')+'</span></button><div class="accordion-body"><div class="symbol" aria-hidden="true">'+icon+'</div><p><strong>'+lead+'</strong></p><p>'+detail+'</p></div></section>';
