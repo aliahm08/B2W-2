@@ -48,7 +48,7 @@ clara:{
  ["Capture and structure","Start with what the field already knows.",["Describe a job in plain language.","Organize notes, photos and source documents.","Develop a working scope for review."],"/clara/how-it-works/"],
  ["Estimate and review","Apply company standards to a proposed output.",["Consider approved pricing and preferred vendors.","Check quantities, assumptions and revisions.","Keep deliverables editable before approval."],"/clara/insights/"]]
 }};
-const data=copy[site],view=document.getElementById("productView"),brand=document.querySelector(".site-header .brand"),tray=document.getElementById("mobileTray"),menu=document.querySelector(".menu-toggle"),footer=document.querySelector(".footer"),currentPage=document.getElementById("currentPage");
+const data=copy[site];let activeNotes=data.notes;const view=document.getElementById("productView"),brand=document.querySelector(".site-header .brand"),tray=document.getElementById("mobileTray"),menu=document.querySelector(".menu-toggle"),footer=document.querySelector(".footer"),currentPage=document.getElementById("currentPage");
 const canonical=path=>(path.replace(/\/+$/,"")||"/");
 const escaped=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const routes={home:base+"/",show:base+"/how-it-works/",know:base+"/insights/",flow:base+"/capabilities/"};
@@ -72,11 +72,20 @@ function home(){
 }
 function show(path){
  const isGC=path.includes("general-contractors");
- const stages=data.stages;
+ const stages=isGC?[
+ ["Payments & payroll",[["Illustrative question","Who needs to get paid this week?"],["Example response","Three payments need attention: Jose M. $1,400; NorthStar Supply $3,280; Concrete crew $2,100."],["Example sources","QuickBooks and Excel."]]],
+ ["Outstanding payments",[["Illustrative question","Which projects have outstanding payments?"],["Example response","Oak Street Renovation: 18 days; Fairfax Addition: 9 days."],["Example sources","A/R Aging.xlsx and Procore Financials."]]],
+ ["Risk & follow-up",[["Illustrative question","Where are areas of risk across all projects?"],["Example response","Permit response overdue (high); material delivery slipped (medium); labor hours above plan (medium)."],["Example sources","Procore, Google Drive and Excel."]]],
+ ["Materials & orders",[["Illustrative question","How much do I need to pay for materials?"],["Example response","Current material obligations: $8,460. Due this week: $5,180. Later: $3,280."],["Example sources","Supplier invoices and purchase order log."]]]
+ ]:data.stages;
  return '<section class="subpage">'+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Insights ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
 }
 function know(path){
- const notes=data.notes;
+ const notes=path.includes("/trust")?[
+ ["Secure, private technology",["We use secure, private technology.","The owner chooses what project information is available to JasonAI.","Access and consequential actions should be controlled."]],
+ ["No sale of personal data",["We never sell personal data.","The original Trust statement is retained here as a product commitment.","Permission and source visibility are central to the proposed workflow."]],
+ ["Pay for quality",["We believe in paying for quality.","A useful assistant should be accountable for source quality and reviewable outcomes.","Owner approval remains part of the design."]]
+ ]:data.notes;activeNotes=notes;
  return '<div class="field-workspace is-empty" id="field-workspace"><aside class="field-library"><nav aria-label="Insights">'+notes.map((n,i)=>'<button class="field-item" type="button" data-note="'+i+'" aria-pressed="false"><span class="field-number">'+String(i+1).padStart(2,"0")+'</span><span>'+escaped(n[0])+'</span></button>').join("")+'</nav></aside><div class="field-reader" id="field-reader"><button class="mobile-reader-back" type="button">← All insights</button><div id="active-note"></div></div></div>';
 }
 function flow(path){
@@ -140,7 +149,7 @@ view.addEventListener("click",e=>{
  const b=e.target.closest(".stage-head");
  if(b){const s=b.closest(".stage"),open=s.classList.toggle("open");b.setAttribute("aria-expanded",String(open));if(open&&innerWidth<=780)view.querySelectorAll(".stage").forEach(other=>{if(other!==s){other.classList.remove("open");other.querySelector(".stage-head").setAttribute("aria-expanded","false")}});return;}
  const note=e.target.closest("[data-note]");
- if(note){const index=Number(note.dataset.note),workspace=document.getElementById("field-workspace"),entry=data.notes[index];view.querySelectorAll(".field-item").forEach(a=>a.setAttribute("aria-pressed",String(a===note)));workspace.classList.remove("is-empty","reveal-content");document.getElementById("active-note").innerHTML='<div class="field-panel"><div class="field-hero"><div class="field-art">'+noteArt+'</div><p class="field-caption">'+escaped(entry[0])+'</p></div><div class="field-text">'+entry[1].map((p,i)=>'<p style="--line-number:'+i+'">'+escaped(p)+'</p>').join("")+'</div></div>';requestAnimationFrame(()=>workspace.classList.add("reveal-content"));return;}
+ if(note){const index=Number(note.dataset.note),workspace=document.getElementById("field-workspace"),entry=activeNotes[index];view.querySelectorAll(".field-item").forEach(a=>a.setAttribute("aria-pressed",String(a===note)));workspace.classList.remove("is-empty","reveal-content");document.getElementById("active-note").innerHTML='<div class="field-panel"><div class="field-hero"><div class="field-art">'+noteArt+'</div><p class="field-caption">'+escaped(entry[0])+'</p></div><div class="field-text">'+entry[1].map((p,i)=>'<p style="--line-number:'+i+'">'+escaped(p)+'</p>').join("")+'</div></div>';requestAnimationFrame(()=>workspace.classList.add("reveal-content"));return;}
  if(e.target.closest(".mobile-reader-back")){const workspace=document.getElementById("field-workspace");workspace.classList.add("is-empty");workspace.classList.remove("reveal-content");view.querySelectorAll(".field-item").forEach(a=>a.setAttribute("aria-pressed","false"));return;}
  const card=e.target.closest(".offering-trigger");
  if(card){const parent=card.closest(".offering-card"),open=parent.classList.toggle("is-open");card.setAttribute("aria-expanded",String(open));parent.querySelector(".offering-reveal").setAttribute("aria-hidden",String(!open));return;}
