@@ -13,3 +13,6 @@ Maintain B2W's single-size typography, Clara's deep metallic purple Scenarios co
 Clara's product subpage is now called **Features**, linked at `/clara/features/` (the older `/clara/capabilities/` still resolves). The seven capabilities render as independent expandable cards on the existing electric-blue background.
 
 Scenarios first renders only the three-item job list. A click expands a single sample article beneath the list, simulates typing its illustrative voice transcript, reveals an organized scope note, and then reveals an editable estimate with the same line items. Source audio was not available and is never described as an authentic transcript. The motion sequence supports Replay, Show all, Close, browser reduced-motion settings, and explicit invalid price/quantity states. It does not generate live estimates or persist data to the portal.
+
+## V8 focus
+Clara's Features page now contains exactly two product promises: **Voice to Estimate** and **Share Final Results**. Supporting steps such as transcript review, editing, checking quantities and exporting are part of those two workflows, not independently marketed features. The site remains illustrative, and no live portal functionality has been verified.

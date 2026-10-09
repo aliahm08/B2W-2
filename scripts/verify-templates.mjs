@@ -75,7 +75,7 @@ if(!claraHtml.includes("clara-theme-v3.css")||!claraHtml.includes("clara-content
 const b2w=read("index.html");
 const scope=b2w.slice(b2w.indexOf('class="mission-home"'),b2w.indexOf('class="home-bottom-actions"'));
 if([...scope.matchAll(/class="mission-link"/g)].length!==3)throw new Error("B2W's 3 home links must be preserved");
-console.log("PASS: 12 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"sample jobs,",clara.offerings.length,"capabilities; colors, links, animated product view preserved");
+console.log("PASS: 12 shared routes, Clara data-driven",6,"portal steps,",clara.notes.length,"sample jobs,",clara.offerings.length,"features; colors, links, animated product view preserved");
 
 const claraTheme=read("assets/css/clara-theme-v3.css");
 for(const token of [

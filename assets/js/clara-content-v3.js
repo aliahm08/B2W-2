@@ -1,4 +1,4 @@
-/* Clara content: sample jobs in Scenarios, seven feature areas in Capabilities. */
+/* Clara V8: two core features only. */
 (()=>{"use strict";window.B2WClaraContentV3={
   "rows": [
     [
@@ -12,7 +12,7 @@
       "/clara/scenarios/"
     ],
     [
-      "Record, build, edit, share and revisit estimates across your properties.",
+      "Speak the job into an estimate. Review it, then share the final result.",
       "Features",
       "/clara/features/"
     ]
@@ -166,74 +166,24 @@
   ],
   "offerings": [
     [
-      "Voice capture",
-      "Record a job on the spot; pause, retry and replay before submitting.",
+      "Voice to Estimate",
+      "Record a voice note on site and turn it into a draft estimate.",
       [
-        "HTTPS microphone permission on mobile and desktop.",
-        "Audio file saved with its owner and source property.",
-        "Transcription reviewed before scope generation."
+        "Describe the job in your own words.",
+        "Review the organized scope, quantities and missing details.",
+        "Check and edit the estimate before using it."
       ],
       "/clara/what-we-show/"
     ],
     [
-      "Structured scope",
-      "Turn field descriptions into editable tasks and quantities.",
+      "Share Final Results",
+      "Send the reviewed estimate to the people who need it.",
       [
-        "Extract trades, materials and measurements.",
-        "Mark unclear or missing inputs.",
-        "Keep the original voice note linked to the draft."
+        "Finalize the estimate after checking rates and assumptions.",
+        "Prepare a clear version for a client or collaborator.",
+        "Share or download the result when the portal supports it."
       ],
       "/clara/what-we-show/"
-    ],
-    [
-      "Estimate builder",
-      "Build reviewable line items from scope and chosen rate references.",
-      [
-        "Editable labor, material and equipment line items.",
-        "Visible assumptions and exclusions.",
-        "Explicit human check before an estimate is issued."
-      ],
-      "/clara/what-we-show/"
-    ],
-    [
-      "Property workspace",
-      "Keep each estimate with the property and specific job.",
-      [
-        "Separate estimates for different units and buildings.",
-        "Search by property, job and status.",
-        "Return to a draft from any signed-in device."
-      ],
-      "/clara/scenarios/"
-    ],
-    [
-      "Version history",
-      "Maintain a traceable revision sequence.",
-      [
-        "Draft, shared and approved states.",
-        "Compare changes across versions.",
-        "Record who revised or approved an estimate."
-      ],
-      "/clara/scenarios/"
-    ],
-    [
-      "Sharing and review",
-      "Invite a stakeholder to review one specific version.",
-      [
-        "Authenticated sharing with explicit access.",
-        "Comments and approval requests.",
-        "No exposure of private client files through public links."
-      ],
-      "/clara/scenarios/"
-    ],
-    [
-      "Clara chat",
-      "Continue working with the context of the current property.",
-      [
-        "Answer questions against the authorized draft.",
-        "Surface items awaiting a response.",
-        "Preserve the link to source and estimate version."
-      ],
-      "/clara/scenarios/"
     ]
   ]
 };})();

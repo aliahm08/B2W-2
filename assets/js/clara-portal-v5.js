@@ -26,12 +26,12 @@ function show(){
   '</section>';
 }
 function features(entries){
- return '<section class="clara-feature-page"><div class="clara-feature-intro"><p>Record the job, organize the scope, build an estimate and keep each revision available to review.</p><a href="/clara/what-we-show/">See the estimator ↗</a></div>'+
+ return '<section class="clara-feature-page"><div class="clara-feature-intro"><p>Record a job and create an estimate from a voice note. Review it, then share the finished result.</p><a href="/clara/what-we-show/">See the estimator ↗</a></div>'+
  '<div class="clara-feature-list clara-feature-cards">'+entries.map((entry,i)=>
  '<details class="clara-feature-item clara-feature-card"><summary><span class="clara-feature-index">'+String(i+1).padStart(2,"0")+'</span>'+
  '<span class="clara-feature-heading"><strong>'+entry[0]+'</strong><span>'+entry[1]+'</span></span><span class="clara-feature-marker" aria-hidden="true">+</span></summary>'+
  '<div class="clara-feature-more">'+entry[2].map(line=>'<p>'+line+'</p>').join("")+'</div></details>').join("")+'</div>'+
- '<div class="clara-feature-bottom"><span>Features reflect the intended Clara workflow; availability in the MVP may differ.</span><a href="'+portal+'" rel="noopener">Open Clara portal ↗</a></div></section>';
+ '<div class="clara-feature-bottom"><span>Voice-to-estimate and sharing are the two core features. Portal availability must be verified.</span><a href="'+portal+'" rel="noopener">Open Clara portal ↗</a></div></section>';
 }
 
 window.B2WClaraPortalV5={portal,show,features};

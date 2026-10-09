@@ -2,7 +2,7 @@
 Date: 2026-10-09. This file describes future implementation work and must not be presented as deployed functionality.
 
 ## What exists now
-The B2W static marketing site has the new Clara **What We Show** page, 10-entry **Scenarios** adoption strategy, and 7-card **Features** gallery, all within the existing shared templates. The What We Show page includes a scripted voice-to-estimate product visualization and a link to `https://portal.b2w-ai.com/`. The B2W Capabilities Clara card links to the portal directly. Neither the portal app's DNS availability nor a working microphone/auth/estimate backend has been established. **Do not advertise free public estimating until the next steps pass.**
+The B2W static marketing site has the new Clara **What We Show** page, 10-entry **Scenarios** adoption strategy, and 2-card **Features** gallery, all within the existing shared templates. The What We Show page includes a scripted voice-to-estimate product visualization and a link to `https://portal.b2w-ai.com/`. The B2W Capabilities Clara card links to the portal directly. Neither the portal app's DNS availability nor a working microphone/auth/estimate backend has been established. **Do not advertise free public estimating until the next steps pass.**
 
 ## Deploy and verify coded MVP
 1. Identify the **actual coded Clara estimator MVP repository/path**, its server, runtime, storage, model providers and rate sources. Do not assume the separate B2W proposals portal or the Open WebUI fork contains it.
