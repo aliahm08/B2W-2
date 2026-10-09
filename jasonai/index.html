@@ -14,6 +14,7 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4,p{margin:0;font-weight:400;letter-spacing:normal}
 h1,h2{font-weight:700}
 body.theme-dark{--paper:#11150f;--ink:#f2f1ed;--muted:#b4bcb2;--rule:rgba(242,241,237,.2)}
+body.theme-orange{--paper:#e7773d;--ink:#171411;--muted:#5f392a;--rule:rgba(23,20,17,.25)}
 body.theme-gray{--paper:#dedfdf;--ink:#171b1c;--muted:#565d5d;--rule:rgba(17,17,15,.18)}
 .site-shell{min-height:100dvh;display:flex;flex-direction:column}
 .site-header{position:relative;z-index:30;padding:30px 0 0;background:var(--paper)}
@@ -59,13 +60,23 @@ main{flex:1}
 .flow-controls button:last-child{background:var(--ink);color:var(--paper)}
 .flow-controls button:disabled{opacity:.3;cursor:not-allowed}
 .link-stack{margin-top:60px}
+.home-bottom-actions{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--rule);margin-top:70px;padding-top:18px}
+.home-bottom-actions a,.site-footer a{text-decoration:underline;text-underline-offset:4px}
+.scenario-list{margin-top:44px;border-top:1px solid var(--rule)}
+.scenario-choice{display:grid;grid-template-columns:30px 1fr;gap:12px;width:100%;padding:15px 0;border:0;border-bottom:1px solid var(--rule);background:transparent;text-align:left;cursor:pointer}
+.scenario-choice:hover,.scenario-choice:focus-visible{font-weight:700}
+.scenario-detail{margin-top:44px;border-top:1px solid var(--rule)}
+.scenario-back,.scenario-next{border:0;background:transparent;padding:18px 0;cursor:pointer;text-align:left}
+.scenario-detail article{border-top:1px solid var(--rule);padding-top:25px}
+.scenario-detail article p{margin:20px 0;max-width:630px}
+.scenario-detail article p:last-of-type{color:var(--muted)}
 .site-footer{width:min(92vw,var(--shell));margin:50px auto 0;padding:28px 0;border-top:1px solid var(--rule);color:var(--muted)}
 .site-footer a{text-decoration:underline;text-underline-offset:5px}
 @media(max-width:780px){
 .site-header{position:relative;padding:0;background:var(--paper)}
 .header-inner{width:calc(100% - 32px);grid-template-columns:1fr auto;min-height:70px;gap:14px}
 .desktop-nav,.header-contact{display:none}
-.menu-toggle{display:flex;justify-self:end;justify-content:center;align-items:center;width:50px;height:42px;border:1px solid var(--rule);border-radius:999px;background:transparent;cursor:pointer;z-index:33}
+.menu-toggle{display:flex;justify-self:end;justify-content:center;align-items:center;width:auto;min-width:76px;height:42px;white-space:nowrap;border:1px solid var(--rule);border-radius:999px;background:transparent;cursor:pointer;z-index:33}
 .menu-toggle span{display:block}
 .mobile-menu{display:none}
 body.menu-open{overflow:hidden}
@@ -82,7 +93,9 @@ body.menu-open .mobile-menu{position:fixed;inset:70px 0 0;z-index:32;display:fle
 .site-footer{width:calc(100% - 32px)}
 }
 @media(prefers-reduced-motion:reduce){body{transition:none}}
-</style></head><body class="theme-dark"><div class="site-shell">
+</style><style id="jasonai-type-final">
+html body#jasonai-site *,html body#jasonai-site *::before,html body#jasonai-site *::after{font-size:15px!important}
+</style></head><body id="jasonai-site" class="theme-dark"><div class="site-shell">
 <header class="site-header"><div class="header-inner">
 <a class="brand" href="/jasonai/" aria-label="JasonAI home">JasonAI</a>
 <nav class="desktop-nav" aria-label="JasonAI pages">
@@ -108,21 +121,33 @@ const main=document.getElementById('main');
 const routes=['/jasonai','/jasonai/capabilities','/jasonai/how-it-works','/jasonai/scenarios','/jasonai/demo'];
 const route=window.location.pathname.replace(/\/$/,'') || '/jasonai';
 const current=routes.includes(route)?route:'/jasonai';
-const tone={'/jasonai':'dark','/jasonai/capabilities':'gray','/jasonai/how-it-works':'light','/jasonai/scenarios':'dark','/jasonai/demo':'light'}[current];
+const tone={'/jasonai':'dark','/jasonai/capabilities':'gray','/jasonai/how-it-works':'light','/jasonai/scenarios':'orange','/jasonai/demo':'light'}[current];
 document.body.className='theme-'+tone;
-document.querySelector('meta[name="theme-color"]').setAttribute('content',tone==='dark'?'#11150f':tone==='gray'?'#dedfdf':'#f2f1ed');
+document.querySelector('meta[name="theme-color"]').setAttribute('content',tone==='dark'?'#11150f':tone==='gray'?'#dedfdf':tone==='orange'?'#e7773d':'#f2f1ed');
 document.querySelectorAll('.desktop-nav a').forEach(a=>{if(a.pathname.replace(/\/$/,'')===current)a.setAttribute('aria-current','page')});
 function page(label,title,content){document.title=title+' · JasonAI · B2W';main.innerHTML='<div class="page"><p class="page-label">'+label+'</p>'+content+'</div>'}
+const scenarios=[
+ ['A supplier changes delivery','A supplier pushes delivery to Thursday in a selected WhatsApp thread. JasonAI recognizes the changed date and associates it with the correct job.','The owner sees what changed, where it came from, and which commitment may need updating.'],
+ ['A crew reports its hours','A lead sends a voice note listing workers and the days they worked. JasonAI prepares labor entries for the appropriate project.','The owner reviews the time and amount before anything is treated as due or paid.'],
+ ['A client asks for an update','A client asks when the work will be complete. JasonAI checks the authorized schedule and recent project messages.','A source-backed draft is prepared for the owner to approve.'],
+ ['An invoice arrives in a chat','A subcontractor sends an invoice. JasonAI connects the document with the job and prepares an entry for review.','The owner can reconcile it without losing the original attachment.'],
+ ['A task is reported complete','A field worker sends photos and confirms the task is done. JasonAI prepares a project activity update.','The owner can approve, correct, or reject the proposed update.'],
+ ['Your daily brief','JasonAI assembles upcoming decisions, payments, unresolved questions, and project changes from authorized sources.','The owner gets a useful action list rather than a chronological transcript.']
+];
 const links='<div class="link-stack"><a class="section-link" href="/jasonai/capabilities/">Capabilities <span>↗</span></a><a class="section-link" href="/jasonai/how-it-works/">How It Works <span>↗</span></a><a class="section-link" href="/jasonai/scenarios/">Scenarios <span>↗</span></a><a class="section-link" href="/jasonai/demo/">Request a demo <span>↗</span></a></div>';
+const processAccordion=(title,lines,open=false)=>'<section class="accordion" data-open="'+String(open)+'"><button class="accordion-trigger" aria-expanded="'+String(open)+'" type="button"><span class="glyph">'+(open?'×':'+')+'</span><span>'+title+'</span><span class="sign">'+(open?'×':'+')+'</span></button><div class="accordion-body">'+lines.map(line=>'<p>'+line+'</p>').join('')+'</div></section>';
 const accordion=(key,icon,title,lead,detail,open)=>'<section class="accordion" data-open="'+String(open)+'"><button class="accordion-trigger" aria-expanded="'+String(open)+'" type="button"><span class="glyph">'+icon+'</span><span>'+title+'</span><span class="sign">'+(open?'×':'+')+'</span></button><div class="accordion-body"><div class="symbol" aria-hidden="true">'+icon+'</div><p><strong>'+lead+'</strong></p><p>'+detail+'</p></div></section>';
 if(current==='/jasonai'){
- page('JasonAI / Home','Home','<section class="page-home"><div class="hero-statement"><h1>JasonAI remembers the details from the project conversations you choose to share.</h1></div><a class="section-link" href="/jasonai/capabilities/">Capabilities <span>↗</span></a><p class="secondary-statement"><strong>An executive secretary for the owner,</strong> not a replacement for your project manager.</p><a class="section-link" href="/jasonai/how-it-works/">How It Works <span>↗</span></a><div class="bottom-link"><p><strong>Try JasonAI on a real workflow</strong> and see what it can organize, draft, and prepare for your approval.</p><a class="section-link" href="/jasonai/scenarios/">Scenarios <span>↗</span></a></div>'+links+'</section>');
+ page('JasonAI / Home','Home','<section class="page-home"><div class="hero-statement"><h1>JasonAI remembers the details from the project conversations you choose to share.</h1></div><a class="section-link" href="/jasonai/capabilities/">Capabilities <span>↗</span></a><p class="secondary-statement"><strong>An executive secretary for the owner,</strong> not a replacement for your project manager.</p><a class="section-link" href="/jasonai/how-it-works/">How It Works <span>↗</span></a><div class="bottom-link"><p><strong>Try JasonAI on a real workflow</strong> and see what it can organize, draft, and prepare for your approval.</p><a class="section-link" href="/jasonai/scenarios/">Scenarios <span>↗</span></a></div><div class="home-bottom-actions"><span>JasonAI · by <a href="/">B2W ↗</a></span><a href="/jasonai/demo/">Request a demo ↗</a></div></section>');
 }else if(current==='/jasonai/capabilities'){
- page('Capabilities','Capabilities','<h1>Capabilities</h1><hr class="section-rule">'+accordion('agent','⊕','Agent','An executive secretary in your existing conversations.','Ask JasonAI questions, share voice notes, request summaries, prepare responses, and propose updates. The agent reads only approved context and seeks owner approval before consequential actions.',true)+accordion('platform','▤','Platform','A connected view of the operation.','Use authorized project conversations to keep labor, project and delivery information organized. Review proposed changes with their sources before they update the business.',false)+links);
+ page('Capabilities','Capabilities','<h1>Capabilities</h1><hr class="section-rule">'+accordion('agent','⊕','Agent','An executive secretary in your existing conversations.','Ask JasonAI questions, share voice notes, request summaries, prepare responses, and propose updates. The agent reads only approved context and seeks owner approval before consequential actions.',true)+accordion('platform','▤','Platform','A clear operating view across your business.','Business memory organizes project information into labor, payments, deliveries, documents, and commitments. A minimal dashboard shows what changed, who needs a payment, and what requires approval.',false)+links);
 }else if(current==='/jasonai/how-it-works'){
- page('How It Works','How It Works','<h1>JasonAI works where your team already communicates.</h1><div class="grid-notes"><article><b>01 / Choose</b><p>Share only the conversations, messages, notes and files that JasonAI is permitted to use.</p></article><article><b>02 / Remember</b><p>Connect the selected details to projects, labor and deliveries so context carries forward.</p></article><article><b>03 / Prepare</b><p>Surface open commitments, draft replies and suggest changes to the existing tools.</p></article><article><b>04 / Approve</b><p>The owner can review the source before consequential changes are made.</p></article></div>'+links);
+ page('How It Works','How It Works','<h1>How It Works</h1><hr class="section-rule">'+processAccordion('Share selected context',['You choose the WhatsApp chats, messages, files, and tools that JasonAI may access.','JasonAI checks what belongs to each project without expanding its permission.','Your records remain limited to approved sources.'],true)+processAccordion('Build business memory',['Messages, people, labor, payments, deliveries, and documents become connected context.','JasonAI records useful details and references the source of each fact.','You can ask about the business without searching every conversation.'])+processAccordion('Ask naturally',['You text or send a voice note in language you already use.','JasonAI summarizes, answers, and identifies what remains uncertain.','You receive a useful response with relevant context.'])+processAccordion('Review proposed actions',['You ask JasonAI to prepare a reply or update an existing tracker.','It presents the proposed change with its source for approval.','You keep control of external messages and consequential actions.'])+processAccordion('Start with what matters',['New conversations bring new commitments, dates, and outstanding questions.','JasonAI prepares a brief organized by urgency and project.','You know what requires attention before beginning the day.'])+links);
 }else if(current==='/jasonai/scenarios'){
- page('Scenarios','Scenarios','<h1>Try JasonAI on a real workflow and see what it can organize, draft, and prepare for your approval.</h1><div class="grid-notes"><article><b>Project update</b><p>Turn a crew message into a reviewable project update.</p></article><article><b>Labor</b><p>Find who worked, where and what needs to be confirmed for payment.</p></article><article><b>Delivery</b><p>Track changed dates, missing materials and owner decisions.</p></article><article><b>Follow-up</b><p>Prepare a response while preserving the conversation context.</p></article></div><a class="section-link" href="/jasonai/demo/">Request a demo <span>↗</span></a>'+links);
+ page('Scenarios','Scenarios','<h1>Scenarios</h1><div class="scenario-list">'+scenarios.map((row,i)=>'<button class="scenario-choice" type="button" data-scenario="'+i+'"><span>'+String(i+1).padStart(2,'0')+'</span><span>'+row[0]+'</span></button>').join('')+'</div><div class="scenario-detail" hidden></div>');
+ const list=main.querySelector('.scenario-list'),detail=main.querySelector('.scenario-detail');
+ function showScenario(i){const row=scenarios[i];list.hidden=true;detail.hidden=false;detail.innerHTML='<button class="scenario-back" type="button">← All scenarios</button><article><h2>'+row[0]+'</h2><p>'+row[1]+'</p><p>'+row[2]+'</p><p>Illustrative workflow. Availability depends on connected tools and permissions.</p><button class="scenario-next" type="button">Next scenario ↗</button></article>';detail.querySelector('.scenario-back').addEventListener('click',()=>{detail.hidden=true;list.hidden=false});detail.querySelector('.scenario-next').addEventListener('click',()=>showScenario((i+1)%scenarios.length));}
+ list.addEventListener('click',e=>{const choice=e.target.closest('[data-scenario]');if(choice)showScenario(Number(choice.dataset.scenario))});
 }else{
  page('Demo','Interactive demo','<h1>From one conversation to a decision you can review.</h1><div class="flow-box" id="flow"><div><p class="page-label" id="flow-number">01 / Source</p><p class="flow-copy" id="flow-text"></p></div><div class="flow-controls"><button id="flow-back" type="button">Previous</button><button id="flow-next" type="button">Next →</button></div></div><p style="margin-top:20px">Illustrative only. No project data or systems are connected.</p>'+links);
  const frames=[['01 / Source','A crew message says framing is complete and three workers stayed late.'],['02 / Memory','JasonAI connects the update to the project and labor records.'],['03 / Proposal','JasonAI prepares a project update and asks for confirmation of hours.'],['04 / Approval','The owner reviews the source and approves or edits the proposed change.']];
@@ -132,10 +157,11 @@ if(current==='/jasonai'){
 }
 main.addEventListener('click',e=>{const b=e.target.closest('.accordion-trigger');if(!b)return;const section=b.closest('.accordion');const open=section.getAttribute('data-open')!=='true';section.setAttribute('data-open',String(open));b.setAttribute('aria-expanded',String(open));b.querySelector('.sign').textContent=open?'×':'+'});
 const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('#mobile-menu');
-function setMenu(open){document.body.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.querySelector('span').textContent=open?'Close ×':'Menu +'}
+function setMenu(open){menu.inert=!open;menu.setAttribute('aria-hidden',String(!open));document.body.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.querySelector('span').textContent=open?'Close ×':'Menu +'}
 toggle.addEventListener('click',()=>setMenu(toggle.getAttribute('aria-expanded')!=='true'));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
 window.addEventListener('resize',()=>{if(window.innerWidth>780)setMenu(false)});
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+menu.inert=true;menu.setAttribute('aria-hidden','true');
 })();
 </script></body></html>
