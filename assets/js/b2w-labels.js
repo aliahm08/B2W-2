@@ -2,7 +2,7 @@
   const labels = {
     home: "",
     team: "Team",
-    offerings: "Offerings",
+    offerings: "Capabilities",
     insights: "Insights",
     "how-we-work": "How We Work",
   };

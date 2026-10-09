@@ -2297,3 +2297,16 @@ html
 .footer-links a{text-decoration:underline;text-underline-offset:4px;color:var(--muted)}
 .footer-links a:hover{color:var(--ink)}
 @media(max-width:660px){.footer-links{justify-content:flex-start;gap:12px}}
+
+/* In B2W Insights, mirror the selected article layout while hovering. */
+@media(min-width:781px){
+ body.mode-insights .field-workspace.is-empty.previewing .field-hover-tray{
+  grid-column:2;grid-row:1;width:100%;max-width:none;padding:24px 12px
+ }
+ body.mode-insights .field-workspace.is-empty.previewing::after{
+  content:"";display:block;grid-column:3;grid-row:1;min-width:0;min-height:255px;
+  border-top:1px solid var(--rule);background:#171919;
+ }
+ body.mode-insights .field-workspace.is-empty.previewing .field-hover-tray .motion-visual{width:100%;max-width:500px}
+}
+@media(max-width:780px){body.mode-insights .field-workspace.is-empty.previewing::after{display:none}}

@@ -8,15 +8,14 @@ const graphics=fs.readFileSync(path.join(root,"assets/js/product-graphics.js"),"
 const urls=[
 ["jasonai","/jasonai/","home",3,"#11150f"],
 ["jasonai","/jasonai/how-it-works/","show",5,"#ffffff"],
-["jasonai","/jasonai/insights/","know",6,"#252828"],
+["jasonai","/jasonai/scenarios/","know",6,"#e7773d"],
 ["jasonai","/jasonai/capabilities/","flow",2,"#dedfdf"],
-["jasonai","/jasonai/scenarios/","flow",2,"#e7773d"],
 ["jasonai","/jasonai/demo/","flow",2,"#ffffff"],
 ["jasonai","/jasonai/general-contractors/","show",5,"#ffffff"],
 ["jasonai","/jasonai/trust/","know",6,"#252828"],
 ["clara","/clara/","home",3,"#f7f1f4"],
 ["clara","/clara/how-it-works/","show",5,"#ffffff"],
-["clara","/clara/insights/","know",6,"#252828"],
+["clara","/clara/scenarios/","know",6,"#252828"],
 ["clara","/clara/capabilities/","flow",2,"#d9cbd4"],
 ["clara","/clara/workflow/","flow",2,"#d9cbd4"]
 ];
@@ -46,4 +45,4 @@ const scope=b2w.slice(b2w.indexOf('class="mission-home"'),b2w.indexOf('class="ho
 if([...scope.matchAll(/class="mission-link"/g)].length!==3)throw new Error("B2W homepage must have 3 template links.");
 for(const fragment of ['data-view-link="offerings" href="#offerings"','data-view-link="insights" href="#insights"','data-view-link="how-we-work" href="#how-we-work"','href="/jasonai/"','href="/clara/"','data-contact-open'])
  if(!b2w.includes(fragment))throw new Error("B2W missing "+fragment);
-console.log("13 product routes passed: 3 home, 5 show, 6 know, 2 flow; exact colors and SVG diagrams verified.");
+console.log("12 product routes passed: 3 home, 5 show, 6 know, 2 flow; exact colors and SVG diagrams verified.");
