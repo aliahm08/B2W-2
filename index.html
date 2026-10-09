@@ -1332,7 +1332,7 @@ links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(a.dataset.
   if(focus&&open&&mobile.matches)menu.focus();
  }
  function openMenu(){
-  if(!mobile.matches||document.body.classList.contains('mode-home'))return;
+  if(!mobile.matches)return;
   tray.inert=false;tray.setAttribute('aria-hidden','false');
   tray.classList.add('open');header.classList.add('menu-expanded');
   document.body.classList.add('mobile-nav-open');document.documentElement.classList.add('mobile-nav-open');
@@ -1408,19 +1408,5 @@ links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(a.dataset.
     });
   });
 })();
-</script><script id="mobile-nav-repair-controller">(function(){
-const init=()=>{const btn=document.querySelector('.site-header .menu-toggle');const tray=document.getElementById('mobileTray');
-if(!btn||!tray)return;const shade=document.querySelector('.mobile-menu-shade');
-function show(on){tray.classList.toggle('open',on);btn.setAttribute('aria-expanded',String(on));
-document.body.classList.toggle('mobile-nav-open',on);
-if(on){tray.style.setProperty('display','flex','important');tray.style.setProperty('visibility','visible','important');tray.style.setProperty('pointer-events','auto','important');tray.style.setProperty('opacity','1','important')}
-else{tray.style.removeProperty('display');tray.style.removeProperty('visibility');tray.style.removeProperty('pointer-events');tray.style.removeProperty('opacity')}
-btn.querySelector('span:last-child')?.replaceChildren(document.createTextNode(on?'×':'+'));}
-btn.addEventListener('click',e=>{if(window.innerWidth>780)return;e.preventDefault();e.stopImmediatePropagation();show(btn.getAttribute('aria-expanded')!=='true')},true);
-tray.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();e.stopImmediatePropagation();const href=a.getAttribute('href');show(false);if(!href)return;
-if(href.startsWith('#')){window.location.href='/'+href;window.location.reload()}else{window.location.href=href}},true);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')show(false)});
-window.addEventListener('resize',()=>{if(innerWidth>780)show(false)});
-};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();</script></body>
+</script></body>
 </html>
