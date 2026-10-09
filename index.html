@@ -1435,5 +1435,15 @@ links.forEach(a=>a.addEventListener('click',e=>{if(a.getAttribute('href')?.start
     });
   });
 })();
+</script>
+<script id="b2w-jasonai-brand-transfer">
+document.querySelectorAll('a[href^="/jasonai/"]').forEach(link=>{
+ link.addEventListener('click',()=>{
+  const mark=document.querySelector('.site-header .brand');
+  const box=mark?.getBoundingClientRect();
+  if(!box||box.bottom<0||box.top>innerHeight)return;
+  try{sessionStorage.setItem('b2w-jasonai-transfer',JSON.stringify({x:box.x,y:box.y,width:box.width,height:box.height,at:Date.now()}))}catch{}
+ });
+});
 </script></body>
 </html>
