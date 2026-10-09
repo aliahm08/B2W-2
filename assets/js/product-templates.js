@@ -38,13 +38,13 @@ if(jason&&window.B2WJasonHowV4){
 const data=copy[site];let activeNotes=data.notes;const view=document.getElementById("productView"),brand=document.querySelector(".site-header .brand"),tray=document.getElementById("mobileTray"),menu=document.querySelector(".menu-toggle"),footer=document.querySelector(".footer"),currentPage=document.getElementById("currentPage");
 const canonical=path=>(path.replace(/\/+$/,"")||"/");
 const escaped=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const routes={home:base+"/",show:base+"/how-it-works/",know:base+"/scenarios/",flow:base+"/capabilities/"};
+const routes={home:base+"/",show:base+(jason?"/how-it-works/":"/what-we-show/"),know:base+"/scenarios/",flow:base+"/capabilities/"};
 const modeName={home:"mode-home",show:"mode-how",know:"mode-insights",flow:"mode-offerings"};
-const labels={home:"",show:"How It Works",know:"Scenarios",flow:"Capabilities"};
+const labels={home:"",show:jason?"How It Works":"What We Show",know:"Scenarios",flow:"Capabilities"};
 function templateFor(path){
  const p=canonical(path);
  if(p===base) return "home";
- if(p===base+"/how-it-works"||(jason&&p===base+"/general-contractors")) return "show";
+ if(p===base+"/how-it-works"||(!jason&&p===base+"/what-we-show")||(jason&&p===base+"/general-contractors")) return "show";
  if(p===base+"/scenarios"||p===base+"/insights"||(jason&&p===base+"/trust")) return "know";
  return "flow";
 }
@@ -55,6 +55,7 @@ function home(){
  '</section><div class="home-bottom-actions"><span class="home-llc">© 2026 B2W LLC</span><div class="ecosystem-home-footer"><a href="/">B2W ↗</a><a href="/jasonai/">JasonAI ↗</a><a href="/clara/">Clara ↗</a><a href="/contact/" data-contact-open>Contact ↗</a></div></div>';
 }
 function show(path){
+ if(!jason&&window.B2WClaraPortalV5)return window.B2WClaraPortalV5.show();
  const isGC=path.includes("general-contractors");
  const stages=isGC?[
  ["Payments & payroll",[["Illustrative question","Who needs to get paid this week?"],["Example response","Three payments need attention: Jose M. $1,400; NorthStar Supply $3,280; Concrete crew $2,100."],["Example sources","QuickBooks and Excel."]]],
@@ -64,7 +65,7 @@ function show(path){
  ["Daily owner brief",[["Illustrative question","What needs my attention this morning?"],["Example response","Upcoming payments, delivery updates and unresolved project questions are assembled."],["Owner reviews","The relevant source is available for every proposed action."]]]
  ]:data.stages;
  const walkthrough=jason&&!isGC?(window.B2WJasonHowV4?.render()||""):"";
- return '<section class="subpage">'+walkthrough+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div><div class="product-stage-art" aria-hidden="true">'+window.B2WGraphics.stage(site,i)+'</div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Insights ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
+ return '<section class="subpage">'+walkthrough+(isGC?'<p class="product-intro">For general contractor owners: support for commitments, labor, deliveries and owner approvals.</p>':"")+'<div class="stage-list">'+stages.map((s,i)=>'<section class="stage'+(i===0?" open":"")+'"><button type="button" class="stage-head" aria-expanded="'+(i===0)+'"><span class="stage-number">'+String(i+1).padStart(2,"0")+'</span><span class="stage-title">'+escaped(s[0])+'</span><span class="stage-mark">+</span></button><div class="stage-body"><div class="stage-body-inner"><div class="stage-details">'+s[1].map(d=>'<div class="stage-detail"><span>'+escaped(d[0])+'</span><span>'+escaped(d[1])+'</span></div>').join("")+'</div></div><div class="product-stage-art" aria-hidden="true">'+window.B2WGraphics.stage(site,i)+'</div></div></section>').join("")+'</div><div class="product-links"><a href="'+routes.know+'">Scenarios ↗</a><a href="'+routes.flow+'">Capabilities ↗</a></div></section>';
 }
 function know(path){
  const notes=path.includes("/trust")?[
@@ -79,6 +80,7 @@ function know(path){
 }
 function productWalkthrough(site){return '<section class="v2-product-embedded-demo"><h2 class="v2-embedded-title">See '+(site==="jasonai"?"JasonAI":"Clara")+' in action</h2><div class="v2-live-stage" data-product="'+site+'" aria-label="Illustrative product walkthrough"></div></section>';}
 function flow(path){
+ if(!jason&&window.B2WClaraPortalV5)return window.B2WClaraPortalV5.features(data.offerings);
  const p=canonical(path);
  if(p.endsWith("/demo")) return demo();
  const choices=data.offerings;

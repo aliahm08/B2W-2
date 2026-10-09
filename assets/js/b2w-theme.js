@@ -2,7 +2,7 @@
   const themes = {
     home: "#d5c9bf",
     team: "#f2f1ed",
-    offerings: "#173e2d",
+    offerings: "#B4FF56",
     "how-we-work": "#ffffff",
     insights: "#252828",
   };

@@ -2,6 +2,14 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/clara/what-we-show/",
+      "destination": "/clara/index.html"
+    },
+    {
+      "source": "/clara/what-we-show",
+      "destination": "/clara/index.html"
+    },
+    {
       "source": "/clara/scenarios/",
       "destination": "/clara/index.html"
     },

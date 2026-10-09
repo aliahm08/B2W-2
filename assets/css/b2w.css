@@ -849,17 +849,17 @@ body.mode-team {
   --muted: #6e6a65;
   --rule: rgba(17, 17, 15, 0.13);
 }
-body.mode-offerings {
-  --paper: #173e2d;
-  --ink: #edf2e9;
-  --muted: #bdd0c0;
-  --rule: rgba(235, 247, 237, 0.23);
+body.mode-offerings:not(.product-site) {
+ --paper:#B4FF56;
+ --ink:#14251A;
+ --muted:#455740;
+ --rule:rgba(20,37,26,.23);
 }
 html:has(body.mode-team) {
   background: #f2f1ed;
 }
-html:has(body.mode-offerings) {
-  background: #173e2d;
+html:has(body.mode-offerings:not(.product-site)) {
+  background: #B4FF56;
 }
 .offerings-layout {
   display: grid;
@@ -2012,8 +2012,8 @@ body.mode-insights .field-workspace.is-empty.previewing .field-reader {
   html:has(body.mode-how) {
     background-color: #fff !important;
   }
-  html:has(body.mode-offerings) {
-    background-color: #173e2d !important;
+  html:has(body.mode-offerings:not(.product-site)) {
+    background-color: #B4FF56 !important;
   }
   html:has(body.mode-insights) {
     background-color: #252828 !important;
