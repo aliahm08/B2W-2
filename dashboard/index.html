@@ -109,21 +109,98 @@ body.dark .account-menu{background:#262626;color:#eee;border-color:#69635d}
 body.dark .account-menu hr{border-color:#666}
 body.dark .account-menu .muted,body.dark #account-note{color:#b4b0ac}
 @media(max-width:700px){.dashboard-header{grid-template-columns:1fr auto}.dashboard-navigation{grid-column:1/-1;grid-row:2}.account-wrap{grid-column:2;grid-row:1}.dashboard-header>.chip{display:initial}.account-menu{right:0}}
+
+/* Deliberate two-phase navigation: outgoing content fully wiped, then incoming revealed. */
+@keyframes b2wWipeOut{
+ from{clip-path:inset(0 0 0 0);opacity:1}
+ to{clip-path:inset(0 0 0 100%);opacity:1}
+}
+@keyframes b2wWipeIn{
+ from{clip-path:inset(0 100% 0 0);opacity:1}
+ to{clip-path:inset(0 0 0 0);opacity:1}
+}
+body.view-exit #content{
+ animation:b2wWipeOut .34s cubic-bezier(.2,.8,.2,1) both!important;
+ pointer-events:none;
+}
+body.view-enter #content{
+ animation:b2wWipeIn .52s var(--spring) both!important;
+ pointer-events:none;
+}
+/* Avoid replaying the reveal once the incoming view has finished. */
+body.view-ready #content>.grid>*,
+body.view-ready #content>.ops-block,
+body.view-ready #content .row,
+body.view-ready #content .table tbody tr,
+body.view-ready #content .project{animation:none!important}
+body.view-enter #content>.grid>*,
+body.view-enter #content>.ops-block,
+body.view-enter #content .row,
+body.view-enter #content .table tbody tr,
+body.view-enter #content .project{
+ animation:lineReveal .47s var(--spring) both!important;
+}
+body.view-enter #content>.grid>*:nth-child(1),
+body.view-enter #content>.ops-block:nth-child(1){animation-delay:.04s!important}
+body.view-enter #content>.grid>*:nth-child(2),
+body.view-enter #content>.ops-block:nth-child(2){animation-delay:.12s!important}
+body.view-enter #content>.grid>*:nth-child(3),
+body.view-enter #content>.ops-block:nth-child(3){animation-delay:.20s!important}
+body.view-enter #content>.grid>*:nth-child(4){animation-delay:.28s!important}
+body.view-enter #content>.grid>*:nth-child(5){animation-delay:.36s!important}
+body.view-enter #content .row:nth-child(1),
+body.view-enter #content .table tbody tr:nth-child(1){animation-delay:.08s!important}
+body.view-enter #content .row:nth-child(2),
+body.view-enter #content .table tbody tr:nth-child(2){animation-delay:.15s!important}
+body.view-enter #content .row:nth-child(3),
+body.view-enter #content .table tbody tr:nth-child(3){animation-delay:.22s!important}
+body.view-enter #content .row:nth-child(4),
+body.view-enter #content .table tbody tr:nth-child(4){animation-delay:.29s!important}
+body.view-enter #content .row:nth-child(n+5),
+body.view-enter #content .table tbody tr:nth-child(n+5){animation-delay:.36s!important}
+@media(prefers-reduced-motion:reduce){
+ body.view-exit #content,body.view-enter #content,
+ body.view-enter #content *{animation:none!important;clip-path:none!important;transition:none!important}
+}
 </style></head><body><div class="shell"><aside class="rail"><a href="/" class="brand">B2W<span>.</span> <span style="color:#39745f">/ JasonAI</span></a><div><nav class="nav" id="rail-legacy"></nav></div><div class="foot"><p class="small" style="margin-top:8px">Illustrative contractor data.<br>No real payments or messages.</p><a class="small" href="/" style="display:block;margin-top:15px">← B2W website</a></div></aside><main class="main"><header class="top dashboard-header"><h1>JasonAI</h1><nav class="dashboard-navigation" id="rail-nav" aria-label="Dashboard views"></nav><div class="account-wrap"><button class="account-trigger chip" id="account-trigger" type="button" aria-expanded="false" aria-haspopup="true">Oak & Co. Contracting <span aria-hidden="true">⌄</span></button><div class="account-menu" id="account-menu" hidden><div class="account-caption">Oak & Co. Contracting</div><div class="account-caption muted">Demo workspace</div><hr><button id="theme-toggle" type="button" aria-pressed="false">Switch to dark mode</button><button type="button" id="account-details">Account details</button><div id="account-note" hidden>Demo account · No account settings connected.</div></div></div></header><div id="content"></div></main></div><div class="omni-shell"><div class="omni"><div class="omni-modes"><button data-mode="Log" class="selected">Log</button><button data-mode="Summarize">Summarize</button><button data-mode="Ask">Ask</button><button data-mode="Act">Act</button></div><form id="omni-form"><input id="omni-input" aria-label="JasonAI command" placeholder="Log a project update…" autocomplete="off"><button type="submit" class="omni-send" aria-label="Submit">↗</button></form><div id="omni-result" class="omni-result" hidden aria-live="polite"></div></div></div>
 <script>
 const names=['Today','Operations','Trends'];let current='Today',expanded='',reviewed=new Set(),paid=new Set();const jobs=[{id:'oak',name:'Oak Street Renovation',status:'In progress',owed:4200,due:1750,detail:'Framing completed. Crew hours need review.',workers:'Marco, Luis, Jamal',progress:70},{id:'pine',name:'Pinecrest Addition',status:'Awaiting materials',owed:1800,due:950,detail:'Cabinetry shipment delayed until Wednesday.',workers:'Omar, Leo',progress:40},{id:'cedar',name:'Cedar Lane Kitchen',status:'In progress',owed:3100,due:1350,detail:'Electrical rough-in scheduled for Tuesday.',workers:'Noah, Luis',progress:55},{id:'maple',name:'Maple Avenue Repair',status:'Closeout',owed:900,due:450,detail:'Final walkthrough pending customer confirmation.',workers:'Marco',progress:95}];const labor=[['Marco','Framing',450,'Oak Street, Maple Ave'],['Luis','Carpentry',400,'Oak Street, Cedar Lane'],['Jamal','Labor',350,'Oak Street'],['Omar','Installation',475,'Pinecrest'],['Noah','Electrical',425,'Cedar Lane']];const events=[{id:'e1',title:'Confirm crew overtime',job:'Oak Street Renovation',source:'Selected WhatsApp update · Today, 9:12 AM',detail:'“Marco and two workers stayed until 6. Please add their extra time.”',state:'Needs review'},{id:'e2',title:'Update cabinetry delivery',job:'Pinecrest Addition',source:'Selected WhatsApp update · Today, 8:40 AM',detail:'“Supplier called. Cabinetry now arriving Wednesday.”',state:'Needs review'},{id:'e3',title:'Mark framing complete',job:'Oak Street Renovation',source:'Selected WhatsApp update · Yesterday, 4:25 PM',detail:'“Framing is done. Ready for next inspection.”',state:'Needs review'}];const money=n=>'$'+n.toLocaleString('en-US');const nav=()=>{for(const id of ['rail-nav'])document.getElementById(id).innerHTML=names.map(n=>'<button class="'+(n===current?'active':'')+'" data-page="'+n+'" type="button">'+n+'</button>').join('')};function stat(label,value,sub,cls=''){return '<article class="stat"><p class="eyebrow">'+label+'</p><div class="value '+cls+'">'+value+'</div><p class="small">'+sub+'</p></article>'}function panel(title,body,kind='full',action=''){return '<section class="panel '+kind+'"><div class="panel-head"><h2>'+title+'</h2>'+action+'</div>'+body+'</section>'}function item(title,sub,right,detail='',key=''){return '<div class="row"><div class="grow"><h3>'+title+'</h3><p class="small">'+sub+'</p>'+(expanded===key?'<div class="mini">'+detail+'</div>':'')+'</div>'+right+(key?'<button class="secondary" data-expand="'+key+'">'+(expanded===key?'Close':'Details')+'</button>':'')+'</div>'}const totalDue=jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0);function today(){return '<div class="grid">'+stat('Payroll due Friday',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0)),'Across four projects','risk')+stat('Needs approval',String(events.filter(e=>!reviewed.has(e.id)).length),'Proposed changes to review')+stat('Open projects','4','1 approaching closeout')+panel('Priority actions',events.filter(e=>!reviewed.has(e.id)).map(e=>item(e.title,e.job,'<span class="badge warn">Review</span>',e.detail+'<div class="action-row"><button class="primary" data-approve="'+e.id+'">Approve proposed update</button></div>',e.id)).join('')||'<p class="muted">All proposed actions have been reviewed.</p>','wide','<button class="link" data-page="Operations">Activity →</button>')+panel('Weekly payroll',jobs.map(j=>item(j.name,'Due Friday', '<span class="amount">'+money(paid.has(j.id)?0:j.due)+'</span>')).join(''),'side','<button class="link" data-page="Operations">Labor →</button>')+'</div>'}function projects(){return '<div class="grid">'+jobs.map(j=>'<article class="project"><div class="meta"><span class="eyebrow">'+j.status+'</span><span class="badge '+(j.status==='Awaiting materials'?'warn':'ok')+'">'+j.progress+'% complete</span></div><button data-expand="'+j.id+'"><h3>'+j.name+' ↗</h3><p class="small">Customer balance: '+money(j.owed)+' · Labor due: '+money(j.due)+'</p></button><div class="bar"><span style="width:'+j.progress+'%"></span></div>'+(expanded===j.id?'<div class="detail"><p>'+j.detail+'</p><p class="small" style="margin-top:9px">Assigned: '+j.workers+'</p><div class="action-row"><button class="secondary" data-expand="'+j.id+'">Collapse</button></div></div>':'')+'</article>').join('')+'</div>'}function laborPage(){let rows=labor.map(([name,trade,rate,projects],i)=>'<tr data-expand="worker'+i+'"><td><strong>'+name+'</strong>'+(expanded==='worker'+i?'<div class="mini">Assigned to '+projects+'. Illustration only; validate hours against original messages.</div>':'')+'</td><td>'+trade+'</td><td>'+money(rate)+'</td><td>'+projects+'</td><td>'+money(rate)+'</td></tr>').join('');return '<div class="grid">'+stat('Estimated daily crew cost',money(labor.reduce((s,l)=>s+l[2],0)),'Illustrative day rates')+stat('Outstanding job payroll',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0)),'Friday cutoff','risk')+stat('Payments recorded',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?j.due:0),0)),'Demo-state only','positive')+panel('Workers · illustrative daily rates','<div class="table-wrap"><table class="table"><thead><tr><th>Worker</th><th>Trade</th><th>Daily rate</th><th>Assigned projects</th><th>Today</th></tr></thead><tbody>'+rows+'</tbody></table></div>')+panel('Friday payment checklist',jobs.map(j=>item(j.name,j.workers,'<span class="amount">'+money(j.due)+'</span>',paid.has(j.id)?'Recorded as paid in this local demo.':'<div class="action-row"><button class="primary" data-pay="'+j.id+'">Mark as paid (demo)</button></div>',j.id)).join(''))+'</div>'}function activity(){return '<div class="grid">'+panel('Proposed changes',events.map(e=>item(e.title,e.source+' · '+e.job,'<span class="badge '+(reviewed.has(e.id)?'ok':'warn')+'">'+(reviewed.has(e.id)?'Approved':'Needs review')+'</span>',e.detail+'<div class="action-row">'+(!reviewed.has(e.id)?'<button class="primary" data-approve="'+e.id+'">Approve</button><button class="secondary" data-reject="'+e.id+'">Reject</button>':'<span class="badge ok">Reviewed in demo</span>')+'</div>',e.id)).join(''))+'</div>'}function operations(){return '<div class="ops-block"><h2 class="ops-heading">Projects</h2>'+projects()+'</div><div class="ops-block"><h2 class="ops-heading">Labor</h2>'+laborPage()+'</div><div class="ops-block"><h2 class="ops-heading">Activity</h2>'+activity()+'</div>'}function trends(){return '<div class="grid">'+stat('Committed labor',money(jobs.reduce((s,j)=>s+j.due,0)),'Current illustrative snapshot')+stat('Customer balances',money(jobs.reduce((s,j)=>s+j.owed,0)),'Across four projects')+stat('Active jobs','4','One pending closeout')+panel('Payroll by project',jobs.map(j=>'<div class="row"><div class="grow"><h3>'+j.name+'</h3><div class="bar"><span style="width:'+(j.due/1750*100)+'%"></span></div></div><strong>'+money(j.due)+'</strong></div>').join(''),'wide')+panel('Apache Superset compatibility','<p>Superset can power read-only analytics and embedded charts here. Payroll editing, message provenance, approvals and project actions remain custom React/JS application workflows.</p><div class="superset"><p class="eyebrow">Integration placeholder</p><p class="small">Replace this region with an embedded Superset dashboard after configuring a Superset instance, allowed origins, row-level security and server-issued guest tokens.</p></div>','side')+'</div>'}const subtitles={Today:'The commitments, payments and updates that need your attention.',Operations:'Projects, workforce, payment commitments and reviewable activity.',Trends:'An operational reporting surface designed to accommodate Apache Superset.'};function render(){nav();document.getElementById('content').innerHTML=({Today:today,Operations:operations,Trends:trends})[current]();}let transitionTimer=0;
+let transitionPhase='idle';
+let requestedView=current;
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 function switchView(view){
+ if(!names.includes(view))return;
+ requestedView=view;
+ if(transitionPhase!=='idle')return;
  if(view===current)return;
- clearTimeout(transitionTimer);
- document.body.classList.add('view-moving');
- document.body.classList.remove('view-ready');
- current=view;expanded='';
- nav();
- transitionTimer=window.setTimeout(()=>{
-  render();
-  document.body.classList.remove('view-moving');
+ const content=document.getElementById('content');
+ document.body.classList.remove('view-ready','view-enter','view-moving');
+ if(reduceMotion.matches){
+  current=requestedView;expanded='';render();
   document.body.classList.add('view-ready');
- },420);
+  return;
+ }
+ // Phase one: keep the OLD screen in the DOM until its full wipe finishes.
+ transitionPhase='exiting';
+ content.setAttribute('aria-busy','true');
+ document.body.classList.add('view-exit');
+ transitionTimer=window.setTimeout(()=>{
+  // Phase two: the previous view is completely clipped before any new DOM is mounted.
+  if(requestedView!==current){
+   current=requestedView;expanded='';render();
+  }
+  document.body.classList.add('view-enter');
+  document.body.classList.remove('view-exit');
+  transitionPhase='entering';
+  // Phase three: reveal the incoming screen, then release interaction.
+  transitionTimer=window.setTimeout(()=>{
+   document.body.classList.remove('view-enter');
+   document.body.classList.add('view-ready');
+   content.removeAttribute('aria-busy');
+   transitionPhase='idle';
+   if(requestedView!==current)switchView(requestedView);
+  },630);
+ },340);
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-page],[data-expand],[data-approve],[data-reject],[data-pay]');if(!t)return;
  if(t.dataset.page){switchView(t.dataset.page);return}
