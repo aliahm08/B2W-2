@@ -215,8 +215,8 @@ Superset documents `@superset-ui/embedded-sdk`, `EMBEDDED_SUPERSET` and an app-i
 import { embedDashboard } from '@superset-ui/embedded-sdk';
 
 await embedDashboard({
-  id: SUPSERSET_EMBEDDED_DASHBOARD_UUID,
-  supersetDomain: SUPSERSET_ORIGIN,
+  id: SUPERSET_EMBEDDED_DASHBOARD_UUID,
+  supersetDomain: SUPERSET_ORIGIN,
   mountPoint: document.getElementById('trends-superset'),
   fetchGuestToken: async () => {
     const response = await fetch('/api/v1/analytics/guest-token', {
@@ -233,7 +233,7 @@ await embedDashboard({
 });
 ```
 
-Replace placeholders (including the `SUPSERSET_*` pseudonames) with validated, environment-specific values. Current `dashboard/index.html` is standalone vanilla JavaScript, so production would either bundle the embedded SDK or load an officially supported distribution rather than assuming ESM imports work in the existing file.
+Replace placeholders (including the `SUPERSET_*` pseudonames) with validated, environment-specific values. Current `dashboard/index.html` is standalone vanilla JavaScript, so production would either bundle the embedded SDK or load an officially supported distribution rather than assuming ESM imports work in the existing file.
 
 **Guest-token issuer contract** (server-side):
 1. Authenticate B2W session; resolve tenant and Superset dashboard entitlement from server-owned records.
