@@ -162,7 +162,60 @@ body.view-enter #content .table tbody tr:nth-child(n+5){animation-delay:.36s!imp
  body.view-exit #content,body.view-enter #content,
  body.view-enter #content *{animation:none!important;clip-path:none!important;transition:none!important}
 }
-</style></head><body><div class="shell"><aside class="rail"><a href="/" class="brand">B2W<span>.</span> <span style="color:#39745f">/ JasonAI</span></a><div><nav class="nav" id="rail-legacy"></nav></div><div class="foot"><p class="small" style="margin-top:8px">Illustrative contractor data.<br>No real payments or messages.</p><a class="small" href="/" style="display:block;margin-top:15px">← B2W website</a></div></aside><main class="main"><header class="top dashboard-header"><h1>JasonAI</h1><nav class="dashboard-navigation" id="rail-nav" aria-label="Dashboard views"></nav><div class="account-wrap"><button class="account-trigger chip" id="account-trigger" type="button" aria-expanded="false" aria-haspopup="true">Oak & Co. Contracting <span aria-hidden="true">⌄</span></button><div class="account-menu" id="account-menu" hidden><div class="account-caption">Oak & Co. Contracting</div><div class="account-caption muted">Demo workspace</div><hr><button id="theme-toggle" type="button" aria-pressed="false">Switch to dark mode</button><button type="button" id="account-details">Account details</button><div id="account-note" hidden>Demo account · No account settings connected.</div></div></div></header><div id="content"></div></main></div><div class="omni-shell"><div class="omni"><div class="omni-modes"><button data-mode="Log" class="selected">Log</button><button data-mode="Summarize">Summarize</button><button data-mode="Ask">Ask</button><button data-mode="Act">Act</button></div><form id="omni-form"><input id="omni-input" aria-label="JasonAI command" placeholder="Log a project update…" autocomplete="off"><button type="submit" class="omni-send" aria-label="Submit">↗</button></form><div id="omni-result" class="omni-result" hidden aria-live="polite"></div></div></div>
+
+/* Accessible compact header + AI launcher on narrow screens (B2W dashboard). */
+.omni-mobile-toggle,.omni-mobile-bar{display:none}
+@media(max-width:700px){
+  .dashboard-header{
+    position:sticky;top:0;z-index:35;
+    background:var(--paper);
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,max-content);
+    grid-template-rows:auto auto;
+    align-items:center;column-gap:10px;row-gap:4px;
+    margin:0 -1px 24px;padding:10px 1px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  body.dark .dashboard-header{background:#151515}
+  .dashboard-header h1{grid-column:1;grid-row:1;align-self:center}
+  .account-wrap{grid-column:2;grid-row:1;position:relative;min-width:0;max-width:58vw;z-index:36}
+  .account-trigger{display:flex;gap:8px;align-items:center;justify-content:space-between;max-width:min(58vw,228px);min-height:44px;padding:8px 11px;overflow:hidden}
+  .account-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .account-menu{right:0;width:min(260px,88vw);max-width:calc(100vw - 32px)}
+  .dashboard-navigation{
+    grid-column:1 / -1;grid-row:2;
+    width:100%;min-width:0;max-width:100%;
+    display:flex;justify-content:space-between;gap:8px;
+    overflow-x:auto;overscroll-behavior-x:contain;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .dashboard-navigation::-webkit-scrollbar{display:none}
+  .dashboard-navigation button{flex:0 0 auto;min-height:44px;padding:9px 6px;white-space:nowrap}
+  .omni-shell{bottom:calc(12px + env(safe-area-inset-bottom));right:0;left:0;justify-content:flex-end;padding:0 14px}
+  .omni-mobile-toggle{
+    pointer-events:auto;display:grid;place-items:center;
+    border:1px solid #c8562e;background:var(--orange);color:#11110f;
+    border-radius:999px;min-width:58px;min-height:58px;
+    font-weight:750;box-shadow:0 7px 24px rgba(0,0,0,.17)
+  }
+  .omni-shell:not(.is-open) .omni{display:none}
+  .omni-shell.is-open .omni-mobile-toggle{display:none}
+  .omni-shell.is-open{justify-content:center}
+  .omni-shell.is-open .omni{width:100%;max-height:min(75dvh,520px);overflow:auto}
+  .omni-mobile-bar{display:flex;align-items:center;justify-content:space-between;min-height:42px;padding:0 4px 8px}
+  .omni-mobile-bar button{
+    border:1px solid var(--line);border-radius:100%;
+    background:transparent;color:inherit;min-width:40px;min-height:40px;cursor:pointer
+  }
+  .omni-modes button{min-height:44px}
+  #omni-input{min-height:44px}
+  .omni-send{min-height:44px;min-width:48px}
+  body{padding-bottom:90px}
+}
+@media(prefers-reduced-motion:reduce){
+  .omni-mobile-toggle{transition:none!important;animation:none!important}
+}
+</style></head><body><div class="shell"><aside class="rail"><a href="/" class="brand">B2W<span>.</span> <span style="color:#39745f">/ JasonAI</span></a><div><nav class="nav" id="rail-legacy"></nav></div><div class="foot"><p class="small" style="margin-top:8px">Illustrative contractor data.<br>No real payments or messages.</p><a class="small" href="/" style="display:block;margin-top:15px">← B2W website</a></div></aside><main class="main"><header class="top dashboard-header"><h1>JasonAI</h1><nav class="dashboard-navigation" id="rail-nav" aria-label="Dashboard views"></nav><div class="account-wrap"><button class="account-trigger chip" id="account-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="account-menu" aria-label="Account: Oak & Co. Contracting"><span class="account-name">Oak & Co. Contracting</span><span aria-hidden="true">⌄</span></button><div class="account-menu" id="account-menu" hidden><div class="account-caption">Oak & Co. Contracting</div><div class="account-caption muted">Demo workspace</div><hr><button id="theme-toggle" type="button" aria-pressed="false">Switch to dark mode</button><button type="button" id="account-details">Account details</button><div id="account-note" hidden>Demo account · No account settings connected.</div></div></div></header><div id="content"></div></main></div><div class="omni-shell" id="omni-shell"><button class="omni-mobile-toggle" id="omni-mobile-toggle" type="button" aria-expanded="false" aria-controls="omni-panel" aria-label="Open JasonAI assistant">AI</button><div class="omni" id="omni-panel" role="region" aria-label="JasonAI assistant"><div class="omni-mobile-bar"><span>JasonAI</span><button id="omni-mobile-close" type="button" aria-label="Close JasonAI assistant">×</button></div><div class="omni-modes"><button data-mode="Log" class="selected">Log</button><button data-mode="Summarize">Summarize</button><button data-mode="Ask">Ask</button><button data-mode="Act">Act</button></div><form id="omni-form"><input id="omni-input" aria-label="JasonAI command" placeholder="Log a project update…" autocomplete="off"><button type="submit" class="omni-send" aria-label="Submit">↗</button></form><div id="omni-result" class="omni-result" hidden aria-live="polite"></div></div></div>
 <script>
 const names=['Today','Operations','Trends'];let current='Today',expanded='',reviewed=new Set(),paid=new Set();const jobs=[{id:'oak',name:'Oak Street Renovation',status:'In progress',owed:4200,due:1750,detail:'Framing completed. Crew hours need review.',workers:'Marco, Luis, Jamal',progress:70},{id:'pine',name:'Pinecrest Addition',status:'Awaiting materials',owed:1800,due:950,detail:'Cabinetry shipment delayed until Wednesday.',workers:'Omar, Leo',progress:40},{id:'cedar',name:'Cedar Lane Kitchen',status:'In progress',owed:3100,due:1350,detail:'Electrical rough-in scheduled for Tuesday.',workers:'Noah, Luis',progress:55},{id:'maple',name:'Maple Avenue Repair',status:'Closeout',owed:900,due:450,detail:'Final walkthrough pending customer confirmation.',workers:'Marco',progress:95}];const labor=[['Marco','Framing',450,'Oak Street, Maple Ave'],['Luis','Carpentry',400,'Oak Street, Cedar Lane'],['Jamal','Labor',350,'Oak Street'],['Omar','Installation',475,'Pinecrest'],['Noah','Electrical',425,'Cedar Lane']];const events=[{id:'e1',title:'Confirm crew overtime',job:'Oak Street Renovation',source:'Selected WhatsApp update · Today, 9:12 AM',detail:'“Marco and two workers stayed until 6. Please add their extra time.”',state:'Needs review'},{id:'e2',title:'Update cabinetry delivery',job:'Pinecrest Addition',source:'Selected WhatsApp update · Today, 8:40 AM',detail:'“Supplier called. Cabinetry now arriving Wednesday.”',state:'Needs review'},{id:'e3',title:'Mark framing complete',job:'Oak Street Renovation',source:'Selected WhatsApp update · Yesterday, 4:25 PM',detail:'“Framing is done. Ready for next inspection.”',state:'Needs review'}];const money=n=>'$'+n.toLocaleString('en-US');const nav=()=>{for(const id of ['rail-nav'])document.getElementById(id).innerHTML=names.map(n=>'<button class="'+(n===current?'active':'')+'" data-page="'+n+'" type="button">'+n+'</button>').join('')};function stat(label,value,sub,cls=''){return '<article class="stat"><p class="eyebrow">'+label+'</p><div class="value '+cls+'">'+value+'</div><p class="small">'+sub+'</p></article>'}function panel(title,body,kind='full',action=''){return '<section class="panel '+kind+'"><div class="panel-head"><h2>'+title+'</h2>'+action+'</div>'+body+'</section>'}function item(title,sub,right,detail='',key=''){return '<div class="row"><div class="grow"><h3>'+title+'</h3><p class="small">'+sub+'</p>'+(expanded===key?'<div class="mini">'+detail+'</div>':'')+'</div>'+right+(key?'<button class="secondary" data-expand="'+key+'">'+(expanded===key?'Close':'Details')+'</button>':'')+'</div>'}const totalDue=jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0);function today(){return '<div class="grid">'+stat('Payroll due Friday',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0)),'Across four projects','risk')+stat('Needs approval',String(events.filter(e=>!reviewed.has(e.id)).length),'Proposed changes to review')+stat('Open projects','4','1 approaching closeout')+panel('Priority actions',events.filter(e=>!reviewed.has(e.id)).map(e=>item(e.title,e.job,'<span class="badge warn">Review</span>',e.detail+'<div class="action-row"><button class="primary" data-approve="'+e.id+'">Approve proposed update</button></div>',e.id)).join('')||'<p class="muted">All proposed actions have been reviewed.</p>','wide','<button class="link" data-page="Operations">Activity →</button>')+panel('Weekly payroll',jobs.map(j=>item(j.name,'Due Friday', '<span class="amount">'+money(paid.has(j.id)?0:j.due)+'</span>')).join(''),'side','<button class="link" data-page="Operations">Labor →</button>')+'</div>'}function projects(){return '<div class="grid">'+jobs.map(j=>'<article class="project"><div class="meta"><span class="eyebrow">'+j.status+'</span><span class="badge '+(j.status==='Awaiting materials'?'warn':'ok')+'">'+j.progress+'% complete</span></div><button data-expand="'+j.id+'"><h3>'+j.name+' ↗</h3><p class="small">Customer balance: '+money(j.owed)+' · Labor due: '+money(j.due)+'</p></button><div class="bar"><span style="width:'+j.progress+'%"></span></div>'+(expanded===j.id?'<div class="detail"><p>'+j.detail+'</p><p class="small" style="margin-top:9px">Assigned: '+j.workers+'</p><div class="action-row"><button class="secondary" data-expand="'+j.id+'">Collapse</button></div></div>':'')+'</article>').join('')+'</div>'}function laborPage(){let rows=labor.map(([name,trade,rate,projects],i)=>'<tr data-expand="worker'+i+'"><td><strong>'+name+'</strong>'+(expanded==='worker'+i?'<div class="mini">Assigned to '+projects+'. Illustration only; validate hours against original messages.</div>':'')+'</td><td>'+trade+'</td><td>'+money(rate)+'</td><td>'+projects+'</td><td>'+money(rate)+'</td></tr>').join('');return '<div class="grid">'+stat('Estimated daily crew cost',money(labor.reduce((s,l)=>s+l[2],0)),'Illustrative day rates')+stat('Outstanding job payroll',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?0:j.due),0)),'Friday cutoff','risk')+stat('Payments recorded',money(jobs.reduce((s,j)=>s+(paid.has(j.id)?j.due:0),0)),'Demo-state only','positive')+panel('Workers · illustrative daily rates','<div class="table-wrap"><table class="table"><thead><tr><th>Worker</th><th>Trade</th><th>Daily rate</th><th>Assigned projects</th><th>Today</th></tr></thead><tbody>'+rows+'</tbody></table></div>')+panel('Friday payment checklist',jobs.map(j=>item(j.name,j.workers,'<span class="amount">'+money(j.due)+'</span>',paid.has(j.id)?'Recorded as paid in this local demo.':'<div class="action-row"><button class="primary" data-pay="'+j.id+'">Mark as paid (demo)</button></div>',j.id)).join(''))+'</div>'}function activity(){return '<div class="grid">'+panel('Proposed changes',events.map(e=>item(e.title,e.source+' · '+e.job,'<span class="badge '+(reviewed.has(e.id)?'ok':'warn')+'">'+(reviewed.has(e.id)?'Approved':'Needs review')+'</span>',e.detail+'<div class="action-row">'+(!reviewed.has(e.id)?'<button class="primary" data-approve="'+e.id+'">Approve</button><button class="secondary" data-reject="'+e.id+'">Reject</button>':'<span class="badge ok">Reviewed in demo</span>')+'</div>',e.id)).join(''))+'</div>'}function operations(){return '<div class="ops-block"><h2 class="ops-heading">Projects</h2>'+projects()+'</div><div class="ops-block"><h2 class="ops-heading">Labor</h2>'+laborPage()+'</div><div class="ops-block"><h2 class="ops-heading">Activity</h2>'+activity()+'</div>'}function trends(){return '<div class="grid">'+stat('Committed labor',money(jobs.reduce((s,j)=>s+j.due,0)),'Current illustrative snapshot')+stat('Customer balances',money(jobs.reduce((s,j)=>s+j.owed,0)),'Across four projects')+stat('Active jobs','4','One pending closeout')+panel('Payroll by project',jobs.map(j=>'<div class="row"><div class="grow"><h3>'+j.name+'</h3><div class="bar"><span style="width:'+(j.due/1750*100)+'%"></span></div></div><strong>'+money(j.due)+'</strong></div>').join(''),'wide')+panel('Apache Superset compatibility','<p>Superset can power read-only analytics and embedded charts here. Payroll editing, message provenance, approvals and project actions remain custom React/JS application workflows.</p><div class="superset"><p class="eyebrow">Integration placeholder</p><p class="small">Replace this region with an embedded Superset dashboard after configuring a Superset instance, allowed origins, row-level security and server-issued guest tokens.</p></div>','side')+'</div>'}const subtitles={Today:'The commitments, payments and updates that need your attention.',Operations:'Projects, workforce, payment commitments and reviewable activity.',Trends:'An operational reporting surface designed to accommodate Apache Superset.'};function render(){nav();document.getElementById('content').innerHTML=({Today:today,Operations:operations,Trends:trends})[current]();}let transitionTimer=0;
 let transitionPhase='idle';
@@ -223,4 +276,32 @@ themeToggle.addEventListener('click',()=>setDark(!document.body.classList.contai
 document.getElementById('account-details').addEventListener('click',()=>document.getElementById('account-note').hidden=false);
 document.addEventListener('click',event=>{if(!event.target.closest('.account-wrap'))closeAccount()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeAccount()});
+
+/* Mobile omnibar visibility: collapsed by default; keep desktop composer unchanged. */
+const mobileAIQuery=window.matchMedia('(max-width:700px)');
+const omniShell=document.getElementById('omni-shell');
+const omniPanel=document.getElementById('omni-panel');
+const omniMobileToggle=document.getElementById('omni-mobile-toggle');
+const omniMobileClose=document.getElementById('omni-mobile-close');
+function setMobileAI(open,returnFocus=false){
+  const shouldOpen=mobileAIQuery.matches&&open;
+  omniShell.classList.toggle('is-open',shouldOpen);
+  omniMobileToggle.setAttribute('aria-expanded',String(shouldOpen));
+  const collapsed=mobileAIQuery.matches&&!shouldOpen;
+  omniPanel.inert=collapsed;
+  if(collapsed)omniPanel.setAttribute('aria-hidden','true');
+  else omniPanel.removeAttribute('aria-hidden');
+  if(shouldOpen)document.getElementById('omni-input').focus();
+  else if(returnFocus&&mobileAIQuery.matches)omniMobileToggle.focus();
+}
+omniMobileToggle.addEventListener('click',()=>setMobileAI(true));
+omniMobileClose.addEventListener('click',()=>setMobileAI(false,true));
+mobileAIQuery.addEventListener('change',()=>setMobileAI(false));
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&omniShell.classList.contains('is-open'))setMobileAI(false,true);
+});
+document.addEventListener('click',event=>{
+  if(mobileAIQuery.matches&&omniShell.classList.contains('is-open')&&!event.target.closest('#omni-shell'))setMobileAI(false);
+});
+setMobileAI(false);
 </script></body></html>
