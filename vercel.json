@@ -15,7 +15,7 @@
     },
     {
       "source": "/jasonai/demo",
-      "destination": "/jasonai/index.html"
+      "destination": "/jasonai/demo/index.html"
     },
     {
       "source": "/work",
